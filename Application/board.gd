@@ -53,9 +53,13 @@ func consumeCombination():
 				nextCombination.members.pop_at(pos)
 				nextSquare.init(randi() % 4)
 		combinationsPotential = CheckPotentialCombinations.Execute(nextCombination.origin, findedDirections)
-		for c in combinationsPotential:
-			c.activate()
+		#for c in combinationsPotential:
+			#c.activate()
+		#extCombination.hide()
 	combinationsToConsume = []
+	for c in combinationsPotential:
+		if !c.isStillValid():
+			combinationsPotential.pop_at(combinationsPotential.find(c))
 
 func getTable():
 	var returnTable =[]

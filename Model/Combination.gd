@@ -11,7 +11,11 @@ func activate():
 	origin.haspotential = true
 	for m in members:
 		m.haspotential = true
-	
+func hide():
+	origin.haspotential = false
+	for m in members:
+		m.haspotential = false
+
 func isStillValid():
 	var total = 0
 	for d in Directions.allDirections:

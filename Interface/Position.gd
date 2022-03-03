@@ -34,8 +34,10 @@ func applyColor():
 	var colorCalculated = Colors.GetColor(square.color)
 	if(isHover):
 		colorCalculated += Colors.LIGHT
-	if(isActive || square.haspotential):
+	if(isActive || square._seePotential() ):
 		colorCalculated = Colors.GetSaturatedColor(square.color)
+	if(square.hasOriginPotential):
+		colorCalculated = Colors.LIGHT
 	$AnimatedSprite.modulate = colorCalculated
 
 func setDirection(newDirection):
