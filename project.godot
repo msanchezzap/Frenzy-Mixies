@@ -1,0 +1,75 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "BasicBoard",
+"language": "GDScript",
+"path": "res://Application/factory/BasicBoard.gd"
+}, {
+"base": "Node",
+"class": "Board",
+"language": "GDScript",
+"path": "res://Application/board.gd"
+}, {
+"base": "Reference",
+"class": "CheckObject",
+"language": "GDScript",
+"path": "res://Application/Algorithms/Container/CheckObject.gd"
+}, {
+"base": "Reference",
+"class": "Combination",
+"language": "GDScript",
+"path": "res://Model/Combination.gd"
+}, {
+"base": "Node",
+"class": "GameBoard",
+"language": "GDScript",
+"path": "res://Interface/GameBoard.gd"
+}, {
+"base": "Area2D",
+"class": "Position",
+"language": "GDScript",
+"path": "res://Interface/Position.gd"
+}, {
+"base": "Node",
+"class": "Square",
+"language": "GDScript",
+"path": "res://Model/square.gd"
+} ]
+_global_script_class_icons={
+"BasicBoard": "",
+"Board": "",
+"CheckObject": "",
+"Combination": "",
+"GameBoard": "",
+"Position": "",
+"Square": ""
+}
+
+[application]
+
+config/name="SquareFrenzy"
+run/main_scene="res://Scenes/Main.tscn"
+config/icon="res://resources/icon.png"
+
+[autoload]
+
+Colors="*res://Utils/Colors.gd"
+SearchAlgorithm="*res://Application/Algorithms/SearchAlgorithm.gd"
+Directions="*res://Utils/Directions.gd"
+SortAlgorithm="*res://Application/Algorithms/SortAlgorithm.gd"
+CheckChainAlgorithm="*res://Application/Algorithms/CheckChainAlgorithm.gd"
+ConsumeCominationAglorithm="*res://Application/Algorithms/ConsumeCominationAglorithm.gd"
+CheckPotentialCombinations="*res://Application/Algorithms/CheckPotentialCombinations.gd"
+
+[physics]
+
+common/enable_pause_aware_picking=true
