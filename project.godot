@@ -38,6 +38,11 @@ _global_script_classes=[ {
 "class": "Square",
 "language": "GDScript",
 "path": "res://Domain/Model/Square.gd"
+}, {
+"base": "Square",
+"class": "SquareComponent",
+"language": "GDScript",
+"path": "res://Application/SquareComponent.gd"
 } ]
 _global_script_class_icons={
 "BasicBoard": "",
@@ -45,7 +50,8 @@ _global_script_class_icons={
 "Combination": "",
 "GameBoard": "",
 "Position": "",
-"Square": ""
+"Square": "",
+"SquareComponent": ""
 }
 
 [application]
@@ -60,6 +66,7 @@ Colors="*res://Domain/Model/Colors.gd"
 ColorsService="*res://Domain/Services/ColorsService.gd"
 Directions="*res://Domain/Model/Directions.gd"
 DirectionsService="*res://Domain/Services/DirectionsService.gd"
+SquareService="*res://Domain/Services/SquareService.gd"
 SearchAlgorithm="*res://Application/Algorithms/SearchAlgorithm.gd"
 SortAlgorithm="*res://Application/Algorithms/SortAlgorithm.gd"
 

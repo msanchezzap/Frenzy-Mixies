@@ -40,7 +40,7 @@ func refresh():
 		squares = squares.getRelation(Directions.DOWN)
 
 func positionClick(position):
-	if(position.square.hasOriginPotential()):
+	if(position.square.getHasOriginPotential()):
 		board.activeCombination(position.square)
 	elif selectedPosition != null:
 		selectedPosition.Unselect()

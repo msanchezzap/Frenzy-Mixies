@@ -1,6 +1,6 @@
 class_name Board extends Node
 
-var _startSquare: Square
+var _startSquare: SquareComponent
 
 var SizeHorizontal
 var SizeVertical
@@ -8,20 +8,13 @@ var SizeVertical
 func _init(horizontal, vertical):
 	SizeHorizontal = horizontal
 	SizeVertical = vertical
-	_startSquare = _goToStart(_initBoard())
+	_startSquare = SquareService.goToStart(_initBoard())
 
 func _initBoard():
 	return BasicBoard.new(SizeHorizontal, SizeVertical).construct()
 
-func _goToStart(square: Square):
-	if square.getRelation(Directions.UP) != null:
-		return _goToStart(square.getRelation(Directions.UP))
-	elif square.getRelation(Directions.LEFT) != null:
-		return _goToStart(square.getRelation(Directions.LEFT))
-	return square
-
 func getStartSquare():
-	_startSquare = _goToStart(_startSquare)
+	_startSquare = SquareService.goToStart(_startSquare)
 	return _startSquare
 
 func changeColor(square, color: int):

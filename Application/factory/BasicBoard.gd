@@ -8,14 +8,14 @@ func _init(width:int, height:int):
 	_y = width
 
 func construct():
-	var lastRow: Square = null
-	var lastSquare: Square = null
+	var lastRow: SquareComponent = null
+	var lastSquare: SquareComponent = null
 	for n in _x:
 		if lastSquare != null:
 			lastRow = _getLeftSquare(lastSquare)
 			lastSquare = null
 		for m in _y:
-			var square = Square.new(randi() % 4)
+			var square = SquareComponent.new(randi() % 4)
 			if(lastSquare != null):
 				square.AddRelation(lastSquare,Directions.LEFT)
 			if(lastRow != null):
@@ -26,7 +26,7 @@ func construct():
 			lastSquare = square
 	return lastSquare
 
-func _getLeftSquare(lastSquare: Square):
+func _getLeftSquare(lastSquare: SquareComponent):
 	while(lastSquare.getRelation(Directions.LEFT) != null):
 		lastSquare = lastSquare.getRelation(Directions.LEFT)
 	return lastSquare

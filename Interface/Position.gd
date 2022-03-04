@@ -36,7 +36,7 @@ func applyColor():
 		colorCalculated += ColorsService.LIGHT
 	if(isActive || square._seePotential() ):
 		colorCalculated = ColorsService.GetSaturatedColor(square.getColor())
-	if(square.hasOriginPotential()):
+	if(square.getHasOriginPotential()):
 		colorCalculated = ColorsService.LIGHT
 	$AnimatedSprite.modulate = colorCalculated
 
