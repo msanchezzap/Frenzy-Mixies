@@ -20,11 +20,6 @@ _global_script_classes=[ {
 "path": "res://Application/board.gd"
 }, {
 "base": "Reference",
-"class": "CheckObject",
-"language": "GDScript",
-"path": "res://Application/Algorithms/Container/CheckObject.gd"
-}, {
-"base": "Reference",
 "class": "Combination",
 "language": "GDScript",
 "path": "res://Model/Combination.gd"
@@ -47,7 +42,6 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "BasicBoard": "",
 "Board": "",
-"CheckObject": "",
 "Combination": "",
 "GameBoard": "",
 "Position": "",

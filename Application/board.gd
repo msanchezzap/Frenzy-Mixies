@@ -1,14 +1,5 @@
 class_name Board extends Node
 
-var size = 52
-var currentSelected = null
-var selectedPair = []
-var oldSelected = null
-var combinationsPotential = []
-var combinationsToConsume = []
-var combinationMarked = false
-var change = 0
-
 var _startSquare: Square
 
 var SizeHorizontal
@@ -34,14 +25,15 @@ func getStartSquare():
 	return _startSquare
 
 func changeColor(square:Square, color: int):
-	square.color = color
-	var newCombination = SearchAlgorithm.Execute(square)
-	if newCombination.size() > 0:
-		combinationsToConsume += newCombination
+	var oldColor = square.getColor()
+	square.setColor(color)
+	if !SearchAlgorithm.Execute(square):
+		square.setColor(oldColor)
 
-func consumeCombination():
+func activeCombination(square: Square):
 	var findedDirections = []
-	for nextCombination in combinationsToConsume:
+	var combinations = SearchAlgorithm.Execute(square)
+	for nextCombination in combinations:
 		for d in Directions.allDirections:
 			if nextCombination.members.has(nextCombination.origin.adyacencies[d]):
 				findedDirections.append(d)
@@ -51,15 +43,8 @@ func consumeCombination():
 				SortAlgorithm.Execute(nextCombination.origin.adyacencies[d],d)
 				var pos = nextCombination.members.find(nextSquare)
 				nextCombination.members.pop_at(pos)
-				nextSquare.init(randi() % 4)
-		combinationsPotential = CheckPotentialCombinations.Execute(nextCombination.origin, findedDirections)
-		#for c in combinationsPotential:
-			#c.activate()
-		#extCombination.hide()
-	combinationsToConsume = []
-	for c in combinationsPotential:
-		if !c.isStillValid():
-			combinationsPotential.pop_at(combinationsPotential.find(c))
+				nextSquare.reset(randi() % 4)
+	square._seePotential()
 
 func getTable():
 	var returnTable =[]

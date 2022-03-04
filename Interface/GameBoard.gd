@@ -5,7 +5,6 @@ export(int) var SizeVertical
 
 var board: Board
 var selectedPosition
-var combinations = []
 var allpositions =[]
 
 func _init():
@@ -41,11 +40,11 @@ func refresh():
 		squares = squares.adyacencies[Directions.DIRECTIONS.DOWN]
 
 func positionClick(position):
-	if board.combinationsToConsume.size() > 0:
-		board.consumeCombination()
+	if(position.square.hasOriginPotential):
+		board.activeCombination(position.square)
 	elif selectedPosition != null:
 		selectedPosition.Unselect()
-		board.changeColor(position.square, selectedPosition.square.color)
+		board.changeColor(position.square, selectedPosition.square.getColor())
 		selectedPosition = null
 	else:
 		selectedPosition = position

@@ -31,11 +31,11 @@ func setColor(color):
 	square.activeColor = color
 	
 func applyColor():
-	var colorCalculated = Colors.GetColor(square.color)
+	var colorCalculated = Colors.GetColor(square.getColor())
 	if(isHover):
 		colorCalculated += Colors.LIGHT
 	if(isActive || square._seePotential() ):
-		colorCalculated = Colors.GetSaturatedColor(square.color)
+		colorCalculated = Colors.GetSaturatedColor(square.getColor())
 	if(square.hasOriginPotential):
 		colorCalculated = Colors.LIGHT
 	$AnimatedSprite.modulate = colorCalculated
@@ -71,7 +71,6 @@ func _on_Area2D_area_shape_exited(area_rid, area, area_shape_index, local_shape_
 
 func _on_Area2D_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	if local_shape_index == Directions.GetDirection(movement):
-#		moveAllLine(Vector2(0,0), Directions.GetOppositeDirection(local_shape_index))
 		movement = Vector2(0,0)
 	var position = area.get_owner()
 	if position != null:

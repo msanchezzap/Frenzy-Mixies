@@ -9,12 +9,12 @@ func _searchSameLinealColor(position: Square):
 	for d in Directions.allDirections:
 		var nextPosition = position.adyacencies[d]
 		if nextPosition is Square:
-			searchResult[d] = _colorCoincidence(position.adyacencies[d], position.color, d)
+			searchResult[d] = _colorCoincidence(position.adyacencies[d], position.getColor(), d)
 	return searchResult
 
 func _colorCoincidence(position:Square, color: int, direction: int):
 	var returndata = []
-	if position is Square && position.color == color:
+	if position is Square && position.getColor() == color:
 		returndata.append(position)
 		returndata += _colorCoincidence(position.adyacencies[direction],color,direction)
 	return returndata

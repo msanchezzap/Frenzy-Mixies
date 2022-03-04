@@ -22,7 +22,7 @@ func construct():
 				square.AddRelation(lastRow,Directions.DIRECTIONS.UP)
 				lastRow = lastRow.adyacencies[Directions.DIRECTIONS.RIGHT]
 			while(SearchAlgorithm.Execute(square).size() > 0):
-				square.init(randi() % 4)
+				square.setColor(randi() % 4)
 			lastSquare = square
 	return lastSquare
 
