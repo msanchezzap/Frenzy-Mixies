@@ -1,7 +1,7 @@
 extends Node
 
 func Execute(origin: Square, direction):
-	if origin.adyacencies[direction] != null:
-		var nextPosition = origin.adyacencies[direction]
+	if origin.getRelation(direction) != null:
+		var nextPosition = origin.getRelation(direction)
 		origin.ExchangeAll(nextPosition)
 		Execute(origin, direction)

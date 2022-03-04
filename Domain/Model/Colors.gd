@@ -1,0 +1,3 @@
+extends Node
+
+enum {RED=0,GREEN=1,BLUE=2,YELLOW=3,PURPLE=4,LIGHT=10,DARK=11}

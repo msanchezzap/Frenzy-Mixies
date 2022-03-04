@@ -15,17 +15,17 @@ func _init():
 	while squares != null:
 		var squaresLine = squares
 		while squaresLine != null:
-			var pos = load("res://Scenes/Position.tscn")
+			var pos = load("res://Interface/Scenes/Position.tscn")
 			var newPosition = pos.instance()
 			newPosition.SetSquare(squaresLine)
 			newPosition.SetGameBoard(self)
 			newPosition.position = Vector2(100+j*52, 100+i*52)
 			add_child(newPosition)
 			allpositions.append(newPosition)
-			squaresLine = squaresLine.adyacencies[Directions.DIRECTIONS.RIGHT]
+			squaresLine = squaresLine.getRelation(Directions.RIGHT)
 			j += 1
 		j = 0
-		squares = squares.adyacencies[Directions.DIRECTIONS.DOWN]
+		squares = squares.getRelation(Directions.DOWN)
 		i += 1
 
 func refresh():
@@ -35,12 +35,12 @@ func refresh():
 		var squaresLine = squares
 		while squaresLine != null:
 			allpositions[i].square = squaresLine
-			squaresLine = squaresLine.adyacencies[Directions.DIRECTIONS.RIGHT]
+			squaresLine = squaresLine.getRelation(Directions.RIGHT)
 			i += 1
-		squares = squares.adyacencies[Directions.DIRECTIONS.DOWN]
+		squares = squares.getRelation(Directions.DOWN)
 
 func positionClick(position):
-	if(position.square.hasOriginPotential):
+	if(position.square.hasOriginPotential()):
 		board.activeCombination(position.square)
 	elif selectedPosition != null:
 		selectedPosition.Unselect()

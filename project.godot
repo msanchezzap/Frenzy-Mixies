@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Combination",
 "language": "GDScript",
-"path": "res://Model/Combination.gd"
+"path": "res://Domain/Model/Combination.gd"
 }, {
 "base": "Node",
 "class": "GameBoard",
@@ -37,7 +37,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Square",
 "language": "GDScript",
-"path": "res://Model/square.gd"
+"path": "res://Domain/Model/Square.gd"
 } ]
 _global_script_class_icons={
 "BasicBoard": "",
@@ -51,18 +51,17 @@ _global_script_class_icons={
 [application]
 
 config/name="SquareFrenzy"
-run/main_scene="res://Scenes/Main.tscn"
-config/icon="res://resources/icon.png"
+run/main_scene="res://Interface/Scenes/Main.tscn"
+config/icon="res://Interface/resources/icon.png"
 
 [autoload]
 
-Colors="*res://Utils/Colors.gd"
+Colors="*res://Domain/Model/Colors.gd"
+ColorsService="*res://Domain/Services/ColorsService.gd"
+Directions="*res://Domain/Model/Directions.gd"
+DirectionsService="*res://Domain/Services/DirectionsService.gd"
 SearchAlgorithm="*res://Application/Algorithms/SearchAlgorithm.gd"
-Directions="*res://Utils/Directions.gd"
 SortAlgorithm="*res://Application/Algorithms/SortAlgorithm.gd"
-CheckChainAlgorithm="*res://Application/Algorithms/CheckChainAlgorithm.gd"
-ConsumeCominationAglorithm="*res://Application/Algorithms/ConsumeCominationAglorithm.gd"
-CheckPotentialCombinations="*res://Application/Algorithms/CheckPotentialCombinations.gd"
 
 [physics]
 

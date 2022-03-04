@@ -31,13 +31,13 @@ func setColor(color):
 	square.activeColor = color
 	
 func applyColor():
-	var colorCalculated = Colors.GetColor(square.getColor())
+	var colorCalculated = ColorsService.GetColor(square.getColor())
 	if(isHover):
-		colorCalculated += Colors.LIGHT
+		colorCalculated += ColorsService.LIGHT
 	if(isActive || square._seePotential() ):
-		colorCalculated = Colors.GetSaturatedColor(square.getColor())
-	if(square.hasOriginPotential):
-		colorCalculated = Colors.LIGHT
+		colorCalculated = ColorsService.GetSaturatedColor(square.getColor())
+	if(square.hasOriginPotential()):
+		colorCalculated = ColorsService.LIGHT
 	$AnimatedSprite.modulate = colorCalculated
 
 func setDirection(newDirection):
@@ -70,7 +70,7 @@ func _on_Area2D_area_shape_exited(area_rid, area, area_shape_index, local_shape_
 	adyacencies[local_shape_index] = null
 
 func _on_Area2D_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
-	if local_shape_index == Directions.GetDirection(movement):
+	if local_shape_index == DirectionsService.GetDirection(movement):
 		movement = Vector2(0,0)
 	var position = area.get_owner()
 	if position != null:

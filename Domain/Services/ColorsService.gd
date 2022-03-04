@@ -1,7 +1,5 @@
 extends Node
 
-enum COLORS {RED=0,GREEN=1,BLUE=2,YELLOW=3,PURPLE=4,LIGHT=10,DARK=11}
-
 const RED = Color(1,0.5,0.5)
 const GREEN = Color(0.5,1.0,0.5)
 const BLUE = Color(0.5,0.5,1.0)
@@ -14,35 +12,34 @@ const SBLUE = Color(0.1,0.1,1.0)
 const SYELLOW = Color(1.0,1.0,0.1)
 const SPURPLE = Color(1.0,0.1,1.0)
 
-
 const LIGHT = Color(0.005,0.005,0.005)
 
 func GetColor(color):
 	match color:
-		COLORS.RED:
+		Colors.RED:
 			return RED
-		COLORS.GREEN:
+		Colors.GREEN:
 			return GREEN
-		COLORS.BLUE:
+		Colors.BLUE:
 			return BLUE
-		COLORS.YELLOW:
+		Colors.YELLOW:
 			return YELLOW
-		COLORS.PURPLE:
+		Colors.PURPLE:
 			return PURPLE
-		COLORS.LIGHT:
+		Colors.LIGHT:
 			return LIGHT
 
 func GetSaturatedColor(color):
 	match color:
-		COLORS.RED:
+		Colors.RED:
 			return SRED
-		COLORS.GREEN:
+		Colors.GREEN:
 			return SGREEN
-		COLORS.BLUE:
+		Colors.BLUE:
 			return SBLUE
-		COLORS.YELLOW:
+		Colors.YELLOW:
 			return SYELLOW
-		COLORS.PURPLE:
+		Colors.PURPLE:
 			return SPURPLE
-		COLORS.LIGHT:
+		Colors.LIGHT:
 			return LIGHT

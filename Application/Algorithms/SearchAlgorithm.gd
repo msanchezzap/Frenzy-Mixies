@@ -6,17 +6,17 @@ func Execute(position: Square):
 
 func _searchSameLinealColor(position: Square):
 	var searchResult = [[],[],[],[]]
-	for d in Directions.allDirections:
-		var nextPosition = position.adyacencies[d]
+	for d in DirectionsService.getAllDirections():
+		var nextPosition = position.getRelation(d)
 		if nextPosition is Square:
-			searchResult[d] = _colorCoincidence(position.adyacencies[d], position.getColor(), d)
+			searchResult[d] = _colorCoincidence(position.getRelation(d), position.getColor(), d)
 	return searchResult
 
 func _colorCoincidence(position:Square, color: int, direction: int):
 	var returndata = []
 	if position is Square && position.getColor() == color:
 		returndata.append(position)
-		returndata += _colorCoincidence(position.adyacencies[direction],color,direction)
+		returndata += _colorCoincidence(position.getRelation(direction),color,direction)
 	return returndata
 	
 func _getLinealCombinations(searchResult, position):
