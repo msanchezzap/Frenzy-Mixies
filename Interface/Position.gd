@@ -2,18 +2,31 @@ class_name Position extends Area2D
 
 var movement: Vector2 = Vector2(0, 0)
 var gameBoard: GameBoard
-var square: Square
+var square: SquareComponent
 var isActive = false
 var isHover = false
 var adyacencies = [null,null,null,null]
+var basePosition: Vector2
+var nextPosition: Vector2 = Vector2(0,0)
+var hasPotentialLastproccess
+
+func init(board: GameBoard, square: Square, firstPosition: Vector2):
+	basePosition = firstPosition
+	position = firstPosition
+	_setSquare(square)
+	_setGameBoard(board)
+	return self
 
 func _physics_process(delta):
 	applyColor()
+	applyMovement(delta)
 
-func SetSquare(newSquare):
+	hasPotentialLastproccess = square.getHasPotential() && !square.getHasOriginPotential()
+
+func _setSquare(newSquare):
 	square = newSquare
 	
-func SetGameBoard(newGameBoard: GameBoard):
+func _setGameBoard(newGameBoard: GameBoard):
 	gameBoard = newGameBoard
 
 func Select():
@@ -44,13 +57,38 @@ func setDirection(newDirection):
 	movement = newDirection
 
 func applyMovement(delta):
-	if movement != Vector2(0,0):
+	if hasPotentialLastproccess && !(square.getHasPotential() && !square.getHasOriginPotential()):
+		var newNextPosition = Vector2(0,0)
+		if nextPosition == Vector2(0,0):
+			if position.x == gameBoard.initialSpace:
+				newNextPosition =  Vector2(-gameBoard.initialSpace - gameBoard.SizeHorizontal * gameBoard.size, 0) 
+			elif position.x == gameBoard.initialSpace + gameBoard.SizeHorizontal * gameBoard.size :
+				newNextPosition =  Vector2(gameBoard.initialSpace + gameBoard.SizeHorizontal * gameBoard.size, 0) 
+			if position.y == gameBoard.initialSpace:
+				newNextPosition =  Vector2(0,-gameBoard.initialSpace - gameBoard.SizeHorizontal * gameBoard.size) 
+			elif position.y == gameBoard.initialSpace + gameBoard.SizeVertical * gameBoard.size :
+				newNextPosition =  Vector2(0,gameBoard.initialSpace + gameBoard.SizeHorizontal * gameBoard.size) 
+			gameBoard.SizeHorizontal * gameBoard.size 
+		else:
+			newNextPosition = (position - nextPosition).normalized()
+			print("AA",position , nextPosition, newNextPosition)
+			newNextPosition.x *=  gameBoard.SizeHorizontal * gameBoard.size 
+			newNextPosition.y *=  gameBoard.SizeVertical * gameBoard.size 
+		nextPosition = basePosition+newNextPosition
+	
+	if nextPosition != Vector2(0,0):
+		$AnimatedSprite.play()
 		var speed = 100
-		var velocity = Vector2.ZERO # The player's movement vector.
-		velocity.x += 1
-		velocity = velocity.normalized() * speed
-		move(movement * delta)
-
+		position = nextPosition
+		var movement = (basePosition - nextPosition).normalized() * delta * speed
+		nextPosition += movement
+		if nextPosition == position || (position - basePosition).x < 1 && (position - basePosition).x > 0 ||  (position - basePosition).x > -1 && (position - basePosition).x < 0 || (position - basePosition).y < 1 && (position - basePosition).y > 0 ||  (position - basePosition).y > -1 && (position - basePosition).y < 0:
+			position = basePosition
+			nextPosition = Vector2(0,0)
+		
+func moveFrom(coords: Vector2):
+	nextPosition = coords
+	
 func move(directionWithSpeed):
 	$AnimatedSprite.play()
 	position += directionWithSpeed

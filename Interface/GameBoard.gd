@@ -3,12 +3,15 @@ class_name GameBoard extends Node
 export(int) var SizeHorizontal
 export(int) var SizeVertical
 
+const size: int = 52
+const initialSpace: int = 100
+
 var board: Board
 var selectedPosition
-var allpositions =[]
+var allpositions = []
 
-func _init():
-	board = Board.new(8,8)
+func _ready():
+	board = Board.new(SizeHorizontal,SizeVertical)
 	var squares = board.getStartSquare()
 	var i = 0
 	var j = 0
@@ -16,10 +19,7 @@ func _init():
 		var squaresLine = squares
 		while squaresLine != null:
 			var pos = load("res://Interface/Scenes/Position.tscn")
-			var newPosition = pos.instance()
-			newPosition.SetSquare(squaresLine)
-			newPosition.SetGameBoard(self)
-			newPosition.position = Vector2(100+j*52, 100+i*52)
+			var newPosition = pos.instance().init(self, squaresLine, Vector2(initialSpace + j * size, initialSpace + i * size))
 			add_child(newPosition)
 			allpositions.append(newPosition)
 			squaresLine = squaresLine.getRelation(Directions.RIGHT)
@@ -34,16 +34,31 @@ func refresh():
 	while squares != null:
 		var squaresLine = squares
 		while squaresLine != null:
-			#if allpositions[i].square != squaresLine:
-			#	allpositions[i].square.setColor(Colors.LIGHT)
-			#else:
+			if allpositions[i].square != squaresLine:
+				var oldPosition = _search(squaresLine, i)
+				if(oldPosition.hasPotentialLastproccess):
+					allpositions[i].hasPotentialLastproccess = true
+					oldPosition.hasPotentialLastproccess = false
+				allpositions[i].moveFrom(oldPosition.position)
+			squaresLine = squaresLine.getRelation(Directions.RIGHT)
+			i += 1
+		squares = squares.getRelation(Directions.DOWN)
+	squares = board.getStartSquare()
+	i = 0
+	
+	while squares != null:
+		var squaresLine = squares
+		while squaresLine != null:
 			allpositions[i].square = squaresLine
 			squaresLine = squaresLine.getRelation(Directions.RIGHT)
 			i += 1
 		squares = squares.getRelation(Directions.DOWN)
 
-func _search(squareToSearch, startPosition):
-	print("A")
+func _search(squareToSearch: SquareComponent, newPosition):
+	var i = 0
+	for pos in allpositions:
+		if pos.square == squareToSearch:
+			return pos
 
 func positionClick(position):
 	if(position.square.getHasOriginPotential()):
