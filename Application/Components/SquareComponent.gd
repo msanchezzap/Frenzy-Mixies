@@ -9,7 +9,7 @@ func _init(initColor).(initColor):
 func reset(initColor):
 	setColor(initColor)
 
-func setColor(newColor):
+func setColor(newColor: int):
 	_color = newColor
 	_seePotential(true)
 
@@ -24,7 +24,7 @@ func setHasPotential(potential: bool):
 	
 func getHasPotential():
 	return _haspotential
-	
+
 func _seePotential(original:bool = false):
 	var group = SearchAlgorithm.Execute(self)
 	if group.size() > 0:

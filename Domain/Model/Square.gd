@@ -17,6 +17,9 @@ func SetRelation(square: Square, direction):
 	
 func getRelation(direction: int):
 	return _adyacencies[direction]
+	
+func existsInRelation(square: Square):
+	return _adyacencies.has(square)
 
 func AddRelation(square: Square,direction):
 	SetRelation(square, direction)

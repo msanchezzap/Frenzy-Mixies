@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Board",
 "language": "GDScript",
-"path": "res://Application/board.gd"
+"path": "res://Application/Components/board.gd"
 }, {
 "base": "Reference",
 "class": "Combination",
@@ -42,7 +42,7 @@ _global_script_classes=[ {
 "base": "Square",
 "class": "SquareComponent",
 "language": "GDScript",
-"path": "res://Application/SquareComponent.gd"
+"path": "res://Application/Components/SquareComponent.gd"
 } ]
 _global_script_class_icons={
 "BasicBoard": "",
@@ -63,10 +63,11 @@ config/icon="res://Interface/resources/icon.png"
 [autoload]
 
 Colors="*res://Domain/Model/Colors.gd"
-ColorsService="*res://Domain/Services/ColorsService.gd"
 Directions="*res://Domain/Model/Directions.gd"
+ColorsService="*res://Domain/Services/ColorsService.gd"
 DirectionsService="*res://Domain/Services/DirectionsService.gd"
 SquareService="*res://Domain/Services/SquareService.gd"
+CombinationService="*res://Domain/Services/CombinationService.gd"
 SearchAlgorithm="*res://Application/Algorithms/SearchAlgorithm.gd"
 SortAlgorithm="*res://Application/Algorithms/SortAlgorithm.gd"
 
