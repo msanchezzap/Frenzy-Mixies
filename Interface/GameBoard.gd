@@ -28,33 +28,37 @@ func _ready():
 		squares = squares.getRelation(Directions.DOWN)
 		i += 1
 
+var currentCombinations = []
 func refresh():
+	var positionChange= []
 	var i = 0
 	var squares = board.getStartSquare()
 	while squares != null:
 		var squaresLine = squares
 		while squaresLine != null:
-			if allpositions[i].square != squaresLine:
-				var oldPosition = _search(squaresLine, i)
-				if(oldPosition.hasPotentialLastproccess):
-					allpositions[i].hasPotentialLastproccess = true
-					oldPosition.hasPotentialLastproccess = false
-				allpositions[i].moveFrom(oldPosition.position)
-			squaresLine = squaresLine.getRelation(Directions.RIGHT)
-			i += 1
-		squares = squares.getRelation(Directions.DOWN)
-	squares = board.getStartSquare()
-	i = 0
-	
-	while squares != null:
-		var squaresLine = squares
-		while squaresLine != null:
+			var oldPosition = _search(squaresLine)
 			allpositions[i].square = squaresLine
+			var iscombination = false
+			for c in currentCombinations:
+				if c.members.has(squaresLine):
+					allpositions[i].position += setBoardEntrance(allpositions[i], _search(c.origin).position)
+					iscombination = true
+			if !iscombination:
+				allpositions[i].position = oldPosition.position
 			squaresLine = squaresLine.getRelation(Directions.RIGHT)
 			i += 1
 		squares = squares.getRelation(Directions.DOWN)
 
-func _search(squareToSearch: SquareComponent, newPosition):
+func setBoardEntrance(position, pivot: Vector2):
+	var direction = (position.position - pivot).normalized()
+	var newPosition = direction * initialSpace
+	if(direction.x > 0):
+		newPosition.x += size * SizeHorizontal
+	if(direction.y > 0):
+		newPosition.y += size * SizeHorizontal
+	return newPosition
+
+func _search(squareToSearch: SquareComponent):
 	var i = 0
 	for pos in allpositions:
 		if pos.square == squareToSearch:
@@ -62,13 +66,13 @@ func _search(squareToSearch: SquareComponent, newPosition):
 
 func positionClick(position):
 	if(position.square.getHasOriginPotential()):
-		board.activeCombination(position.square)
+		currentCombinations = board.activeCombination(position.square)
 	elif selectedPosition != null:
 		selectedPosition.Unselect()
 		board.changeColor(selectedPosition.square, position.square)
 		selectedPosition = null
 	else:
-		board.cleanNonConflictiveCombinations()
+		currentCombinations = board.cleanNonConflictiveCombinations()
 		selectedPosition = position
 		selectedPosition.Select()
 	refresh()

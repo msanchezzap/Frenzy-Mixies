@@ -31,14 +31,16 @@ func activeCombination(square):
 	for nextCombination in combinations:
 		solveCombination(nextCombination)
 	square._seePotential()
+	return combinations
 
 func solveCombination(combination: Combination):
+	var members = combination.members.duplicate()
 	for d in CombinationService.getCombinationDirections(combination):
-		while combination.members.has(combination.origin.getRelation(d)):
+		while members.has(combination.origin.getRelation(d)):
 			var nextSquare = combination.origin.getRelation(d)
 			SortAlgorithm.Execute(combination.origin.getRelation(d),d)
-			var pos = combination.members.find(nextSquare)
-			combination.members.pop_at(pos)
+			var pos = members.find(nextSquare)
+			members.pop_at(pos)
 			nextSquare.reset(randi() % 4)
 
 func hasChainCombo():
@@ -65,12 +67,15 @@ func getAllActiveOriginSquares():
 	return resolvelist
 
 func cleanNonConflictiveCombinations():
+	var combinationsDone = []
 	var resolvelist = getAllActiveOriginSquares()
 	for current in resolvelist:
 		var combos = SearchAlgorithm.Execute(current)
 		for c in combos:
 			if !_combinationHasConflicts(c):
 				solveCombination(c)
+				combinationsDone.append(c)
+	return combinationsDone
 
 func _combinationHasConflicts(combination: Combination):
 	for m in combination.members:
