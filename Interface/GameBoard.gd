@@ -37,6 +37,7 @@ func refresh():
 		var squaresLine = squares
 		while squaresLine != null:
 			var oldPosition = _search(squaresLine)
+			positionChange.append(SquareAux.new(allpositions[i].square,allpositions[i].position))
 			allpositions[i].square = squaresLine
 			var iscombination = false
 			for c in currentCombinations:
@@ -44,10 +45,20 @@ func refresh():
 					allpositions[i].position += setBoardEntrance(allpositions[i], _search(c.origin).position)
 					iscombination = true
 			if !iscombination:
-				allpositions[i].position = oldPosition.position
+				if oldPosition != null:
+					allpositions[i].position = oldPosition.position
+				else:
+					var finded = false
+					var j = 0
+					while !finded && j < positionChange.size():
+						if positionChange[j].square == allpositions[i].square:
+							finded = true
+							allpositions[i].position = positionChange[j].position
+						j +=1
 			squaresLine = squaresLine.getRelation(Directions.RIGHT)
 			i += 1
 		squares = squares.getRelation(Directions.DOWN)
+	currentCombinations = []
 
 func setBoardEntrance(position, pivot: Vector2):
 	var direction = (position.position - pivot).normalized()
@@ -59,7 +70,6 @@ func setBoardEntrance(position, pivot: Vector2):
 	return newPosition
 
 func _search(squareToSearch: SquareComponent):
-	var i = 0
 	for pos in allpositions:
 		if pos.square == squareToSearch:
 			return pos
