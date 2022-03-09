@@ -15,6 +15,7 @@ func init(board: GameBoard, square: Square, firstPosition: Vector2):
 	return self
 
 func _physics_process(delta):
+	square._seePotential()
 	applyColor()
 	applyMovement(delta)
 
@@ -37,7 +38,7 @@ func applyColor():
 	var colorCalculated = ColorsService.GetColor(square.getColor())
 	if(isHover):
 		colorCalculated += ColorsService.LIGHT
-	if(isActive || square._seePotential() ):
+	if(isActive || square.getHasPotential() ):
 		colorCalculated = ColorsService.GetSaturatedColor(square.getColor())
 	if(square.getHasOriginPotential()):
 		colorCalculated = ColorsService.getOriginColor(square.getColor())

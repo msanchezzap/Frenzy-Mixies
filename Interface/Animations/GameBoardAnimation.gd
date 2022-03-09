@@ -31,6 +31,9 @@ func Execute(gameBoard: GameBoard):
 		squares = squares.getRelation(Directions.DOWN)
 	gameBoard.currentCombinations = []
 	
+func executeLine(square, iteration):
+	pass
+
 func _search(squareToSearch: SquareComponent, allpositions: Array):
 	for pos in allpositions:
 		if pos.square == squareToSearch:
