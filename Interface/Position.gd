@@ -8,6 +8,7 @@ var isHover = false
 var adyacencies = [null,null,null,null]
 var basePosition: Vector2
 var nextPosition: Vector2 = Vector2(0,0)
+var speed = 300
 
 func init(board: GameBoard, square: Square, firstPosition: Vector2):
 	basePosition = firstPosition
@@ -55,11 +56,14 @@ func setDirection(newDirection):
 
 func applyMovement(delta):
 	if position != basePosition:
-		if (basePosition - position).x < 1 && (basePosition - position).x > -1 && (basePosition - position).y < 1 && (basePosition - position).y > -1 :
+		if (basePosition - position).x < speed/100 && (basePosition - position).x > -speed/100 && (basePosition - position).y < speed/100 && (basePosition - position).y > -speed/100:
 			position = basePosition
 		else:
 			var direction = (basePosition - position).normalized()
-			position += (direction * 100 * delta)
+			position += (direction * speed * delta)
+
+func isMoving():
+	return position != basePosition
 
 func moveFrom(coords: Vector2):
 	nextPosition = coords

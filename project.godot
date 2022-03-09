@@ -74,6 +74,7 @@ ColorsService="*res://Domain/Services/ColorsService.gd"
 DirectionsService="*res://Domain/Services/DirectionsService.gd"
 SquareService="*res://Domain/Services/SquareService.gd"
 CombinationService="*res://Domain/Services/CombinationService.gd"
+CleanNonConflictiveCombinationAlgorithm="*res://Application/Services/Algorithms/CleanNonConflictiveCombinationAlgorithm.gd"
 SearchAlgorithm="*res://Application/Algorithms/SearchAlgorithm.gd"
 SortAlgorithm="*res://Application/Algorithms/SortAlgorithm.gd"
 

@@ -28,6 +28,18 @@ func _ready():
 		squares = squares.getRelation(Directions.DOWN)
 		i += 1
 
+func _physics_process(delta):
+	var isanimating = false
+	var i = 0
+	while i < allpositions.size() && !isanimating:
+		if allpositions[i].isMoving():
+			isanimating = true
+		i +=1
+	if !isanimating:
+		currentCombinations = board.cleanNonConflictiveCombinations()
+		if(currentCombinations.size() > 0):
+			refresh()
+
 var currentCombinations = []
 func refresh():
 	var positionChange= []
@@ -62,13 +74,15 @@ func refresh():
 
 func setBoardEntrance(position, pivot: Vector2):
 	var direction = (position.position - pivot).normalized()
-	var newPosition = direction * initialSpace
+	var newPosition = Vector2(0,0)
 	if(direction.x > 0):
-		newPosition.x += size * SizeHorizontal
-	if(direction.y > 0):
-		newPosition.y += size * SizeHorizontal
+		newPosition.x += direction.x * size * 2
+	elif(direction.y > 0):
+		newPosition.y += direction.y * size * 2
+	else:
+		newPosition = direction * initialSpace
 	return newPosition
-
+	
 func _search(squareToSearch: SquareComponent):
 	for pos in allpositions:
 		if pos.square == squareToSearch:
