@@ -1,6 +1,5 @@
 extends Node
 
-
 func Execute(board: Board):
 	var combinationsDone = []
 	var resolvelist = board.getAllActiveOriginSquares()

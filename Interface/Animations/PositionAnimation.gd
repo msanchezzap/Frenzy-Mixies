@@ -1,16 +1,8 @@
 extends Node
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func Execute(position: Position, speed: int, delta):
+	if (position.basePosition - position.position).x < speed/100 && (position.basePosition - position.position).x > -speed/100 && (position.basePosition - position.position).y < speed/100 && (position.basePosition - position.position).y > -speed/100:
+		position.position = position.basePosition
+	else:
+		var direction = (position.basePosition - position.position).normalized()
+		position.position += (direction * speed * delta)

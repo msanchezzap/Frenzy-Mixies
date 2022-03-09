@@ -77,6 +77,8 @@ CombinationService="*res://Domain/Services/CombinationService.gd"
 CleanNonConflictiveCombinationAlgorithm="*res://Application/Services/Algorithms/CleanNonConflictiveCombinationAlgorithm.gd"
 SearchAlgorithm="*res://Application/Algorithms/SearchAlgorithm.gd"
 SortAlgorithm="*res://Application/Algorithms/SortAlgorithm.gd"
+GameBoardAnimation="*res://Interface/Animations/GameBoardAnimation.gd"
+PositionAnimation="*res://Interface/Animations/PositionAnimation.gd"
 
 [physics]
 
