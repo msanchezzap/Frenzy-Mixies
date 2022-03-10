@@ -5,18 +5,21 @@ const GREEN = Color(0.5,1.0,0.5)
 const BLUE = Color(0.5,0.5,1.0)
 const YELLOW = Color(1.0,1.0,0.5)
 const PURPLE = Color(1.0,0.5,1.0)
+const JOKER = Color(0.6,0.6,0.6)
 
 const SRED = Color(1,0.2,0.2)
 const SGREEN = Color(0.2,1.0,0.2)
 const SBLUE = Color(0.2,0.2,1.0)
 const SYELLOW = Color(1.0,1.0,0.2)
 const SPURPLE = Color(1.0,0.2,1.0)
+const SJOKER = Color(0.3,0.3,0.3)
 
 const ORED = Color(0.7,0.1,0.1)
 const OGREEN = Color(0.1,0.7,0.1)
 const OBLUE = Color(0.1,0.1,0.7)
 const OYELLOW = Color(0.7,0.7,0.1)
 const OPURPLE = Color(0.7,0.1,0.7)
+const OJOKER = Color(0.2,0.2,0.2)
 
 const LIGHT = Color(0.005,0.005,0.005)
 
@@ -32,6 +35,8 @@ func GetColor(color):
 			return YELLOW
 		Colors.PURPLE:
 			return PURPLE
+		Colors.JOKER:
+			return JOKER
 		Colors.LIGHT:
 			return LIGHT
 
@@ -47,6 +52,8 @@ func GetSaturatedColor(color):
 			return SYELLOW
 		Colors.PURPLE:
 			return SPURPLE
+		Colors.JOKER:
+			return SJOKER
 		Colors.LIGHT:
 			return LIGHT
 func getOriginColor(color):
@@ -61,5 +68,7 @@ func getOriginColor(color):
 			return OYELLOW
 		Colors.PURPLE:
 			return OPURPLE
+		Colors.JOKER:
+			return OJOKER
 		Colors.LIGHT:
 			return LIGHT

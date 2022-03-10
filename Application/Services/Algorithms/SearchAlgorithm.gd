@@ -15,7 +15,7 @@ func Execute(position: SquareComponent):
 
 func _getColorCoincidenceByDirection(position:Square, color: int, direction: int):
 	var returndata = []
-	if position is Square && position.getColor() == color:
+	if position is Square && (position.getColor() == color || position.getColor() == Colors.JOKER):
 		returndata.append(position)
 		returndata += _getColorCoincidenceByDirection(position.getRelation(direction),color,direction)
 	return returndata

@@ -7,7 +7,7 @@ func Execute(searchResult: Array, origin: Square):
 	var horizontal = searchResult[Directions.RIGHT] + searchResult[Directions.LEFT]
 	var combinations = []
 	if(vertical.size() >= LINE_LENGTH - 1):
-		combinations.append(Combination.new(origin, vertical))
+		combinations.append(LinealCombinationComponent.new(origin, vertical))
 	if(horizontal.size() >= LINE_LENGTH - 1):
-		combinations.append(Combination.new(origin, horizontal))
+		combinations.append(LinealCombinationComponent.new(origin, horizontal))
 	return combinations

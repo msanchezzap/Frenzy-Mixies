@@ -37,7 +37,7 @@ _global_script_classes=[ {
 "base": "Combination",
 "class": "LinealCombinationComponent",
 "language": "GDScript",
-"path": "res://Application/Components/CombinationComponent.gd"
+"path": "res://Application/Components/LinealCombinationComponent.gd"
 }, {
 "base": "Area2D",
 "class": "Position",
@@ -64,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Application/Services/Algorithms/SquareCombinationAlgorithm.gd"
 }, {
+"base": "SquareCombination",
+"class": "SquareCombinationComponent",
+"language": "GDScript",
+"path": "res://Application/Components/SquareCombinationComponent.gd"
+}, {
 "base": "Square",
 "class": "SquareComponent",
 "language": "GDScript",
@@ -81,6 +86,7 @@ _global_script_class_icons={
 "SquareAux": "",
 "SquareCombination": "",
 "SquareCombinationAlgorithm": "",
+"SquareCombinationComponent": "",
 "SquareComponent": ""
 }
 

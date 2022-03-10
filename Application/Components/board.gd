@@ -38,15 +38,7 @@ func setOriginIfPossible(square: Square):
 
 func solveCombination(combinations: Array):
 	for m in combinations:
-		#m.Destroy()
-		var members = m.members.duplicate()
-		for d in CombinationService.getCombinationDirections(m):
-			while members.has(m.origin.getRelation(d)):
-				var nextSquare = m.origin.getRelation(d)
-				SortAlgorithm.Execute(m.origin.getRelation(d),d)
-				var pos = members.find(nextSquare)
-				members.pop_at(pos)
-				nextSquare.reset(randi() % 4)
+		m.Destroy()
 	
 func getAllActiveOriginSquares():
 	var rowSquare = _startSquare 
