@@ -5,25 +5,24 @@ var square: SquareComponent
 var isActive = false
 var isHover = false
 var basePosition: Vector2
+var baseScale: Vector2 = Vector2(0.5,0.5)
 var speed = 300
+var currentRotation = 0
+var currentScale = Vector2(0.5,0.5)
 
 func init(board: GameBoard, square: Square, firstPosition: Vector2):
 	basePosition = firstPosition
 	position = firstPosition
-	_setSquare(square)
-	_setGameBoard(board)
+	self.square = square
+	gameBoard = board
 	return self
 
 func _physics_process(delta):
 	square._seePotential()
 	applyColor()
 	applyMovement(delta)
-
-func _setSquare(newSquare):
-	square = newSquare
-	
-func _setGameBoard(newGameBoard: GameBoard):
-	gameBoard = newGameBoard
+	applyScale()
+	applyRotation(delta)
 
 func Select():
 	isActive = true
@@ -35,20 +34,25 @@ func setColor(color):
 	square.activeColor = color
 	
 func applyColor():
-	var colorCalculated = ColorsService.GetColor(square.getColor())
-	if(isHover):
-		colorCalculated += ColorsService.LIGHT
-	if(isActive || square.getHasPotential() ):
-		colorCalculated = ColorsService.GetSaturatedColor(square.getColor())
-	if(square.getHasOriginPotential()):
-		colorCalculated = ColorsService.getOriginColor(square.getColor())
-	$AnimatedSprite.modulate = colorCalculated
+	PositionAnimation.Colorize(self)
 
+func applyScale():
+	PositionAnimation.Scale(self, Vector2(0.5,0.5), Vector2(0.02,0.02))
+
+func applyRotation(delta):
+	PositionAnimation.Rotate(self, 5)
+
+func setRotation(newRotation):
+	currentRotation = newRotation
+
+func setScale(newScale):
+	currentScale = newScale
+	
 func applyMovement(delta):
-	PositionAnimation.Execute(self,speed, delta)
+	PositionAnimation.Move(self,speed, delta)
 
-func isMoving():
-	return position != basePosition
+func isAnimationOnProgress():
+	return position != basePosition || scale != currentScale
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT && event.is_pressed():

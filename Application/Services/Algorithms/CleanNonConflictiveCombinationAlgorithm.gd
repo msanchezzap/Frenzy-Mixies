@@ -7,7 +7,7 @@ func Execute(board: Board):
 		var combos = SearchAlgorithm.Execute(current)
 		for c in combos:
 			if !_combinationHasConflicts(c):
-				board.solveCombination(c)
+				#board.solveCombination(c)
 				combinationsDone.append(c)
 	return combinationsDone
 

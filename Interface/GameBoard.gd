@@ -34,17 +34,21 @@ func _physics_process(delta):
 	var isanimating = false
 	var i = 0
 	while i < allpositions.size() && !isanimating:
-		if allpositions[i].isMoving():
+		if allpositions[i].isAnimationOnProgress():
 			isanimating = true
 		i +=1
 	if !isanimating:
 		currentCombinations = CleanNonConflictiveCombinationAlgorithm.Execute(board)
 		if(currentCombinations.size() > 0):
-			GameBoardAnimation.Execute(self)
+			if(!DestructionAnimation.Execute(self)):
+				DestructionAnimation.Restore(self)
+				board.solveCombination(currentCombinations)
+				GameBoardAnimation.Execute(self)
 
 func positionClick(position):
 	if(position.square.getHasOriginPotential()):
-		currentCombinations = board.activeCombination(position.square)
+		board.setOriginIfPossible(position.square)
+		currentCombinations = CleanNonConflictiveCombinationAlgorithm.Execute(board)
 	elif selectedPosition != null:
 		selectedPosition.Unselect()
 		board.changeColor(selectedPosition.square, position.square)
