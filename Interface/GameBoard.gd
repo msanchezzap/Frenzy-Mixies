@@ -10,8 +10,6 @@ var board: Board
 var selectedPosition
 var allpositions = []
 
-var currentCombinations = []
-
 func _ready():
 	board = Board.new(SizeHorizontal,SizeVertical)
 	var squares = board.getStartSquare()
@@ -30,27 +28,30 @@ func _ready():
 		squares = squares.getRelation(Directions.DOWN)
 		i += 1
 
-func _physics_process(delta):
+func isAnimationInProcess():
 	var isanimating = false
 	var i = 0
 	while i < allpositions.size() && !isanimating:
-		if allpositions[i].isMoving():
+		if allpositions[i].isAnimationOnProgress():
 			isanimating = true
 		i +=1
-	if !isanimating:
-		currentCombinations = CleanNonConflictiveCombinationAlgorithm.Execute(board)
-		if(currentCombinations.size() > 0):
-			GameBoardAnimation.Execute(self)
+	return isanimating
+	
+func _physics_process(delta):
+	if !isAnimationInProcess() && board.hasNextStep() && !DestructionAnimation.Execute(board.getNextStep(), allpositions):
+		DestructionAnimation.Restore(board.getNextStep(), allpositions)
+		var lastStep = board.getNextStep()
+		board.executeNextStep()
+		GameBoardAnimation.Execute(self, lastStep)
 
 func positionClick(position):
-	if(position.square.getHasOriginPotential()):
-		currentCombinations = board.activeCombination(position.square)
-	elif selectedPosition != null:
-		selectedPosition.Unselect()
-		board.changeColor(selectedPosition.square, position.square)
-		selectedPosition = null
-	else:
-		currentCombinations = CleanNonConflictiveCombinationAlgorithm.Execute(board)
-		selectedPosition = position
-		selectedPosition.Select()
-	GameBoardAnimation.Execute(self)
+	if !isAnimationInProcess():
+		if(position.square.getHasOriginPotential()):
+			board.setOriginIfPossible(position.square)
+		elif selectedPosition != null:
+			selectedPosition.Unselect()
+			board.setNextStep(selectedPosition.square, position.square)
+			selectedPosition = null
+		else:
+			selectedPosition = position
+			selectedPosition.Select()

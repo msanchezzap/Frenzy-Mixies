@@ -1,31 +1,21 @@
 extends Node
 
-func Execute(position: Square):
-	var searchResult = _searchSameLinealColor(position)
-	return _getLinealCombinations(searchResult,position)
-
-func _searchSameLinealColor(position: Square):
-	var searchResult = [[],[],[],[]]
-	if position == null:
-		return searchResult
-	for d in DirectionsService.getAllDirections():
-		searchResult[d] = _colorCoincidence(position.getRelation(d), position.getColor(), d)
-	return searchResult
-
-func _colorCoincidence(position:Square, color: int, direction: int):
-	var returndata = []
-	if position is Square && position.getColor() == color:
-		returndata.append(position)
-		returndata += _colorCoincidence(position.getRelation(direction),color,direction)
-	return returndata
+var combinationAlg = []
+func _init():
+	combinationAlg = [LinealCombinationAlgorithm.new(), SquareCombinationAlgorithm.new()]
 	
-func _getLinealCombinations(searchResult, position):
-	var vertical = searchResult[0] + searchResult[2]
-	var horizontal = searchResult[1] + searchResult[3]
+func Execute(position: SquareComponent):
+	var searchResult = [[],[],[],[]]
+	for d in DirectionsService.getAllDirections():
+		searchResult[d] = _getColorCoincidenceByDirection(position.getRelation(d), position.getColor(), d)
 	var combinations = []
-	if(vertical.size() >= 2):
-		combinations.append(Combination.new(position, vertical))
-	if(horizontal.size() >= 2):
-		combinations.append(Combination.new(position, horizontal))
+	for alg in combinationAlg:
+		combinations += alg.Execute(searchResult,position)
 	return combinations
 
+func _getColorCoincidenceByDirection(position:Square, color: int, direction: int):
+	var returndata = []
+	if position is Square && (position.getColor() == color || position.getColor() == Colors.JOKER):
+		returndata.append(position)
+		returndata += _getColorCoincidenceByDirection(position.getRelation(direction),color,direction)
+	return returndata

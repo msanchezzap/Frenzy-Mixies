@@ -29,6 +29,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Interface/GameBoard.gd"
 }, {
+"base": "Reference",
+"class": "GetNonConflictiveCombinationAlgorithm",
+"language": "GDScript",
+"path": "res://Application/Services/Algorithms/GetNonConflictiveCombinationAlgorithm.gd"
+}, {
+"base": "Reference",
+"class": "LinealCombinationAlgorithm",
+"language": "GDScript",
+"path": "res://Application/Services/Algorithms/LinealCombinationAlgorithm.gd"
+}, {
+"base": "Combination",
+"class": "LinealCombinationComponent",
+"language": "GDScript",
+"path": "res://Application/Components/Combinations/LinealCombinationComponent.gd"
+}, {
 "base": "Area2D",
 "class": "Position",
 "language": "GDScript",
@@ -44,6 +59,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Interface/SquareAux.gd"
 }, {
+"base": "Combination",
+"class": "SquareCombination",
+"language": "GDScript",
+"path": "res://Domain/Model/SquareCombination.gd"
+}, {
+"base": "Reference",
+"class": "SquareCombinationAlgorithm",
+"language": "GDScript",
+"path": "res://Application/Services/Algorithms/SquareCombinationAlgorithm.gd"
+}, {
+"base": "SquareCombination",
+"class": "SquareCombinationComponent",
+"language": "GDScript",
+"path": "res://Application/Components/Combinations/SquareCombinationComponent.gd"
+}, {
 "base": "Square",
 "class": "SquareComponent",
 "language": "GDScript",
@@ -54,9 +84,15 @@ _global_script_class_icons={
 "Board": "",
 "Combination": "",
 "GameBoard": "",
+"GetNonConflictiveCombinationAlgorithm": "",
+"LinealCombinationAlgorithm": "",
+"LinealCombinationComponent": "",
 "Position": "",
 "Square": "",
 "SquareAux": "",
+"SquareCombination": "",
+"SquareCombinationAlgorithm": "",
+"SquareCombinationComponent": "",
 "SquareComponent": ""
 }
 
@@ -74,11 +110,11 @@ ColorsService="*res://Domain/Services/ColorsService.gd"
 DirectionsService="*res://Domain/Services/DirectionsService.gd"
 SquareService="*res://Domain/Services/SquareService.gd"
 CombinationService="*res://Domain/Services/CombinationService.gd"
-CleanNonConflictiveCombinationAlgorithm="*res://Application/Services/Algorithms/CleanNonConflictiveCombinationAlgorithm.gd"
-SearchAlgorithm="*res://Application/Algorithms/SearchAlgorithm.gd"
-SortAlgorithm="*res://Application/Algorithms/SortAlgorithm.gd"
 GameBoardAnimation="*res://Interface/Animations/GameBoardAnimation.gd"
 PositionAnimation="*res://Interface/Animations/PositionAnimation.gd"
+DestructionAnimation="*res://Interface/Animations/DestructionAnimation.gd"
+SearchAlgorithm="*res://Application/Services/Algorithms/SearchAlgorithm.gd"
+SortAlgorithm="*res://Application/Services/Algorithms/SortAlgorithm.gd"
 
 [physics]
 

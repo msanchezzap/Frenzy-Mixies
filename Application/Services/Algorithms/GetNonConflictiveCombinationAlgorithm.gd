@@ -1,13 +1,17 @@
-extends Node
+class_name GetNonConflictiveCombinationAlgorithm 
 
-func Execute(board: Board):
+var _board
+
+func _init(board):
+	_board = board
+
+func Execute():
 	var combinationsDone = []
-	var resolvelist = board.getAllActiveOriginSquares()
+	var resolvelist = getAllActiveOriginSquares()
 	for current in resolvelist:
 		var combos = SearchAlgorithm.Execute(current)
 		for c in combos:
 			if !_combinationHasConflicts(c):
-				board.solveCombination(c)
 				combinationsDone.append(c)
 	return combinationsDone
 
@@ -28,3 +32,15 @@ func _lineHasConflicts(currentSquare: SquareComponent, combination: Combination,
 	if currentSquare.getHasPotential() && combination.origin != currentSquare && !combination.members.has(currentSquare):
 		return true
 	return _lineHasConflicts(currentSquare.getRelation(direction),combination,direction) 
+
+func getAllActiveOriginSquares():
+	var rowSquare = _board.getStartSquare() 
+	var resolvelist = []
+	while(rowSquare != null):
+			var currentSquare = rowSquare
+			while(currentSquare != null):
+				if currentSquare.getHasOriginPotential() :
+					resolvelist.append(currentSquare)
+				currentSquare = currentSquare.getRelation(Directions.RIGHT)
+			rowSquare = rowSquare.getRelation(Directions.DOWN)
+	return resolvelist
