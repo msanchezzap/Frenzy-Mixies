@@ -30,31 +30,32 @@ func _ready():
 		squares = squares.getRelation(Directions.DOWN)
 		i += 1
 
-func _physics_process(delta):
+func isAnimationInProcess():
 	var isanimating = false
 	var i = 0
 	while i < allpositions.size() && !isanimating:
 		if allpositions[i].isAnimationOnProgress():
 			isanimating = true
 		i +=1
-	if !isanimating:
-		currentCombinations = CleanNonConflictiveCombinationAlgorithm.Execute(board)
-		if(currentCombinations.size() > 0):
-			if(!DestructionAnimation.Execute(self)):
-				DestructionAnimation.Restore(self)
-				board.solveCombination(currentCombinations)
-				GameBoardAnimation.Execute(self)
+	return isanimating
+	
+func _physics_process(delta):
+	if !isAnimationInProcess() && currentCombinations.size() > 0:
+		if(!DestructionAnimation.Execute(currentCombinations, allpositions)):
+			DestructionAnimation.Restore(currentCombinations, allpositions)
+			board.solveCombination(currentCombinations)
+			GameBoardAnimation.Execute(self)
+			currentCombinations = CleanNonConflictiveCombinationAlgorithm.Execute(board)
 
 func positionClick(position):
-	if(position.square.getHasOriginPotential()):
-		board.setOriginIfPossible(position.square)
+	if !isAnimationInProcess():
+		if(position.square.getHasOriginPotential()):
+			board.setOriginIfPossible(position.square)
+		elif selectedPosition != null:
+			selectedPosition.Unselect()
+			board.changeColor(selectedPosition.square, position.square)
+			selectedPosition = null
+		else:
+			selectedPosition = position
+			selectedPosition.Select()
 		currentCombinations = CleanNonConflictiveCombinationAlgorithm.Execute(board)
-	elif selectedPosition != null:
-		selectedPosition.Unselect()
-		board.changeColor(selectedPosition.square, position.square)
-		selectedPosition = null
-	else:
-		currentCombinations = CleanNonConflictiveCombinationAlgorithm.Execute(board)
-		selectedPosition = position
-		selectedPosition.Select()
-	GameBoardAnimation.Execute(self)

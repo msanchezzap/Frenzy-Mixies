@@ -1,22 +1,22 @@
 extends Node
 
-func Execute(gameBoard: GameBoard):
+func Execute(combinations: Array, positions: Array):
 	var scaling = false
-	for c in gameBoard.currentCombinations:
-		var po = _search(c.origin, gameBoard.allpositions)
+	for c in combinations:
+		var po = _search(c.origin, positions)
 		po.setRotation(90)
 		for m in c.members:
-			var p = _search(m, gameBoard.allpositions)
+			var p = _search(m, positions)
 			if(p.scale == Vector2(0.5,0.5)):
 				p.setScale(Vector2(0,0)) 
 				scaling = true
 	return scaling
 
-func Restore(gameBoard: GameBoard):
+func Restore(combinations: Array, positions: Array):
 	var scaling = false
-	for c in gameBoard.currentCombinations:
+	for c in combinations:
 		for m in c.members:
-			var p = _search(m, gameBoard.allpositions)
+			var p = _search(m, positions)
 			if(p.scale != Vector2(0.5,0.5)):
 				p.setScale(Vector2(0.5,0.5)) 
 				scaling = true
