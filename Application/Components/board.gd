@@ -2,52 +2,48 @@ class_name Board extends Node
 
 var _startSquare: SquareComponent
 
-var SizeHorizontal
-var SizeVertical
-var chain = []
+var _sizeHorizontal
+var _sizeVertical
+var _combinations = []
+var _getConflictsAlgorithm
 
 func _init(horizontal, vertical):
-	SizeHorizontal = horizontal
-	SizeVertical = vertical
+	_sizeHorizontal = horizontal
+	_sizeVertical = vertical
 	_startSquare = SquareService.goToStart(_initBoard())
+	_getConflictsAlgorithm = GetNonConflictiveCombinationAlgorithm.new(self)
 
 func _initBoard():
-	return BasicBoard.new(SizeHorizontal, SizeVertical).construct()
+	return BasicBoard.new(_sizeHorizontal, _sizeVertical).construct()
 
 func getStartSquare():
 	_startSquare = SquareService.goToStart(_startSquare)
 	return _startSquare
 
-func changeColor(squareSource: SquareComponent, squareDestiny: SquareComponent):
+func setNextStep(squareSource: SquareComponent, squareDestiny: SquareComponent):
 	if squareSource.existsInRelation(squareDestiny):
 		var newColor = squareSource.getColor()
 		var oldColor = squareDestiny.getColor()
 		squareDestiny.setColor(newColor)
 		if !SearchAlgorithm.Execute(squareDestiny):
 			squareDestiny.setColor(oldColor)
+		else:
+			 _combinations = _getConflictsAlgorithm.Execute()
 
-func getCombination(square):
-	var combinations = SearchAlgorithm.Execute(square)
-	return combinations
+func hasNextStep():
+	return _combinations.size() > 0
+
+func getNextStep():
+	return _combinations
 	
+func executeNextStep():
+	for m in _combinations:
+		m.Destroy()
+	_combinations = _getConflictsAlgorithm.Execute()
+
 func setOriginIfPossible(square: Square):
 	var combinations = SearchAlgorithm.Execute(square)
 	for c in combinations:
 		for m in c.members:
 			m._hasOriginPotential = false
-
-func solveCombination(combinations: Array):
-	for m in combinations:
-		m.Destroy()
-	
-func getAllActiveOriginSquares():
-	var rowSquare = _startSquare 
-	var resolvelist = []
-	while(rowSquare != null):
-			var currentSquare = rowSquare
-			while(currentSquare != null):
-				if currentSquare.getHasOriginPotential() :
-					resolvelist.append(currentSquare)
-				currentSquare = currentSquare.getRelation(Directions.RIGHT)
-			rowSquare = rowSquare.getRelation(Directions.DOWN)
-	return resolvelist
+	_combinations = _getConflictsAlgorithm.Execute()

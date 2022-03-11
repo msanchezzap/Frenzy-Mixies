@@ -1,6 +1,6 @@
 extends Node
 
-func Execute(gameBoard: GameBoard):
+func Execute(gameBoard, lastStep):
 	var positionChange = []
 	var i = 0
 	var squares = gameBoard.board.getStartSquare()
@@ -8,10 +8,11 @@ func Execute(gameBoard: GameBoard):
 		var squaresLine = squares
 		while squaresLine != null:
 			var oldPosition = _search(squaresLine, gameBoard.allpositions)
-			positionChange.append(SquareAux.new(gameBoard.allpositions[i].square,gameBoard.allpositions[i].position))
 			gameBoard.allpositions[i].square = squaresLine
+			if oldPosition != gameBoard.allpositions[i]:
+				positionChange.append(SquareAux.new(gameBoard.allpositions[i].square,gameBoard.allpositions[i].position))
 			var iscombination = false
-			for c in gameBoard.currentCombinations:
+			for c in lastStep:
 				if c.members.has(squaresLine):
 					gameBoard.allpositions[i].position += _setBoardEntrance(gameBoard.allpositions[i], _search(c.origin, gameBoard.allpositions).position, gameBoard.size, gameBoard.initialSpace)
 					iscombination = true
@@ -29,10 +30,6 @@ func Execute(gameBoard: GameBoard):
 			squaresLine = squaresLine.getRelation(Directions.RIGHT)
 			i += 1
 		squares = squares.getRelation(Directions.DOWN)
-	gameBoard.currentCombinations = []
-	
-func executeLine(square, iteration):
-	pass
 
 func _search(squareToSearch: SquareComponent, allpositions: Array):
 	for pos in allpositions:
