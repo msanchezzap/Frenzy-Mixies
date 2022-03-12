@@ -6,9 +6,10 @@ export(int) var SizeVertical
 const size: int = 52
 const initialSpace: int = 100
 
-var board: Board
+var board
 var selectedPosition
 var allpositions = []
+var _boardAnimation
 
 func _ready():
 	board = Board.new(SizeHorizontal,SizeVertical)
@@ -27,6 +28,7 @@ func _ready():
 		j = 0
 		squares = squares.getRelation(Directions.DOWN)
 		i += 1
+	_boardAnimation = GameBoardAnimation.new(self)
 
 func isAnimationInProcess():
 	var isanimating = false
@@ -42,7 +44,7 @@ func _physics_process(delta):
 		DestructionAnimation.Restore(board.getNextStep(), allpositions)
 		var lastStep = board.getNextStep()
 		board.executeNextStep()
-		GameBoardAnimation.Execute(self, lastStep)
+		_boardAnimation.Execute(lastStep)
 
 func positionClick(position):
 	if !isAnimationInProcess():

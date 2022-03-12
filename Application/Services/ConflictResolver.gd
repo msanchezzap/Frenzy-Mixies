@@ -1,19 +1,46 @@
-class_name GetNonConflictiveCombinationAlgorithm 
+class_name ConflictResolver 
 
 var _board
 
 func _init(board):
 	_board = board
 
-func Execute():
+func getNonConflicts():
+	return _checkConflicts(false)
+
+func getConflicts():
+	return _checkConflicts(true)
+	
+func _checkConflicts(returnConflicts: bool):
 	var combinationsDone = []
-	var resolvelist = getAllActiveOriginSquares()
+	var resolvelist = _getAllActiveOriginSquares()
 	for current in resolvelist:
 		var combos = SearchAlgorithm.Execute(current)
 		for c in combos:
-			if !_combinationHasConflicts(c):
+			if _combinationHasConflicts(c) == returnConflicts:
 				combinationsDone.append(c)
 	return combinationsDone
+
+func resolveConflicts(conflicts, oldCombinations):
+	for c in conflicts:
+		_setCorrectOrigin(c, oldCombinations)
+	for c in conflicts:
+		if !c.origin.getHasOriginPotential():
+			conflicts.pop_at(conflicts.find(c))
+
+func _setCorrectOrigin(conflict, oldCombinations):
+	pass
+	#for m in conflict.members:
+	#	var memberIsCombination = false
+	#	for c in oldCombinations:
+	#		if c.members.has(m):
+	##			m.setHasOriginPotential(true)
+	#			memberIsCombination = true
+	#	if !memberIsCombination:
+	#		m.setHasOriginPotential(false)
+	#for c in conflict.members:
+	#	if c.getHasOriginPotential():
+	#		print("AS")
 
 func _combinationHasConflicts(combination: Combination):
 	for m in combination.members:
@@ -33,7 +60,7 @@ func _lineHasConflicts(currentSquare: SquareComponent, combination: Combination,
 		return true
 	return _lineHasConflicts(currentSquare.getRelation(direction),combination,direction) 
 
-func getAllActiveOriginSquares():
+func _getAllActiveOriginSquares():
 	var rowSquare = _board.getStartSquare() 
 	var resolvelist = []
 	while(rowSquare != null):

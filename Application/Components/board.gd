@@ -5,13 +5,13 @@ var _startSquare: SquareComponent
 var _sizeHorizontal
 var _sizeVertical
 var _combinations = []
-var _getConflictsAlgorithm
+var _conflictResolver
 
 func _init(horizontal, vertical):
 	_sizeHorizontal = horizontal
 	_sizeVertical = vertical
 	_startSquare = SquareService.goToStart(_initBoard())
-	_getConflictsAlgorithm = GetNonConflictiveCombinationAlgorithm.new(self)
+	_conflictResolver = ConflictResolver.new(self)
 
 func _initBoard():
 	return BasicBoard.new(_sizeHorizontal, _sizeVertical).construct()
@@ -28,7 +28,7 @@ func setNextStep(squareSource: SquareComponent, squareDestiny: SquareComponent):
 		if !SearchAlgorithm.Execute(squareDestiny):
 			squareDestiny.setColor(oldColor)
 		else:
-			 _combinations = _getConflictsAlgorithm.Execute()
+			 _combinations = _conflictResolver.getNonConflicts()
 
 func hasNextStep():
 	return _combinations.size() > 0
@@ -39,11 +39,14 @@ func getNextStep():
 func executeNextStep():
 	for m in _combinations:
 		m.Destroy()
-	_combinations = _getConflictsAlgorithm.Execute()
-
+	var conflicts = _conflictResolver.getConflicts()
+	if conflicts.size() > 0:
+		_conflictResolver.resolveConflicts(conflicts, _combinations)
+	_combinations = _conflictResolver.getNonConflicts()
+	
 func setOriginIfPossible(square: Square):
 	var combinations = SearchAlgorithm.Execute(square)
 	for c in combinations:
 		for m in c.members:
 			m._hasOriginPotential = false
-	_combinations = _getConflictsAlgorithm.Execute()
+	_combinations = _conflictResolver.getNonConflicts()

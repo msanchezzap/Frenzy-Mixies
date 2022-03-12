@@ -24,15 +24,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Domain/Model/Combination.gd"
 }, {
+"base": "Reference",
+"class": "ConflictResolver",
+"language": "GDScript",
+"path": "res://Application/Services/ConflictResolver.gd"
+}, {
 "base": "Node",
 "class": "GameBoard",
 "language": "GDScript",
 "path": "res://Interface/GameBoard.gd"
 }, {
 "base": "Reference",
-"class": "GetNonConflictiveCombinationAlgorithm",
+"class": "GameBoardAnimation",
 "language": "GDScript",
-"path": "res://Application/Services/Algorithms/GetNonConflictiveCombinationAlgorithm.gd"
+"path": "res://Interface/Animations/GameBoardAnimation.gd"
 }, {
 "base": "Reference",
 "class": "LinealCombinationAlgorithm",
@@ -83,8 +88,9 @@ _global_script_class_icons={
 "BasicBoard": "",
 "Board": "",
 "Combination": "",
+"ConflictResolver": "",
 "GameBoard": "",
-"GetNonConflictiveCombinationAlgorithm": "",
+"GameBoardAnimation": "",
 "LinealCombinationAlgorithm": "",
 "LinealCombinationComponent": "",
 "Position": "",
@@ -110,7 +116,6 @@ ColorsService="*res://Domain/Services/ColorsService.gd"
 DirectionsService="*res://Domain/Services/DirectionsService.gd"
 SquareService="*res://Domain/Services/SquareService.gd"
 CombinationService="*res://Domain/Services/CombinationService.gd"
-GameBoardAnimation="*res://Interface/Animations/GameBoardAnimation.gd"
 PositionAnimation="*res://Interface/Animations/PositionAnimation.gd"
 DestructionAnimation="*res://Interface/Animations/DestructionAnimation.gd"
 SearchAlgorithm="*res://Application/Services/Algorithms/SearchAlgorithm.gd"

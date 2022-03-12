@@ -12,3 +12,4 @@ func Destroy():
 			var pos = m.find(nextSquare)
 			m.pop_at(pos)
 			nextSquare.reset(randi() % 4)
+	origin.setColor(origin.getColor())
