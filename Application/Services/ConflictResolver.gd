@@ -23,24 +23,25 @@ func _checkConflicts(returnConflicts: bool):
 
 func resolveConflicts(conflicts, oldCombinations):
 	for c in conflicts:
-		_setCorrectOrigin(c, oldCombinations)
+		pass
+		#_setCorrectOrigin(c, oldCombinations)
 	for c in conflicts:
 		if !c.origin.getHasOriginPotential():
 			conflicts.pop_at(conflicts.find(c))
 
 func _setCorrectOrigin(conflict, oldCombinations):
-	pass
-	#for m in conflict.members:
-	#	var memberIsCombination = false
-	#	for c in oldCombinations:
-	#		if c.members.has(m):
-	##			m.setHasOriginPotential(true)
-	#			memberIsCombination = true
-	#	if !memberIsCombination:
-	#		m.setHasOriginPotential(false)
-	#for c in conflict.members:
-	#	if c.getHasOriginPotential():
-	#		print("AS")
+	for m in conflict.members:
+		pass
+		var memberIsCombination = false
+		for c in oldCombinations:
+			if c.members.has(m):
+				m.setHasOriginPotential(true)
+				memberIsCombination = true
+		if !memberIsCombination && SearchAlgorithm.Execute(m).size() == 1:
+			m.setHasOriginPotential(false)
+	for c in conflict.members:
+		if c.getHasOriginPotential():
+			print("AS")
 
 func _combinationHasConflicts(combination: Combination):
 	for m in combination.members:

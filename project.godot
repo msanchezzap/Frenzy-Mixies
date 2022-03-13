@@ -120,6 +120,7 @@ PositionAnimation="*res://Interface/Animations/PositionAnimation.gd"
 DestructionAnimation="*res://Interface/Animations/DestructionAnimation.gd"
 SearchAlgorithm="*res://Application/Services/Algorithms/SearchAlgorithm.gd"
 SortAlgorithm="*res://Application/Services/Algorithms/SortAlgorithm.gd"
+CombinationDestruction="*res://Application/Services/Algorithms/CombinationDestruction.gd"
 
 [physics]
 

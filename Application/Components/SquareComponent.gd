@@ -15,13 +15,13 @@ func setColor(newColor: int):
 
 func setHasOriginPotential(potential: bool):
 	_hasOriginPotential = potential
-	
+
 func getHasOriginPotential():
 	return _hasOriginPotential
-	
+
 func setHasPotential(potential: bool):
 	_haspotential = potential
-	
+
 func getHasPotential():
 	return _haspotential
 

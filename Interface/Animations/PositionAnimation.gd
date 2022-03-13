@@ -19,8 +19,9 @@ func Move(position: Position, speed: int, delta):
 
 func Rotate(position: Position, speed: int):
 	if position.rotation_degrees != position.currentRotation:
-		if position.rotation_degrees - position.currentRotation < speed && position.rotation_degrees - position.currentRotation > - speed:
-			position.rotation_degrees = position.currentRotation
+		if position.rotation_degrees - position.currentRotation <= speed && position.rotation_degrees - position.currentRotation >= - speed:
+			position.currentRotation = 0
+			position.rotation_degrees = 0
 		else:
 			position.rotation_degrees += speed
 
