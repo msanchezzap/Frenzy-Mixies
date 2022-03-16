@@ -15,16 +15,13 @@ func _checkConflicts(returnConflicts: bool):
 	var combinationsDone = []
 	var resolvelist = _getAllActiveOriginSquares()
 	for current in resolvelist:
-		var combos = SearchAlgorithm.Execute(current)
+		var combos = current.getCombinations()
 		for c in combos:
 			if _combinationHasConflicts(c) == returnConflicts:
 				combinationsDone.append(c)
 	return combinationsDone
 
 func resolveConflicts(conflicts, oldCombinations):
-	for c in conflicts:
-		pass
-		#_setCorrectOrigin(c, oldCombinations)
 	for c in conflicts:
 		if !c.origin.getHasOriginPotential():
 			conflicts.pop_at(conflicts.find(c))
@@ -37,16 +34,13 @@ func _setCorrectOrigin(conflict, oldCombinations):
 			if c.members.has(m):
 				m.setHasOriginPotential(true)
 				memberIsCombination = true
-		if !memberIsCombination && SearchAlgorithm.Execute(m).size() == 1:
+		if !memberIsCombination && m.getCombinations().size() == 1:
 			m.setHasOriginPotential(false)
-	for c in conflict.members:
-		if c.getHasOriginPotential():
-			print("AS")
 
 func _combinationHasConflicts(combination: Combination):
 	for m in combination.members:
 		if m.getHasOriginPotential():
-			for mm in SearchAlgorithm.Execute(m):
+			for mm in m.getCombinations():
 				if mm.members.has(combination.origin):
 					return true
 	for d in CombinationService.getCombinationDirections(combination):

@@ -9,7 +9,6 @@ func BasicDestruction(combination: Combination):
 			var pos = m.find(nextSquare)
 			m.pop_at(pos)
 			_linealCreation(nextSquare,d)
-	combination.origin.setColor(combination.origin.getColor())
 	
 func _linealCreation(position: SquareComponent, direction):
 	position.reset(randi() % 4)

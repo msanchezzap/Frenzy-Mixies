@@ -25,7 +25,7 @@ func setNextStep(squareSource: SquareComponent, squareDestiny: SquareComponent):
 		var newColor = squareSource.getColor()
 		var oldColor = squareDestiny.getColor()
 		squareDestiny.setColor(newColor)
-		if !SearchAlgorithm.Execute(squareDestiny):
+		if !squareDestiny.getCombinations():
 			squareDestiny.setColor(oldColor)
 		else:
 			 _combinations = _conflictResolver.getNonConflicts()
@@ -44,8 +44,8 @@ func executeNextStep():
 		_conflictResolver.resolveConflicts(conflicts, _combinations)
 	_combinations = _conflictResolver.getNonConflicts()
 	
-func setOriginIfPossible(square: Square):
-	var combinations = SearchAlgorithm.Execute(square)
+func setOriginIfPossible(square: SquareComponent):
+	var combinations = square.getCombinations()
 	for c in combinations:
 		for m in c.members:
 			m._hasOriginPotential = false

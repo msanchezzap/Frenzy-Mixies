@@ -2,11 +2,13 @@ class_name SquareComponent extends Square
 
 var _haspotential: bool
 var _hasOriginPotential: bool
+var _searchAlgorithm = SearchAlgorithm
 
 func _init(initColor).(initColor):
 	pass
 
 func reset(initColor):
+	_searchAlgorithm = SearchAlgorithm
 	setColor(initColor)
 
 func setColor(newColor: int):
@@ -26,7 +28,7 @@ func getHasPotential():
 	return _haspotential
 
 func _seePotential(original:bool = false):
-	var group = SearchAlgorithm.Execute(self)
+	var group = _searchAlgorithm.Execute(self)
 	if group.size() > 0:
 		if original:
 			_hasOriginPotential = true
@@ -35,3 +37,6 @@ func _seePotential(original:bool = false):
 		_haspotential = false
 		_hasOriginPotential = false
 	return _haspotential
+
+func getCombinations():
+	return _searchAlgorithm.Execute(self)

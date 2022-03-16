@@ -40,9 +40,14 @@ _global_script_classes=[ {
 "path": "res://Interface/Animations/GameBoardAnimation.gd"
 }, {
 "base": "Reference",
+"class": "Joker",
+"language": "GDScript",
+"path": "res://Application/Components/Squares/Joker.gd"
+}, {
+"base": "Reference",
 "class": "LinealCombinationAlgorithm",
 "language": "GDScript",
-"path": "res://Application/Services/Algorithms/LinealCombinationAlgorithm.gd"
+"path": "res://Application/Services/Algorithms/Search/LinealCombinationAlgorithm.gd"
 }, {
 "base": "Combination",
 "class": "LinealCombinationComponent",
@@ -72,7 +77,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "SquareCombinationAlgorithm",
 "language": "GDScript",
-"path": "res://Application/Services/Algorithms/SquareCombinationAlgorithm.gd"
+"path": "res://Application/Services/Algorithms/Search/SquareCombinationAlgorithm.gd"
 }, {
 "base": "SquareCombination",
 "class": "SquareCombinationComponent",
@@ -91,6 +96,7 @@ _global_script_class_icons={
 "ConflictResolver": "",
 "GameBoard": "",
 "GameBoardAnimation": "",
+"Joker": "",
 "LinealCombinationAlgorithm": "",
 "LinealCombinationComponent": "",
 "Position": "",
@@ -118,9 +124,10 @@ SquareService="*res://Domain/Services/SquareService.gd"
 CombinationService="*res://Domain/Services/CombinationService.gd"
 PositionAnimation="*res://Interface/Animations/PositionAnimation.gd"
 DestructionAnimation="*res://Interface/Animations/DestructionAnimation.gd"
-SearchAlgorithm="*res://Application/Services/Algorithms/SearchAlgorithm.gd"
+SearchAlgorithm="*res://Application/Services/Algorithms/Search/SearchAlgorithm.gd"
 SortAlgorithm="*res://Application/Services/Algorithms/SortAlgorithm.gd"
 CombinationDestruction="*res://Application/Services/Algorithms/CombinationDestruction.gd"
+JokerSearch="*res://Application/Services/Algorithms/Search/JokerSearch.gd"
 
 [physics]
 
