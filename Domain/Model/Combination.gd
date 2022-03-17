@@ -16,3 +16,8 @@ func equals(other: Combination):
 		if !other.members.has(m):
 			return false
 	return true 
+
+func getAllSquarePoints():
+	var total = origin.getPoints()
+	for m in members:
+		total += m.getPoints()

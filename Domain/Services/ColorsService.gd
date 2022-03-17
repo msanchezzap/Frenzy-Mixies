@@ -19,7 +19,7 @@ const OGREEN = Color(0.1,0.7,0.1)
 const OBLUE = Color(0.1,0.1,0.7)
 const OYELLOW = Color(0.7,0.7,0.1)
 const OPURPLE = Color(0.7,0.1,0.7)
-const OJOKER = Color(0.3,0.3,0.3)
+const OJOKER = Color(0.5,0.5,0.5)
 
 const LIGHT = Color(0.005,0.005,0.005)
 

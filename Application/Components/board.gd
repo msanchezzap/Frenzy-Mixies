@@ -39,11 +39,19 @@ func getNextStep():
 func executeNextStep():
 	for m in _combinations:
 		m.Destroy()
+		triggerCombinations()
 	var conflicts = _conflictResolver.getConflicts()
 	if conflicts.size() > 0:
 		_conflictResolver.resolveConflicts(conflicts, _combinations)
 	_combinations = _conflictResolver.getNonConflicts()
+	triggerCombinations()
 	
+func triggerCombinations():
+	for c in _combinations:
+		c.origin.trigger(c.origin)
+		for m in c.members:
+			m.trigger(c.origin)
+
 func setOriginIfPossible(square: SquareComponent):
 	var combinations = square.getCombinations()
 	for c in combinations:

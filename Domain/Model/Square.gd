@@ -2,6 +2,7 @@ class_name Square extends Node
 
 var _color = 0
 var _adyacencies: Array = [null,null,null,null]
+var _points = 10
 
 func _init(initColor):
 	setColor(initColor)
@@ -11,7 +12,10 @@ func setColor(newColor):
 	
 func getColor():
 	return _color
-
+	
+func getPoints():
+	return _points
+	
 func SetRelation(square: Square, direction):
 	_adyacencies[direction] = square
 	

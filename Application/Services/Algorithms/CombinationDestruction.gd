@@ -1,5 +1,7 @@
 extends Node
 
+var _linealCreation = BasicLinealCreation.new()
+
 func BasicDestruction(combination: Combination):
 	var m = combination.members.duplicate()
 	for d in CombinationService.getCombinationDirections(combination):
@@ -8,13 +10,4 @@ func BasicDestruction(combination: Combination):
 			SortAlgorithm.Execute(combination.origin.getRelation(d),d)
 			var pos = m.find(nextSquare)
 			m.pop_at(pos)
-			_linealCreation(nextSquare,d)
-	
-func _linealCreation(position: SquareComponent, direction):
-	position.reset(randi() % 4)
-	if position.getHasPotential():
-		var combinations = SearchAlgorithm.Execute(position)
-		var adyacency = position.getRelation(DirectionsService.GetOppositeDirection(direction))
-		for c in combinations:
-			if c.members.has(adyacency):
-				_linealCreation(position,direction)
+			_linealCreation.execute(nextSquare,d)

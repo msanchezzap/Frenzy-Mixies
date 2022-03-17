@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://Application/factory/BasicBoard.gd"
 }, {
 "base": "Node",
+"class": "BasicLinealCreation",
+"language": "GDScript",
+"path": "res://Application/Services/BasicLinealCreation.gd"
+}, {
+"base": "Node",
 "class": "Board",
 "language": "GDScript",
 "path": "res://Application/Components/board.gd"
@@ -29,10 +34,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Application/Services/ConflictResolver.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "GameBoard",
 "language": "GDScript",
-"path": "res://Interface/GameBoard.gd"
+"path": "res://Interface/Consumer/GameBoard.gd"
 }, {
 "base": "Reference",
 "class": "GameBoardAnimation",
@@ -42,32 +47,37 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Joker",
 "language": "GDScript",
-"path": "res://Application/Components/Squares/Joker.gd"
+"path": "res://Application/factory/Squares/Joker/Joker.gd"
+}, {
+"base": "Node",
+"class": "JokerTrigger",
+"language": "GDScript",
+"path": "res://Application/factory/Squares/Joker/JokerTrigger.gd"
 }, {
 "base": "Reference",
 "class": "LinealCombinationAlgorithm",
 "language": "GDScript",
-"path": "res://Application/Services/Algorithms/Search/LinealCombinationAlgorithm.gd"
+"path": "res://Application/Services/Algorithms/Search/Modules/LinealCombinationAlgorithm.gd"
 }, {
 "base": "Combination",
 "class": "LinealCombinationComponent",
 "language": "GDScript",
 "path": "res://Application/Components/Combinations/LinealCombinationComponent.gd"
 }, {
-"base": "Area2D",
+"base": "Reference",
 "class": "Position",
 "language": "GDScript",
-"path": "res://Interface/Position.gd"
+"path": "res://Interface/Consumer/Position.gd"
 }, {
 "base": "Node",
 "class": "Square",
 "language": "GDScript",
 "path": "res://Domain/Model/Square.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "SquareAux",
 "language": "GDScript",
-"path": "res://Interface/SquareAux.gd"
+"path": "res://Interface/Consumer/SquareAux.gd"
 }, {
 "base": "Combination",
 "class": "SquareCombination",
@@ -77,7 +87,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "SquareCombinationAlgorithm",
 "language": "GDScript",
-"path": "res://Application/Services/Algorithms/Search/SquareCombinationAlgorithm.gd"
+"path": "res://Application/Services/Algorithms/Search/Modules/SquareCombinationAlgorithm.gd"
 }, {
 "base": "SquareCombination",
 "class": "SquareCombinationComponent",
@@ -91,12 +101,14 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "BasicBoard": "",
+"BasicLinealCreation": "",
 "Board": "",
 "Combination": "",
 "ConflictResolver": "",
 "GameBoard": "",
 "GameBoardAnimation": "",
 "Joker": "",
+"JokerTrigger": "",
 "LinealCombinationAlgorithm": "",
 "LinealCombinationComponent": "",
 "Position": "",
@@ -116,18 +128,18 @@ config/icon="res://Interface/resources/icon.png"
 
 [autoload]
 
-Colors="*res://Domain/Model/Colors.gd"
-Directions="*res://Domain/Model/Directions.gd"
+Colors="*res://Domain/Model/Enums/Colors.gd"
+Directions="*res://Domain/Model/Enums/Directions.gd"
 ColorsService="*res://Domain/Services/ColorsService.gd"
 DirectionsService="*res://Domain/Services/DirectionsService.gd"
 SquareService="*res://Domain/Services/SquareService.gd"
 CombinationService="*res://Domain/Services/CombinationService.gd"
 PositionAnimation="*res://Interface/Animations/PositionAnimation.gd"
 DestructionAnimation="*res://Interface/Animations/DestructionAnimation.gd"
-SearchAlgorithm="*res://Application/Services/Algorithms/Search/SearchAlgorithm.gd"
+SearchAlgorithm="*res://Application/factory/Squares/Basic/SearchAlgorithm.gd"
 SortAlgorithm="*res://Application/Services/Algorithms/SortAlgorithm.gd"
 CombinationDestruction="*res://Application/Services/Algorithms/CombinationDestruction.gd"
-JokerSearch="*res://Application/Services/Algorithms/Search/JokerSearch.gd"
+JokerSearch="*res://Application/factory/Squares/Joker/JokerSearch.gd"
 
 [physics]
 
