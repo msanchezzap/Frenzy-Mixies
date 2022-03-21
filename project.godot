@@ -17,12 +17,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "BasicLinealCreation",
 "language": "GDScript",
-"path": "res://Application/Services/BasicLinealCreation.gd"
+"path": "res://Application/Services/Algorithms/BasicLinealCreation.gd"
 }, {
 "base": "Node",
 "class": "Board",
 "language": "GDScript",
-"path": "res://Application/Components/board.gd"
+"path": "res://Application/Services/boardService.gd"
 }, {
 "base": "Reference",
 "class": "Combination",
@@ -34,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Application/Services/ConflictResolver.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "GameBoard",
 "language": "GDScript",
 "path": "res://Interface/Consumer/GameBoard.gd"
@@ -57,14 +57,14 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "LinealCombinationAlgorithm",
 "language": "GDScript",
-"path": "res://Application/Services/Algorithms/Search/Modules/LinealCombinationAlgorithm.gd"
+"path": "res://Application/Services/Algorithms/Search/LinealCombinationAlgorithm.gd"
 }, {
 "base": "Combination",
 "class": "LinealCombinationComponent",
 "language": "GDScript",
 "path": "res://Application/Components/Combinations/LinealCombinationComponent.gd"
 }, {
-"base": "Reference",
+"base": "Area2D",
 "class": "Position",
 "language": "GDScript",
 "path": "res://Interface/Consumer/Position.gd"
@@ -74,7 +74,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Domain/Model/Square.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "SquareAux",
 "language": "GDScript",
 "path": "res://Interface/Consumer/SquareAux.gd"
@@ -87,7 +87,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "SquareCombinationAlgorithm",
 "language": "GDScript",
-"path": "res://Application/Services/Algorithms/Search/Modules/SquareCombinationAlgorithm.gd"
+"path": "res://Application/Services/Algorithms/Search/SquareCombinationAlgorithm.gd"
 }, {
 "base": "SquareCombination",
 "class": "SquareCombinationComponent",
@@ -136,9 +136,9 @@ SquareService="*res://Domain/Services/SquareService.gd"
 CombinationService="*res://Domain/Services/CombinationService.gd"
 PositionAnimation="*res://Interface/Animations/PositionAnimation.gd"
 DestructionAnimation="*res://Interface/Animations/DestructionAnimation.gd"
-SearchAlgorithm="*res://Application/factory/Squares/Basic/SearchAlgorithm.gd"
+SearchAlgorithm="*res://Application/factory/Squares/Basic/BasicSearchAlgorithm.gd"
 SortAlgorithm="*res://Application/Services/Algorithms/SortAlgorithm.gd"
-CombinationDestruction="*res://Application/Services/Algorithms/CombinationDestruction.gd"
+CombinationDestruction="*res://Application/Services/Algorithms/CombinationDestroyer.gd"
 JokerSearch="*res://Application/factory/Squares/Joker/JokerSearch.gd"
 
 [physics]

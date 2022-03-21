@@ -10,8 +10,12 @@ var board
 var selectedPosition
 var allpositions = []
 var _boardAnimation
+var menu = null
 
 func _ready():
+	start()
+
+func start():
 	board = Board.new(SizeHorizontal,SizeVertical)
 	var squares = board.getStartSquare()
 	var i = 0
@@ -29,7 +33,16 @@ func _ready():
 		squares = squares.getRelation(Directions.DOWN)
 		i += 1
 	_boardAnimation = GameBoardAnimation.new(self)
-
+func _input(event):
+	if event is InputEventKey:
+		if event.pressed && event.scancode == KEY_ESCAPE:
+			if !is_instance_valid(menu):
+				var men = load("res://Interface/Scenes/Menu.tscn")
+				menu = men.instance()
+				menu.setExitButton(false)
+				menu.setStartButton(false)
+				add_child(menu)
+		
 func isAnimationInProcess():
 	var isanimating = false
 	var i = 0
