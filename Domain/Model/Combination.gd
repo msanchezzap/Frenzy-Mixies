@@ -21,3 +21,4 @@ func getAllSquarePoints():
 	var total = origin.getPoints()
 	for m in members:
 		total += m.getPoints()
+	return total
