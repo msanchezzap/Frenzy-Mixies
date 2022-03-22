@@ -14,3 +14,23 @@ text = "text"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TurnsLeft" type="Label" parent="."]
+margin_left = 749.0
+margin_top = 104.0
+margin_right = 813.0
+margin_bottom = 118.0
+rect_pivot_offset = Vector2( -796, -93 )
+text = "Turns left:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 827.0
+margin_top = 105.0
+margin_right = 867.0
+margin_bottom = 119.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

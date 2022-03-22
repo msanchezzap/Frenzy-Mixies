@@ -4,13 +4,15 @@ var _startSquare: SquareComponent
 
 var _sizeHorizontal
 var _sizeVertical
+var _turnsLeft
 var _combinations = []
 var _conflictResolver
 var _pointService: PointService
 
-func _init(horizontal, vertical):
+func _init(horizontal, vertical, turnsLeft):
 	_sizeHorizontal = horizontal
 	_sizeVertical = vertical
+	_turnsLeft = turnsLeft
 	_startSquare = SquareService.goToStart(_initBoard())
 	_conflictResolver = ConflictResolver.new(self)
 	_pointService = PointService.new()
@@ -23,14 +25,15 @@ func getStartSquare():
 	return _startSquare
 
 func setNextStep(squareSource: SquareComponent, squareDestiny: SquareComponent):
-	if squareSource.existsInRelation(squareDestiny):
+	if squareSource.existsInRelation(squareDestiny) && _turnsLeft > 0:
 		var newColor = squareSource.getColor()
 		var oldColor = squareDestiny.getColor()
 		squareDestiny.setColor(newColor)
 		if !squareDestiny.getCombinations():
 			squareDestiny.setColor(oldColor)
 		else:
-			 _combinations = _conflictResolver.getNonConflicts()
+			_combinations = _conflictResolver.getNonConflicts()
+			_turnsLeft -= 1
 
 func hasNextStep():
 	return _combinations.size() > 0
@@ -66,5 +69,8 @@ func setOriginIfPossible(square: SquareComponent):
 		for m in c.members:
 			m._hasOriginPotential = false
 	_combinations = _conflictResolver.getNonConflicts()
+
 func getScore():
 	return _pointService.getTotal()
+func getTurnsLeft():
+	return _turnsLeft

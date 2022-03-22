@@ -12,12 +12,13 @@ var allpositions = []
 var _boardAnimation
 var menu = null
 var score
+var gameDisabled = false
 
 func _ready():
 	start()
 
 func start():
-	board = Board.new(SizeHorizontal,SizeVertical)
+	board = Board.new(SizeHorizontal,SizeVertical, 3)
 	var squares = board.getStartSquare()
 	var i = 0
 	var j = 0
@@ -38,6 +39,7 @@ func start():
 	var newScore = load("res://Interface/Scenes/ScoreBoard.tscn")
 	score = newScore.instance()
 	add_child(score)
+	score.changeTurn(board.getTurnsLeft())
 	
 func _input(event):
 	if event is InputEventKey:
@@ -48,6 +50,10 @@ func _input(event):
 				menu.setExitButton(false)
 				menu.setStartButton(false)
 				add_child(menu)
+				gameDisabled = true
+			else:
+				menu.queue_free()
+				gameDisabled = false
 		
 func isAnimationInProcess():
 	var isanimating = false
@@ -65,15 +71,19 @@ func _physics_process(delta):
 		board.executeNextStep()
 		_boardAnimation.Execute(lastStep)
 		score.changeScore(board.getScore())
+	elif board.getTurnsLeft() == 0 && !board.hasNextStep() && !isAnimationInProcess():
+		gameDisabled = true
 
 func positionClick(position):
-	if !isAnimationInProcess():
+	if !isAnimationInProcess() && !gameDisabled:
 		if(position.square.getHasOriginPotential()):
 			board.setOriginIfPossible(position.square)
 		elif selectedPosition != null:
 			selectedPosition.Unselect()
 			board.setNextStep(selectedPosition.square, position.square)
 			selectedPosition = null
+			if board.hasNextStep():
+				score.changeTurn(board.getTurnsLeft())
 		else:
 			selectedPosition = position
 			selectedPosition.Select()
