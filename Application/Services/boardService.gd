@@ -6,12 +6,14 @@ var _sizeHorizontal
 var _sizeVertical
 var _combinations = []
 var _conflictResolver
+var _pointService: PointService
 
 func _init(horizontal, vertical):
 	_sizeHorizontal = horizontal
 	_sizeVertical = vertical
 	_startSquare = SquareService.goToStart(_initBoard())
 	_conflictResolver = ConflictResolver.new(self)
+	_pointService = PointService.new()
 
 func _initBoard():
 	return BasicBoard.new(_sizeHorizontal, _sizeVertical).construct()
@@ -35,16 +37,22 @@ func hasNextStep():
 
 func getNextStep():
 	return _combinations
-	
+
 func executeNextStep():
+	_pointService.countRound(_combinations)
 	for m in _combinations:
 		m.Destroy()
 		triggerCombinations()
+
 	var conflicts = _conflictResolver.getConflicts()
 	if conflicts.size() > 0:
 		_conflictResolver.resolveConflicts(conflicts, _combinations)
 	_combinations = _conflictResolver.getNonConflicts()
 	triggerCombinations()
+	if _combinations.size() > 0:
+		_pointService.setChain(true)
+	else:
+		_pointService.setChain(false)
 	
 func triggerCombinations():
 	for c in _combinations:
@@ -58,3 +66,5 @@ func setOriginIfPossible(square: SquareComponent):
 		for m in c.members:
 			m._hasOriginPotential = false
 	_combinations = _conflictResolver.getNonConflicts()
+func getScore():
+	return _pointService.getTotal()

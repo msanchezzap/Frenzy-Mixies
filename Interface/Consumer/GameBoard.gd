@@ -11,6 +11,7 @@ var selectedPosition
 var allpositions = []
 var _boardAnimation
 var menu = null
+var score
 
 func _ready():
 	start()
@@ -33,6 +34,11 @@ func start():
 		squares = squares.getRelation(Directions.DOWN)
 		i += 1
 	_boardAnimation = GameBoardAnimation.new(self)
+	
+	var newScore = load("res://Interface/Scenes/ScoreBoard.tscn")
+	score = newScore.instance()
+	add_child(score)
+	
 func _input(event):
 	if event is InputEventKey:
 		if event.pressed && event.scancode == KEY_ESCAPE:
@@ -58,6 +64,7 @@ func _physics_process(delta):
 		var lastStep = board.getNextStep()
 		board.executeNextStep()
 		_boardAnimation.Execute(lastStep)
+		score.changeScore(board.getScore())
 
 func positionClick(position):
 	if !isAnimationInProcess():
