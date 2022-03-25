@@ -1,10 +1,13 @@
 extends Area2D
 
 var _current_scene = null
-var _startButton: String = "StartButton"
-var _continueButton: String = "ContinueButton"
-var _exitButton: String = "ExitButton"
-var _returnButton: String = "ReturnButton"
+const _startButton: String = "StartButton"
+const _continueButton: String = "ContinueButton"
+const _exitButton: String = "ExitButton"
+const _returnButton: String = "ReturnButton"
+const _gameOverLabel: String = "GameOverLabel"
+const _scoreLabel: String = "ScoreLabel"
+const _scoreNumberLabel: String = "ScoreNumberLabel"
 
 func _ready():
 	var root = get_tree().get_root()
@@ -17,6 +20,14 @@ func setStartButton(showStart: bool):
 func setExitButton(showExit: bool):
 	get_node(_exitButton).visible = showExit
 	get_node(_returnButton).visible = !showExit
+
+func setElementVisibility(element: String, visible: bool):
+	get_node(element).visible = visible
+
+func setScore(score: int):
+	get_node(_scoreNumberLabel).visible = true
+	get_node(_scoreNumberLabel).text = str(score)
+
 
 func _changeScene(path: String):
 	_current_scene.queue_free()

@@ -45,10 +45,7 @@ func _input(event):
 	if event is InputEventKey:
 		if event.pressed && event.scancode == KEY_ESCAPE:
 			if !is_instance_valid(menu):
-				var men = load("res://Interface/Scenes/Menu.tscn")
-				menu = men.instance()
-				menu.setExitButton(false)
-				menu.setStartButton(false)
+				menu = MenuFactory.new().generatePauseMenu()
 				add_child(menu)
 				gameDisabled = true
 			else:
@@ -71,8 +68,9 @@ func _physics_process(delta):
 		board.executeNextStep()
 		_boardAnimation.Execute(lastStep)
 		score.changeScore(board.getScore())
-	elif board.getTurnsLeft() == 0 && !board.hasNextStep() && !isAnimationInProcess():
+	elif !gameDisabled && board.getTurnsLeft() == 0 && !board.hasNextStep() && !isAnimationInProcess():
 		gameDisabled = true
+		add_child(MenuFactory.new().generateScoreMenu(board.getScore()))
 
 func positionClick(position):
 	if !isAnimationInProcess() && !gameDisabled:

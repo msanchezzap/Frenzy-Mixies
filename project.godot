@@ -65,6 +65,11 @@ _global_script_classes=[ {
 "path": "res://Application/Components/Combinations/LinealCombinationComponent.gd"
 }, {
 "base": "Node",
+"class": "MenuFactory",
+"language": "GDScript",
+"path": "res://Interface/Scenes/Factories/MenuFactory.gd"
+}, {
+"base": "Node",
 "class": "PointService",
 "language": "GDScript",
 "path": "res://Application/Services/PointService.gd"
@@ -116,6 +121,7 @@ _global_script_class_icons={
 "JokerTrigger": "",
 "LinealCombinationAlgorithm": "",
 "LinealCombinationComponent": "",
+"MenuFactory": "",
 "PointService": "",
 "Position": "",
 "Square": "",
