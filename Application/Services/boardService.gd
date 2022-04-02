@@ -8,6 +8,7 @@ var _turnsLeft
 var _combinations = []
 var _conflictResolver
 var _pointService: PointService
+var _winConfitions= []
 
 func _init(horizontal, vertical, turnsLeft):
 	_sizeHorizontal = horizontal
@@ -16,6 +17,7 @@ func _init(horizontal, vertical, turnsLeft):
 	_startSquare = SquareService.goToStart(_initBoard())
 	_conflictResolver = ConflictResolver.new(self)
 	_pointService = PointService.new()
+	_winConfitions.append(WinConfition.new("score",300))
 
 func _initBoard():
 	return BasicBoard.new(_sizeHorizontal, _sizeVertical).construct()
@@ -56,6 +58,7 @@ func executeNextStep():
 		_pointService.setChain(true)
 	else:
 		_pointService.setChain(false)
+
 	
 func triggerCombinations():
 	for c in _combinations:
@@ -74,3 +77,10 @@ func getScore():
 	return _pointService.getTotal()
 func getTurnsLeft():
 	return _turnsLeft
+func getWinState():
+	var win: bool = true
+	for condition in _winConfitions:
+		if condition.property == "score":
+			if condition.objective > _pointService.getTotal():
+				win = false
+	return win
