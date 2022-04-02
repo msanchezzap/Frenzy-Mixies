@@ -68,9 +68,12 @@ func _physics_process(delta):
 		board.executeNextStep()
 		_boardAnimation.Execute(lastStep)
 		score.changeScore(board.getScore())
-	elif !gameDisabled && board.getTurnsLeft() == 0 && !board.hasNextStep() && !isAnimationInProcess():
+	elif !gameDisabled && board.getTurnsLeft() == 0 && !board.hasNextStep() && !isAnimationInProcess() && !board.getWinState():
 		gameDisabled = true
-		add_child(MenuFactory.new().generateScoreMenu(board.getScore()))
+		add_child(MenuFactory.new().generateGameOverMenu(board.getScore()))
+	elif !gameDisabled && board.getWinState():
+		gameDisabled = true
+		add_child(MenuFactory.new().generateWinMenu(board.getScore()))
 
 func positionClick(position):
 	if !isAnimationInProcess() && !gameDisabled:

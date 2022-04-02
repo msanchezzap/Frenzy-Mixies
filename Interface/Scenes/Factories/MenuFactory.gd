@@ -1,5 +1,7 @@
 class_name MenuFactory extends Node
 
+const WIN = "Win"
+
 func generateMainMenu():
 	var menu = _baseMenu()
 	_setStartButton(menu, true)
@@ -12,7 +14,15 @@ func generatePauseMenu():
 	_setStartButton(menu,false)
 	return menu
 
-func generateScoreMenu(score: int):
+func generateGameOverMenu(score: int):
+	return _generateScoreMenu(score)
+
+func generateWinMenu(score: int):
+	var menu = _generateScoreMenu(score)
+	menu.setTitle(WIN)
+	return menu
+
+func _generateScoreMenu(score: int):
 	var menu = _baseMenu()
 	_setExitButton(menu, false)
 	_setScore(menu, score)

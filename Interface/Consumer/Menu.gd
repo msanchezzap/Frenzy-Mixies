@@ -28,6 +28,8 @@ func setScore(score: int):
 	get_node(_scoreNumberLabel).visible = true
 	get_node(_scoreNumberLabel).text = str(score)
 
+func setTitle(text: String):
+	get_node(_gameOverLabel).text = text
 
 func _changeScene(path: String):
 	_current_scene.queue_free()
