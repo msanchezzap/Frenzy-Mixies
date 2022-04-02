@@ -10,17 +10,17 @@ margin_left = 819.0
 margin_top = 77.0
 margin_right = 859.0
 margin_bottom = 91.0
-text = "text"
+text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TurnsLeft" type="Label" parent="."]
-margin_left = 749.0
-margin_top = 104.0
-margin_right = 813.0
-margin_bottom = 118.0
-rect_pivot_offset = Vector2( -796, -93 )
+margin_left = 740.0
+margin_top = 103.0
+margin_right = 804.0
+margin_bottom = 117.0
+rect_pivot_offset = Vector2( 0, -27 )
 text = "Turns left:"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -31,6 +31,16 @@ margin_left = 827.0
 margin_top = 105.0
 margin_right = 867.0
 margin_bottom = 119.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 740.0
+margin_top = 81.0
+margin_right = 780.0
+margin_bottom = 95.0
+text = "Score"
 __meta__ = {
 "_edit_use_anchors_": false
 }
