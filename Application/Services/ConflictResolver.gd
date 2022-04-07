@@ -22,20 +22,9 @@ func _checkConflicts(returnConflicts: bool):
 	return combinationsDone
 
 func resolveConflicts(conflicts, oldCombinations):
-	for c in conflicts:
-		if !c.origin.getHasOriginPotential():
-			conflicts.pop_at(conflicts.find(c))
-
-func _setCorrectOrigin(conflict, oldCombinations):
-	for m in conflict.members:
-		pass
-		var memberIsCombination = false
-		for c in oldCombinations:
-			if c.members.has(m):
-				m.setHasOriginPotential(true)
-				memberIsCombination = true
-		if !memberIsCombination && m.getCombinations().size() == 1:
-			m.setHasOriginPotential(false)
+		for c in conflicts:
+			if !c.origin.getHasOriginPotential():
+				conflicts.pop_at(conflicts.find(c))
 
 func _combinationHasConflicts(combination: Combination):
 	for m in combination.members:

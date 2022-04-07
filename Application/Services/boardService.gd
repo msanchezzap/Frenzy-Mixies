@@ -27,7 +27,7 @@ func getStartSquare():
 	return _startSquare
 
 func setNextStep(squareSource: SquareComponent, squareDestiny: SquareComponent):
-	if squareSource.existsInRelation(squareDestiny) && _turnsLeft > 0:
+	if squareSource.existsInRelation(squareDestiny) && !conflictMode && _turnsLeft > 0:
 		var newColor = squareSource.getColor()
 		var oldColor = squareDestiny.getColor()
 		squareDestiny.setColor(newColor)
@@ -38,28 +38,31 @@ func setNextStep(squareSource: SquareComponent, squareDestiny: SquareComponent):
 			_turnsLeft -= 1
 
 func hasNextStep():
-	return _combinations.size() > 0
+	return  _combinations.size() > 0 || _conflictResolver.getNonConflicts().size() > 0
 
 func getNextStep():
 	return _combinations
-
+	
+var conflictMode = false
 func executeNextStep():
 	_pointService.countRound(_combinations)
 	for m in _combinations:
 		m.Destroy()
 		triggerCombinations()
-
 	var conflicts = _conflictResolver.getConflicts()
 	if conflicts.size() > 0:
 		_conflictResolver.resolveConflicts(conflicts, _combinations)
 	_combinations = _conflictResolver.getNonConflicts()
 	triggerCombinations()
-	if _combinations.size() > 0:
+	if _conflictResolver.getConflicts().size() > 0:
+		conflictMode = true
+	else: 
+		conflictMode = false
+	if _combinations.size() > 0 || conflictMode:
 		_pointService.setChain(true)
 	else:
 		_pointService.setChain(false)
 
-	
 func triggerCombinations():
 	for c in _combinations:
 		c.origin.trigger(c.origin)

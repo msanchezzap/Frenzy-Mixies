@@ -11,3 +11,9 @@ func getAllSquarePoints():
 	for m in members:
 		total += m.getPoints()
 	return total
+	
+func getAllSquares():
+	var tmp = [] +members
+	tmp.append(origin)
+	tmp.append(opposite)
+	return tmp

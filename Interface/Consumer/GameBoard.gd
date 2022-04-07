@@ -77,14 +77,14 @@ func _physics_process(delta):
 
 func positionClick(position):
 	if !isAnimationInProcess() && !gameDisabled:
-		if(position.square.getHasOriginPotential()):
+		if(board.conflictMode && position.square.getHasOriginPotential()):
 			board.setOriginIfPossible(position.square)
-		elif selectedPosition != null:
+		elif !board.conflictMode && selectedPosition != null:
 			selectedPosition.Unselect()
 			board.setNextStep(selectedPosition.square, position.square)
 			selectedPosition = null
 			if board.hasNextStep():
 				score.changeTurn(board.getTurnsLeft())
-		else:
+		elif !board.conflictMode:
 			selectedPosition = position
 			selectedPosition.Select()
