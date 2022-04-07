@@ -2,12 +2,14 @@ extends Node
 
 func Colorize(position: Position):
 	var colorCalculated = ColorsService.GetColor(position.square.getColor())
-	if(position.isHover):
+	if(position.isHover && !position.isBoardAnimationInProgress ):
 		colorCalculated += ColorsService.LIGHT
 	if(position.isActive || position.square.getHasPotential() ):
 		colorCalculated = ColorsService.GetSaturatedColor(position.square.getColor())
 	if(position.square.getHasOriginPotential()):
 		colorCalculated = ColorsService.getOriginColor(position.square.getColor())
+	if(position.isBoardAnimationInProgress && !position.square.getHasPotential() && !position.square.getHasOriginPotential()):
+		colorCalculated -= colorCalculated * 0.3
 	position.modulate = colorCalculated
 
 func Move(position: Position, speed: int, delta):
@@ -28,8 +30,13 @@ func Rotate(position: Position, speed: int):
 func Scale(position: Position, defaultScale: Vector2, speed: Vector2):
 	if position.currentScale == defaultScale:
 		position.scale = position.currentScale
-	if position.scale != position.currentScale:
+	if position.scale > position.currentScale:
 		if position.scale - position.currentScale < speed:
 			position.currentScale = position.scale
 		else:
 			position.scale -= speed
+	if position.scale < position.currentScale:
+		if position.scale + position.currentScale > speed:
+			position.currentScale = position.scale
+		else:
+			position.scale += speed

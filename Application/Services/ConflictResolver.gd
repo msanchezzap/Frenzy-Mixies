@@ -21,11 +21,6 @@ func _checkConflicts(returnConflicts: bool):
 				combinationsDone.append(c)
 	return combinationsDone
 
-func resolveConflicts(conflicts, oldCombinations):
-		for c in conflicts:
-			if !c.origin.getHasOriginPotential():
-				conflicts.pop_at(conflicts.find(c))
-
 func _combinationHasConflicts(combination: Combination):
 	for m in combination.members:
 		if m.getHasOriginPotential():

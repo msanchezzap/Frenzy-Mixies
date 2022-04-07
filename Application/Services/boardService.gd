@@ -9,6 +9,7 @@ var _combinations = []
 var _conflictResolver
 var _pointService: PointService
 var _winConfitions= []
+var _conflictsPending = false
 
 func _init(horizontal, vertical, turnsLeft):
 	_sizeHorizontal = horizontal
@@ -27,7 +28,7 @@ func getStartSquare():
 	return _startSquare
 
 func setNextStep(squareSource: SquareComponent, squareDestiny: SquareComponent):
-	if squareSource.existsInRelation(squareDestiny) && !conflictMode && _turnsLeft > 0:
+	if squareSource.existsInRelation(squareDestiny) && !_conflictsPending && _turnsLeft > 0:
 		var newColor = squareSource.getColor()
 		var oldColor = squareDestiny.getColor()
 		squareDestiny.setColor(newColor)
@@ -42,28 +43,32 @@ func hasNextStep():
 
 func getNextStep():
 	return _combinations
-	
-var conflictMode = false
+func isPendingConflicts():
+	return _conflictsPending
+
 func executeNextStep():
 	_pointService.countRound(_combinations)
 	for m in _combinations:
 		m.Destroy()
-		triggerCombinations()
-	var conflicts = _conflictResolver.getConflicts()
-	if conflicts.size() > 0:
-		_conflictResolver.resolveConflicts(conflicts, _combinations)
+		_triggerCombinations()
 	_combinations = _conflictResolver.getNonConflicts()
-	triggerCombinations()
+	_triggerCombinations()
+	_checkConflicts()
+	_checkChain()
+
+func _checkConflicts():
 	if _conflictResolver.getConflicts().size() > 0:
-		conflictMode = true
+		_conflictsPending = true
 	else: 
-		conflictMode = false
-	if _combinations.size() > 0 || conflictMode:
+		_conflictsPending = false
+
+func _checkChain():
+	if _combinations.size() > 0 || _conflictsPending:
 		_pointService.setChain(true)
 	else:
 		_pointService.setChain(false)
 
-func triggerCombinations():
+func _triggerCombinations():
 	for c in _combinations:
 		c.origin.trigger(c.origin)
 		for m in c.members:

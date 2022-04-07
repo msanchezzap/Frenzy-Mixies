@@ -61,30 +61,41 @@ func isAnimationInProcess():
 		i +=1
 	return isanimating
 	
+var isTransitioning = false
 func _physics_process(delta):
+	if isAnimationInProcess():
+		for p  in allpositions:
+			p.isBoardAnimationInProgress = true
+		isTransitioning = true
 	if !isAnimationInProcess() && board.hasNextStep() && !DestructionAnimation.Execute(board.getNextStep(), allpositions):
 		DestructionAnimation.Restore(board.getNextStep(), allpositions)
 		var lastStep = board.getNextStep()
 		board.executeNextStep()
 		_boardAnimation.Execute(lastStep)
 		score.changeScore(board.getScore())
-	elif !gameDisabled && board.getTurnsLeft() == 0 && !board.hasNextStep() && !isAnimationInProcess() && !board.getWinState():
-		gameDisabled = true
-		add_child(MenuFactory.new().generateGameOverMenu(board.getScore()))
-	elif !gameDisabled && board.getWinState():
-		gameDisabled = true
-		add_child(MenuFactory.new().generateWinMenu(board.getScore()))
+	elif !gameDisabled && !board.hasNextStep() && !isAnimationInProcess():
+		if !board.isPendingConflicts() && isTransitioning:
+			for p  in allpositions:
+				p.isBoardAnimationInProgress = false
+			isTransitioning = false
+		if board.getWinState():
+			gameDisabled = true
+			add_child(MenuFactory.new().generateWinMenu(board.getScore()))
+		elif board.getTurnsLeft() == 0:
+			gameDisabled = true
+			add_child(MenuFactory.new().generateGameOverMenu(board.getScore()))
 
 func positionClick(position):
 	if !isAnimationInProcess() && !gameDisabled:
-		if(board.conflictMode && position.square.getHasOriginPotential()):
+		if(board.isPendingConflicts() && position.square.getHasOriginPotential()):
 			board.setOriginIfPossible(position.square)
-		elif !board.conflictMode && selectedPosition != null:
-			selectedPosition.Unselect()
-			board.setNextStep(selectedPosition.square, position.square)
-			selectedPosition = null
-			if board.hasNextStep():
-				score.changeTurn(board.getTurnsLeft())
-		elif !board.conflictMode:
-			selectedPosition = position
-			selectedPosition.Select()
+		elif !board.isPendingConflicts():
+			if selectedPosition != null:
+				selectedPosition.Unselect()
+				board.setNextStep(selectedPosition.square, position.square)
+				selectedPosition = null
+				if board.hasNextStep():
+					score.changeTurn(board.getTurnsLeft())
+			else:
+				selectedPosition = position
+				selectedPosition.Select()

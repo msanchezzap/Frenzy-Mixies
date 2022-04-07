@@ -4,6 +4,7 @@ var gameBoard: GameBoard
 var square: SquareComponent
 var isActive = false
 var isHover = false
+var isBoardAnimationInProgress = false
 var basePosition: Vector2
 var baseScale: Vector2 = Vector2(0.5,0.5)
 var speed = 300
