@@ -40,6 +40,7 @@ func start():
 	score = newScore.instance()
 	add_child(score)
 	score.changeTurn(board.getTurnsLeft())
+	score.changeObjectives(board.getConditions())
 	
 func _input(event):
 	if event is InputEventKey:
@@ -77,7 +78,12 @@ func _physics_process(delta):
 		if !board.isPendingConflicts() && isTransitioning:
 			for p  in allpositions:
 				p.isBoardAnimationInProgress = false
+				p.isConflictPending = false
 			isTransitioning = false
+			score.changeObjectives(board.getConditions())
+		if board.isPendingConflicts() && isTransitioning:
+			for p  in allpositions:
+				p.isConflictPending = true
 		if board.getWinState():
 			gameDisabled = true
 			add_child(MenuFactory.new().generateWinMenu(board.getScore()))

@@ -15,3 +15,9 @@ func changeScore(newScore: int):
 func changeTurn(turn: int):
 	turnsLeft = str(turn)
 	$Label2.text = turnsLeft
+	
+func changeObjectives(objectives: Array):
+	var result = ""
+	for o in objectives:
+		result += "- " + o[0] + ": " + str(o[1]) + "/" + str(o[2]) + "\n"
+	$Objectives.text = result

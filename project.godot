@@ -22,12 +22,22 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Board",
 "language": "GDScript",
-"path": "res://Application/Services/boardService.gd"
+"path": "res://Application/Services/BoardService.gd"
 }, {
 "base": "Reference",
 "class": "Combination",
 "language": "GDScript",
 "path": "res://Domain/Model/Combination.gd"
+}, {
+"base": "Node",
+"class": "Condition",
+"language": "GDScript",
+"path": "res://Application/Components/Conditions/Condition.gd"
+}, {
+"base": "Node",
+"class": "ConditionsService",
+"language": "GDScript",
+"path": "res://Application/Services/ConditionsService.gd"
 }, {
 "base": "Reference",
 "class": "ConflictResolver",
@@ -69,6 +79,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Interface/Scenes/Factories/MenuFactory.gd"
 }, {
+"base": "Condition",
+"class": "PointCondition",
+"language": "GDScript",
+"path": "res://Application/Components/Conditions/PointCondition.gd"
+}, {
 "base": "Node",
 "class": "PointService",
 "language": "GDScript",
@@ -108,17 +123,14 @@ _global_script_classes=[ {
 "class": "SquareComponent",
 "language": "GDScript",
 "path": "res://Application/Components/SquareComponent.gd"
-}, {
-"base": "Node",
-"class": "WinConfition",
-"language": "GDScript",
-"path": "res://Application/Components/WinCondition.gd"
 } ]
 _global_script_class_icons={
 "BasicBoard": "",
 "BasicLinealCreation": "",
 "Board": "",
 "Combination": "",
+"Condition": "",
+"ConditionsService": "",
 "ConflictResolver": "",
 "GameBoard": "",
 "GameBoardAnimation": "",
@@ -127,6 +139,7 @@ _global_script_class_icons={
 "LinealCombinationAlgorithm": "",
 "LinealCombinationComponent": "",
 "MenuFactory": "",
+"PointCondition": "",
 "PointService": "",
 "Position": "",
 "Square": "",
@@ -134,8 +147,7 @@ _global_script_class_icons={
 "SquareCombination": "",
 "SquareCombinationAlgorithm": "",
 "SquareCombinationComponent": "",
-"SquareComponent": "",
-"WinConfition": ""
+"SquareComponent": ""
 }
 
 [application]

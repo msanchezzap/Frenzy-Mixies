@@ -8,6 +8,7 @@ var _turnsLeft
 var _combinations = []
 var _conflictResolver
 var _pointService: PointService
+var _conditionService: ConditionsService
 var _winConfitions= []
 var _conflictsPending = false
 
@@ -18,7 +19,8 @@ func _init(horizontal, vertical, turnsLeft):
 	_startSquare = SquareService.goToStart(_initBoard())
 	_conflictResolver = ConflictResolver.new(self)
 	_pointService = PointService.new()
-	_winConfitions.append(WinConfition.new("score",300))
+	_conditionService = ConditionsService.new()
+	_conditionService.addCondition(PointCondition.new(_pointService,300))
 
 func _initBoard():
 	return BasicBoard.new(_sizeHorizontal, _sizeVertical).construct()
@@ -43,6 +45,7 @@ func hasNextStep():
 
 func getNextStep():
 	return _combinations
+	
 func isPendingConflicts():
 	return _conflictsPending
 
@@ -86,9 +89,6 @@ func getScore():
 func getTurnsLeft():
 	return _turnsLeft
 func getWinState():
-	var win: bool = true
-	for condition in _winConfitions:
-		if condition.property == "score":
-			if condition.objective > _pointService.getTotal():
-				win = false
-	return win
+	return _conditionService.check()
+func getConditions():
+	return _conditionService.getTable()
