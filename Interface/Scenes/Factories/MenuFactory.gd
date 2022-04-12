@@ -6,6 +6,7 @@ func generateMainMenu():
 	var menu = _baseMenu()
 	_setStartButton(menu, true)
 	_setExitButton(menu, true)
+	_setSettingsButton(menu)
 	return menu
 
 func generatePauseMenu():
@@ -41,6 +42,9 @@ func _setStartButton(menu, showStart: bool):
 func _setExitButton(menu, showExit: bool):
 	menu.setElementVisibility(menu._exitButton, showExit)
 	menu.setElementVisibility(menu._returnButton, !showExit)
+
+func _setSettingsButton(menu):
+	menu.setElementVisibility(menu._settingsButton, true)
 
 func _baseMenu():
 	var men = load("res://Interface/Scenes/Menu.tscn")

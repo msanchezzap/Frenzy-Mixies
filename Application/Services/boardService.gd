@@ -1,4 +1,4 @@
-class_name Board extends Node
+class_name BoardService extends Node
 
 var _startSquare: SquareComponent
 
@@ -6,7 +6,7 @@ var _sizeHorizontal
 var _sizeVertical
 var _turnsLeft
 var _combinations = []
-var _conflictResolver
+var _conflictResolver: ConflictResolver
 var _pointService: PointService
 var _conditionService: ConditionsService
 var _winConfitions= []
@@ -20,7 +20,10 @@ func _init(horizontal, vertical, turnsLeft):
 	_conflictResolver = ConflictResolver.new(self)
 	_pointService = PointService.new()
 	_conditionService = ConditionsService.new()
-	_conditionService.addCondition(PointCondition.new(_pointService,300))
+
+
+func addScoreObjective(score):
+	_conditionService.addCondition(PointCondition.new(_pointService,score))
 
 func _initBoard():
 	return BasicBoard.new(_sizeHorizontal, _sizeVertical).construct()

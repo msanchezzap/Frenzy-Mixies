@@ -1,8 +1,5 @@
 class_name GameBoard extends Node
 
-export(int) var SizeHorizontal
-export(int) var SizeVertical
-
 const size: int = 52
 const initialSpace: int = 100
 
@@ -18,7 +15,8 @@ func _ready():
 	start()
 
 func start():
-	board = Board.new(SizeHorizontal,SizeVertical, 3)
+	board = BoardService.new(Config.getConfigValue(),Config.getConfigValue(), Config.getTurns())
+	board.addScoreObjective(Config.getScore())
 	var squares = board.getStartSquare()
 	var i = 0
 	var j = 0

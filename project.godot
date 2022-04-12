@@ -20,7 +20,7 @@ _global_script_classes=[ {
 "path": "res://Application/Services/Algorithms/BasicLinealCreation.gd"
 }, {
 "base": "Node",
-"class": "Board",
+"class": "BoardService",
 "language": "GDScript",
 "path": "res://Application/Services/BoardService.gd"
 }, {
@@ -127,7 +127,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "BasicBoard": "",
 "BasicLinealCreation": "",
-"Board": "",
+"BoardService": "",
 "Combination": "",
 "Condition": "",
 "ConditionsService": "",
@@ -170,6 +170,7 @@ SearchAlgorithm="*res://Application/factories/Squares/Basic/BasicSearchAlgorithm
 SortAlgorithm="*res://Application/Services/Algorithms/SortAlgorithm.gd"
 CombinationDestruction="*res://Application/Services/Algorithms/CombinationDestroyer.gd"
 JokerSearch="*res://Application/factories/Squares/Joker/JokerSearch.gd"
+Config="*res://Interface/Consumer/Config.gd"
 
 [physics]
 
