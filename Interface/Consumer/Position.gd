@@ -21,10 +21,20 @@ func init(board: GameBoard, square: Square, firstPosition: Vector2):
 
 func _physics_process(delta):
 	square._seePotential()
+	applyFrame()
 	applyColor()
 	applyMovement(delta)
 	applyScale()
 	applyRotation(delta)
+
+var oldType = null
+func applyFrame():
+	if square._type != oldType:
+		oldType = square._type
+		if square._type == "explosive":
+			get_node("AnimatedSprite").set_frame(1)
+		else:
+			get_node("AnimatedSprite").set_frame(0)
 
 func Select():
 	isActive = true

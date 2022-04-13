@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://Application/Services/Algorithms/BasicLinealCreation.gd"
 }, {
 "base": "Node",
+"class": "BasicSearch",
+"language": "GDScript",
+"path": "res://Application/factories/Squares/Basic/BasicSearchAlgorithm.gd"
+}, {
+"base": "Node",
 "class": "BoardService",
 "language": "GDScript",
 "path": "res://Application/Services/BoardService.gd"
@@ -43,6 +48,16 @@ _global_script_classes=[ {
 "class": "ConflictResolver",
 "language": "GDScript",
 "path": "res://Application/Services/ConflictResolver.gd"
+}, {
+"base": "Reference",
+"class": "Explosive",
+"language": "GDScript",
+"path": "res://Application/factories/Squares/Explosive/Explosive.gd"
+}, {
+"base": "Node",
+"class": "ExplosiveTrigger",
+"language": "GDScript",
+"path": "res://Application/factories/Squares/Explosive/ExplosiveTrigger.gd"
 }, {
 "base": "Node",
 "class": "GameBoard",
@@ -127,11 +142,14 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "BasicBoard": "",
 "BasicLinealCreation": "",
+"BasicSearch": "",
 "BoardService": "",
 "Combination": "",
 "Condition": "",
 "ConditionsService": "",
 "ConflictResolver": "",
+"Explosive": "",
+"ExplosiveTrigger": "",
 "GameBoard": "",
 "GameBoardAnimation": "",
 "Joker": "",
@@ -171,6 +189,7 @@ SortAlgorithm="*res://Application/Services/Algorithms/SortAlgorithm.gd"
 CombinationDestruction="*res://Application/Services/Algorithms/CombinationDestroyer.gd"
 JokerSearch="*res://Application/factories/Squares/Joker/JokerSearch.gd"
 Config="*res://Interface/Consumer/Config.gd"
+BasicSearchAlgorithm="*res://Application/factories/Squares/Basic/BasicSearchAlgorithm.gd"
 
 [physics]
 

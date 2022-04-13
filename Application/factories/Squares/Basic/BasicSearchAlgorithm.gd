@@ -1,4 +1,4 @@
-extends Node
+class_name BasicSearch extends Node
 
 var combinationAlg = []
 func _init():

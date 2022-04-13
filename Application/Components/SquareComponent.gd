@@ -4,6 +4,7 @@ var _haspotential: bool
 var _hasOriginPotential: bool
 var _searchAlgorithm = SearchAlgorithm
 var _triggerFunction = null
+var _type = null
 
 func _init(initColor).(initColor):
 	pass
@@ -13,6 +14,7 @@ func reset(initColor):
 	_triggerFunction = null
 	_points = 10
 	setColor(initColor)
+	_type = null
 
 func setColor(newColor: int):
 	_color = newColor
@@ -44,6 +46,8 @@ func _seePotential(original:bool = false):
 func getCombinations():
 	return _searchAlgorithm.Execute(self)
 
-func trigger(squareDestiny: SquareComponent):
+func trigger(squareDestiny: Combination):
 	if _triggerFunction != null:
 		_triggerFunction.trigger(squareDestiny)
+		return true
+	return false

@@ -21,7 +21,6 @@ func _init(horizontal, vertical, turnsLeft):
 	_pointService = PointService.new()
 	_conditionService = ConditionsService.new()
 
-
 func addScoreObjective(score):
 	_conditionService.addCondition(PointCondition.new(_pointService,score))
 
@@ -47,20 +46,30 @@ func hasNextStep():
 	return  _combinations.size() > 0 || _conflictResolver.getNonConflicts().size() > 0
 
 func getNextStep():
-	return _combinations
+	if combinationsTriggered:
+		return _combinations
+	return []
 	
 func isPendingConflicts():
 	return _conflictsPending
 
+var combinationsTriggered = false
 func executeNextStep():
-	_pointService.countRound(_combinations)
-	for m in _combinations:
-		m.Destroy()
-		_triggerCombinations()
-	_combinations = _conflictResolver.getNonConflicts()
-	_triggerCombinations()
-	_checkConflicts()
-	_checkChain()
+	var doneCombinations = []
+	if !combinationsTriggered:
+		for m in _combinations:
+			_triggerCombination(m)
+		combinationsTriggered = true
+	else:
+		_pointService.countRound(_combinations)
+		for m in _combinations:
+			m.Destroy()
+		doneCombinations = _combinations
+		_combinations = _conflictResolver.getNonConflicts()
+		_checkConflicts()
+		_checkChain()
+		combinationsTriggered = false
+	return doneCombinations
 
 func _checkConflicts():
 	if _conflictResolver.getConflicts().size() > 0:
@@ -74,11 +83,10 @@ func _checkChain():
 	else:
 		_pointService.setChain(false)
 
-func _triggerCombinations():
-	for c in _combinations:
-		c.origin.trigger(c.origin)
-		for m in c.members:
-			m.trigger(c.origin)
+func _triggerCombination(c: Combination):
+	c.origin.trigger(c)
+	for m in c.members:
+		m.trigger(c)
 
 func setOriginIfPossible(square: SquareComponent):
 	var combinations = square.getCombinations()
