@@ -6,5 +6,5 @@ func _init(squareToApply):
 	square = squareToApply
 	
 func trigger(destiny: Combination):
-	if square.getCombinations().size() == 0 && square.getHasOriginPotential():
-		square.reset(randi() % 4)
+	#if square.getCombinations().size() == 0 && square.getHasOriginPotential():
+	square.reset(randi() % 4)

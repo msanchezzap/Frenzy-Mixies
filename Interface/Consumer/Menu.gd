@@ -1,6 +1,13 @@
-extends Area2D
+class_name Menu extends Area2D
 
 var _current_scene = null
+
+const EMPTY = 0
+const VICTORY = 1
+const LOSE = 2
+const SETTINGS = 3
+
+const _backgroundImage: String = "BackgroundImage"
 const _startButton: String = "StartButton"
 const _continueButton: String = "ContinueButton"
 const _exitButton: String = "ExitButton"
@@ -23,7 +30,9 @@ func _ready():
 	_current_scene = root.get_child(root.get_child_count() - 1)
 
 func setStartButton(showStart: bool):
-	get_node(_startButton).visible = showStart
+	if showStart:
+		get_node(_startButton).visible = showStart
+		get_node(_startButton).text = "Start lvl" + str(Config.getLevel()) 
 	get_node(_continueButton).visible = !showStart
 
 func setExitButton(showExit: bool):
@@ -39,6 +48,27 @@ func setScore(score: int):
 
 func setTitle(text: String):
 	get_node(_gameOverLabel).text = text
+	
+const SIZE_1W = 1600
+const SIZE_1H = 900
+const SIZE_2H = 848
+const SIZE_3W = 1920
+const SIZE_3H = 1018
+func setBackground(menuStatus: int):
+	var imgwidth = SIZE_1W
+	var imgHeight = SIZE_1H
+	match menuStatus:
+		LOSE:
+			imgHeight = SIZE_2H
+		SETTINGS:
+			imgwidth = SIZE_3W
+			imgHeight = SIZE_3H
+	get_node("AnimatedSprite").hide()
+	var image = get_node(_backgroundImage)
+	image.set_frame(menuStatus)
+	var viewportWidth = OS.get_window_safe_area().size[0] / imgwidth
+	var viewportHeight = OS.get_window_safe_area().size[1] / imgHeight
+	image.set_scale(Vector2(viewportWidth, viewportHeight))
 
 func _changeScene(path: String):
 	_current_scene.queue_free()
@@ -74,6 +104,7 @@ func _on_SettingsButton_pressed():
 	get_node(_optionButton).selected = Config.getConfigIndex()
 	get_node(_lineEdit).text = str(Config.getTurns())
 	get_node(_lineEdit2).text = str(Config.getScore())
+	setBackground(SETTINGS)
 	setExitButton(false)
 
 func _on_OptionButton_item_selected(index):

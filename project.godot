@@ -89,6 +89,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Application/Components/Combinations/LinealCombinationComponent.gd"
 }, {
+"base": "Area2D",
+"class": "Menu",
+"language": "GDScript",
+"path": "res://Interface/Consumer/Menu.gd"
+}, {
 "base": "Node",
 "class": "MenuFactory",
 "language": "GDScript",
@@ -156,6 +161,7 @@ _global_script_class_icons={
 "JokerTrigger": "",
 "LinealCombinationAlgorithm": "",
 "LinealCombinationComponent": "",
+"Menu": "",
 "MenuFactory": "",
 "PointCondition": "",
 "PointService": "",
@@ -184,11 +190,10 @@ SquareService="*res://Domain/Services/SquareService.gd"
 CombinationService="*res://Domain/Services/CombinationService.gd"
 PositionAnimation="*res://Interface/Animations/PositionAnimation.gd"
 DestructionAnimation="*res://Interface/Animations/DestructionAnimation.gd"
-SearchAlgorithm="*res://Application/factories/Squares/Basic/BasicSearchAlgorithm.gd"
 SortAlgorithm="*res://Application/Services/Algorithms/SortAlgorithm.gd"
 CombinationDestruction="*res://Application/Services/Algorithms/CombinationDestroyer.gd"
 JokerSearch="*res://Application/factories/Squares/Joker/JokerSearch.gd"
-Config="*res://Interface/Consumer/Config.gd"
+Config="*res://Interface/Service/Config.gd"
 BasicSearchAlgorithm="*res://Application/factories/Squares/Basic/BasicSearchAlgorithm.gd"
 
 [physics]

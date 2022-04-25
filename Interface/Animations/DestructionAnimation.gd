@@ -10,7 +10,7 @@ func Execute(combinations: Array, positions: Array):
 				positionsExecuted.append(p)
 		if positionsExecuted.size() > 0:
 			var po = _search(c.origin, positions)
-			po.setRotation(90)
+			po.setRotation(360)
 	return positionsExecuted
 
 func Restore(combinations: Array, positions: Array):

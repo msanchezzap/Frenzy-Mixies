@@ -2,7 +2,7 @@ class_name SquareComponent extends Square
 
 var _haspotential: bool
 var _hasOriginPotential: bool
-var _searchAlgorithm = SearchAlgorithm
+var _searchAlgorithm = BasicSearchAlgorithm
 var _triggerFunction = null
 var _type = null
 
@@ -10,7 +10,7 @@ func _init(initColor).(initColor):
 	pass
 
 func reset(initColor):
-	_searchAlgorithm = SearchAlgorithm
+	_searchAlgorithm = BasicSearchAlgorithm
 	_triggerFunction = null
 	_points = 10
 	setColor(initColor)

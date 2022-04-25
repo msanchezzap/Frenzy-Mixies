@@ -15,14 +15,14 @@ func construct():
 			lastRow = _getLeftSquare(lastSquare)
 			lastSquare = null
 		for m in _y:
-			var square = SquareComponent.new(randi() % 4)
+			var square = SquareComponent.new(randi() % 5)
 			if(lastSquare != null):
 				square.AddRelation(lastSquare,Directions.LEFT)
 			if(lastRow != null):
 				square.AddRelation(lastRow,Directions.UP)
 				lastRow = lastRow.getRelation(Directions.RIGHT)
-			while(SearchAlgorithm.Execute(square).size() > 0):
-				square.setColor(randi() % 4)
+			while(BasicSearchAlgorithm.Execute(square).size() > 0):
+				square.setColor(randi() % 5)
 			lastSquare = square
 	return lastSquare
 

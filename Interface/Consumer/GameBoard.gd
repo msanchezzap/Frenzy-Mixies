@@ -90,6 +90,7 @@ func _physics_process(delta):
 			for p  in allpositions:
 				p.isConflictPending = true
 		if board.getWinState():
+			Config.advanceLevel()
 			gameDisabled = true
 			add_child(MenuFactory.new().generateWinMenu(board.getScore()))
 		elif board.getTurnsLeft() == 0:

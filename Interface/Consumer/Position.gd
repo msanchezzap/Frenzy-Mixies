@@ -21,20 +21,10 @@ func init(board: GameBoard, square: Square, firstPosition: Vector2):
 
 func _physics_process(delta):
 	square._seePotential()
-	applyFrame()
 	applyColor()
 	applyMovement(delta)
 	applyScale()
 	applyRotation(delta)
-
-var oldType = null
-func applyFrame():
-	if square._type != oldType:
-		oldType = square._type
-		if square._type == "explosive":
-			get_node("AnimatedSprite").set_frame(1)
-		else:
-			get_node("AnimatedSprite").set_frame(0)
 
 func Select():
 	isActive = true
@@ -52,7 +42,7 @@ func applyScale():
 	PositionAnimation.Scale(self, Vector2(0.5,0.5), Vector2(0.02,0.02))
 
 func applyRotation(delta):
-	PositionAnimation.Rotate(self, 5)
+	PositionAnimation.Rotate(self, 15)
 
 func setRotation(newRotation):
 	currentRotation = newRotation
@@ -67,7 +57,7 @@ func isAnimationOnProgress():
 	return position != basePosition || scale != currentScale
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT && event.is_pressed():
+	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
 		gameBoard.positionClick(self)
 
 func _on_Area2D_mouse_entered():
@@ -75,3 +65,5 @@ func _on_Area2D_mouse_entered():
 
 func _on_Area2D_mouse_exited():
 	isHover = false
+
+
