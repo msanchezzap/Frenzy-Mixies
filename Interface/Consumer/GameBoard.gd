@@ -61,17 +61,24 @@ func isAnimationInProcess():
 	return isanimating
 	
 var isTransitioning = false
+var lastStep = []
+var oldStep = []
 func _physics_process(delta):
 	if isAnimationInProcess():
 		for p  in allpositions:
 			p.isBoardAnimationInProgress = true
 		isTransitioning = true
-	if !isAnimationInProcess() && board.hasNextStep() && !DestructionAnimation.Execute(board.getNextStep(), allpositions):
-		DestructionAnimation.Restore(board.getNextStep(), allpositions)
-		var lastStep = board.getNextStep()
-		board.executeNextStep()
-		_boardAnimation.Execute(lastStep)
-		score.changeScore(board.getScore())
+	if !isAnimationInProcess() && board.hasNextStep():
+		var tmp = DestructionAnimation.Execute(board.getNextStep(), allpositions)
+		if tmp.size() == 0:
+			DestructionAnimation.RestorePositions(oldStep)
+			oldStep = []
+			lastStep = board.executeNextStep()
+			if lastStep.size() > 0:
+				_boardAnimation.Execute(lastStep)
+				score.changeScore(board.getScore())
+		else:
+			oldStep += tmp
 	elif !gameDisabled && !board.hasNextStep() && !isAnimationInProcess():
 		if !board.isPendingConflicts() && isTransitioning:
 			for p  in allpositions:
@@ -83,6 +90,7 @@ func _physics_process(delta):
 			for p  in allpositions:
 				p.isConflictPending = true
 		if board.getWinState():
+			Config.advanceLevel()
 			gameDisabled = true
 			add_child(MenuFactory.new().generateWinMenu(board.getScore()))
 		elif board.getTurnsLeft() == 0:

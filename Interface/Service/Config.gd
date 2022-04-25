@@ -4,6 +4,7 @@ extends Node
 var _size = 1
 var _turns = 3
 var _score = 300
+var _level = 1
 
 func getConfigIndex():
 	return _size
@@ -28,3 +29,8 @@ func getScore():
 	return _score
 func setScore(score: int):
 	_score = score
+
+func getLevel():
+	return _level
+func advanceLevel():
+	_level += 1

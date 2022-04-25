@@ -42,7 +42,7 @@ func applyScale():
 	PositionAnimation.Scale(self, Vector2(0.5,0.5), Vector2(0.02,0.02))
 
 func applyRotation(delta):
-	PositionAnimation.Rotate(self, 5)
+	PositionAnimation.Rotate(self, 15)
 
 func setRotation(newRotation):
 	currentRotation = newRotation
@@ -57,7 +57,7 @@ func isAnimationOnProgress():
 	return position != basePosition || scale != currentScale
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT && event.is_pressed():
+	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
 		gameBoard.positionClick(self)
 
 func _on_Area2D_mouse_entered():
@@ -65,3 +65,5 @@ func _on_Area2D_mouse_entered():
 
 func _on_Area2D_mouse_exited():
 	isHover = false
+
+

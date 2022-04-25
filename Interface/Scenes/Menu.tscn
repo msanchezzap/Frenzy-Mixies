@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Interface/resources/blue.png" type="Texture" id=1]
 [ext_resource path="res://Interface/Consumer/Menu.gd" type="Script" id=2]
 [ext_resource path="res://Interface/resources/blue50.png" type="Texture" id=3]
+[ext_resource path="res://Interface/resources/Backgrounds/kristy-glas-soul.jpg" type="Texture" id=4]
+[ext_resource path="res://Interface/resources/Backgrounds/kristy-glas-0-gremlins.jpg" type="Texture" id=5]
+[ext_resource path="res://Interface/resources/Backgrounds/kristy-glas-monitors.jpg" type="Texture" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -14,7 +17,7 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
+"frames": [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -31,8 +34,7 @@ frames = SubResource( 1 )
 animation = "New Anim"
 offset = Vector2( 6.76959, 40.1763 )
 
-[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
-modulate = Color( 0.470588, 0.470588, 0.470588, 1 )
+[node name="BackgroundImage" type="AnimatedSprite" parent="."]
 position = Vector2( 513.5, 282 )
 scale = Vector2( 4.91, 3.74 )
 frames = SubResource( 2 )

@@ -5,3 +5,5 @@ func _init(source: Square, memberlist).(source, memberlist):
 
 func Destroy():
 	CombinationDestruction.BasicDestruction(self)
+	if members.size() == 3:
+		Explosive.new().modify(origin)
