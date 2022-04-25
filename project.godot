@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "BoardService",
 "language": "GDScript",
-"path": "res://Application/Services/BoardService.gd"
+"path": "res://Application/Services/boardService.gd"
 }, {
 "base": "Reference",
 "class": "Combination",
