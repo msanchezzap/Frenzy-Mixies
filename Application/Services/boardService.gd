@@ -25,7 +25,7 @@ func addScoreObjective(score):
 	_conditionService.addCondition(PointCondition.new(_pointService,score))
 
 func _initBoard():
-	return BasicBoard.new(_sizeHorizontal, _sizeVertical).construct()
+	return BoardFactory.new(_sizeHorizontal, _sizeVertical, Config.getLevel()).construct()
 
 func getStartSquare():
 	_startSquare = SquareService.goToStart(_startSquare)

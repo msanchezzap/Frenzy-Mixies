@@ -21,9 +21,9 @@ func Colorize(position: Position):
 	elif position.isConflictPending && position.square.getHasOriginPotential():
 		var a = position.get_node("AnimatedSprite").get_frame()
 	elif position.isActive || position.square.getHasPotential():
-		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + 10)
+		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + 12)
 	elif position.isHover && !position.isBoardAnimationInProgress:
-		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + 5)
+		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + 6)
 
 	#	colorCalculated = position.modulate
 	#	colorCalculated -= ColorsService.getOriginColor(position.square.getColor()) * 0.01

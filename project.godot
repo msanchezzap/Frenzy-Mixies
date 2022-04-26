@@ -10,11 +10,6 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
-"class": "BasicBoard",
-"language": "GDScript",
-"path": "res://Application/factories/BasicBoard.gd"
-}, {
-"base": "Node",
 "class": "BasicLinealCreation",
 "language": "GDScript",
 "path": "res://Application/Services/Algorithms/BasicLinealCreation.gd"
@@ -25,9 +20,14 @@ _global_script_classes=[ {
 "path": "res://Application/factories/Squares/Basic/BasicSearchAlgorithm.gd"
 }, {
 "base": "Node",
+"class": "BoardFactory",
+"language": "GDScript",
+"path": "res://Application/factories/BoardFactory.gd"
+}, {
+"base": "Node",
 "class": "BoardService",
 "language": "GDScript",
-"path": "res://Application/Services/BoardService.gd"
+"path": "res://Application/Services/boardService.gd"
 }, {
 "base": "Reference",
 "class": "Combination",
@@ -145,9 +145,9 @@ _global_script_classes=[ {
 "path": "res://Application/Components/SquareComponent.gd"
 } ]
 _global_script_class_icons={
-"BasicBoard": "",
 "BasicLinealCreation": "",
 "BasicSearch": "",
+"BoardFactory": "",
 "BoardService": "",
 "Combination": "",
 "Condition": "",
@@ -178,7 +178,8 @@ _global_script_class_icons={
 
 config/name="SquareFrenzy"
 run/main_scene="res://Interface/Scenes/Main.tscn"
-config/icon="res://Interface/resources/icon.png"
+config/icon="res://Interface/resources/Positions/logo.png"
+config/windows_native_icon="res://Interface/resources/logo.ico"
 
 [autoload]
 
