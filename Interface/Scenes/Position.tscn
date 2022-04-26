@@ -1,33 +1,35 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://Interface/resources/Positions/naranjarender.png" type="Texture" id=1]
+[ext_resource path="res://Interface/resources/Positions/3.png" type="Texture" id=1]
 [ext_resource path="res://Interface/Consumer/Position.gd" type="Script" id=2]
 [ext_resource path="res://Interface/resources/explosion.png" type="Texture" id=3]
-[ext_resource path="res://Interface/resources/Positions/blancorender.png" type="Texture" id=4]
-[ext_resource path="res://Interface/resources/Positions/lilarender.png" type="Texture" id=5]
-[ext_resource path="res://Interface/resources/Positions/rosarender.png" type="Texture" id=6]
-[ext_resource path="res://Interface/resources/Positions/bluerender.png" type="Texture" id=7]
-[ext_resource path="res://Interface/resources/Positions/rosarender50.png" type="Texture" id=8]
+[ext_resource path="res://Interface/resources/Positions/1.png" type="Texture" id=4]
+[ext_resource path="res://Interface/resources/Positions/2.png" type="Texture" id=5]
+[ext_resource path="res://Interface/resources/Positions/5.png" type="Texture" id=6]
+[ext_resource path="res://Interface/resources/Positions/4.png" type="Texture" id=7]
+[ext_resource path="res://Interface/resources/Positions/11.png" type="Texture" id=8]
 [ext_resource path="res://Interface/resources/Positions/naranjarender100.png" type="Texture" id=9]
 [ext_resource path="res://Interface/resources/Positions/blancorender100.png" type="Texture" id=10]
 [ext_resource path="res://Interface/resources/Positions/lilarender100.png" type="Texture" id=11]
 [ext_resource path="res://Interface/resources/Positions/bluerender100.png" type="Texture" id=12]
 [ext_resource path="res://Interface/resources/Positions/rosarender100.png" type="Texture" id=13]
-[ext_resource path="res://Interface/resources/Positions/blancorender50.png" type="Texture" id=14]
-[ext_resource path="res://Interface/resources/Positions/bluerender50.png" type="Texture" id=15]
-[ext_resource path="res://Interface/resources/Positions/lilarender50.png" type="Texture" id=16]
-[ext_resource path="res://Interface/resources/Positions/naranjarender50.png" type="Texture" id=17]
+[ext_resource path="res://Interface/resources/Positions/21.png" type="Texture" id=14]
+[ext_resource path="res://Interface/resources/Positions/31.png" type="Texture" id=15]
+[ext_resource path="res://Interface/resources/Positions/41.png" type="Texture" id=16]
+[ext_resource path="res://Interface/resources/Positions/61.png" type="Texture" id=17]
+[ext_resource path="res://Interface/resources/Positions/6.png" type="Texture" id=18]
+[ext_resource path="res://Interface/resources/Positions/51.png" type="Texture" id=19]
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 3 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 18 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 16 ), ExtResource( 19 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=6]
-radius = 50.0
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 75, 75 )
 
 [node name="Area2D" type="Area2D"]
 scale = Vector2( 0.5, 0.5 )

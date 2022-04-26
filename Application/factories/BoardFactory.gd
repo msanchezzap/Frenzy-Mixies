@@ -1,4 +1,4 @@
-class_name BasicBoard extends Node
+class_name BoardFactory extends Node
 
 var _x: int
 var _y: int
@@ -10,8 +10,11 @@ func _init(width:int, height:int, level: int):
 
 func construct():
 	var colors = 5
-	if _level == 1:
-		colors = 4
+	match _level:
+		1:
+			colors = 4
+		3:
+			colors = 6
 	var lastRow: SquareComponent = null
 	var lastSquare: SquareComponent = null
 	for n in _x:
