@@ -13,6 +13,7 @@ func generatePauseMenu():
 	var menu = _baseMenu()
 	_setExitButton(menu, false)
 	_setStartButton(menu,false)
+	menu.setElementVisibility(Menu._returnButtonLevels, true)
 	return menu
 
 func generateGameOverMenu(score: int):

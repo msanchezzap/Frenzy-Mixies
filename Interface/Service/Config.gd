@@ -32,5 +32,7 @@ func setScore(score: int):
 
 func getLevel():
 	return _level
+func setLevel(level: int):
+	_level = level
 func advanceLevel():
 	_level += 1

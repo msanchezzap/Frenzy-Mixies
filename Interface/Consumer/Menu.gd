@@ -12,6 +12,7 @@ const _startButton: String = "StartButton"
 const _continueButton: String = "ContinueButton"
 const _exitButton: String = "ExitButton"
 const _returnButton: String = "ReturnButton"
+const _returnButtonLevels: String = "ReturnButtonLevels"
 const _settingsButton: String = "SettingsButton"
 const _gameOverLabel: String = "GameOverLabel"
 const _scoreLabel: String = "ScoreLabel"
@@ -30,9 +31,7 @@ func _ready():
 	_current_scene = root.get_child(root.get_child_count() - 1)
 
 func setStartButton(showStart: bool):
-	if showStart:
-		get_node(_startButton).visible = showStart
-		get_node(_startButton).text = "Start lvl" + str(Config.getLevel()) 
+	get_node(_startButton).visible = showStart
 	get_node(_continueButton).visible = !showStart
 
 func setExitButton(showExit: bool):
@@ -79,12 +78,13 @@ func _changeScene(path: String):
 	get_tree().change_scene(path)
 
 func _on_Button_pressed():
-	_changeScene("res://Interface/Scenes/Game.tscn")
-	_current_scene.start()
+	_changeScene("res://Interface/Scenes/Levels.tscn")
 func _on_Button2_pressed():
 	get_tree().quit()
 func _on_ReturnButton_pressed():
 	_changeScene("res://Interface/Scenes/Main.tscn")
+func _on_ReturnButtonLevels_pressed():
+	_changeScene("res://Interface/Scenes/Levels.tscn")
 func _on_ContinueButton_pressed():
 	self.queue_free()
 

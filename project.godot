@@ -178,7 +178,7 @@ _global_script_class_icons={
 
 config/name="SquareFrenzy"
 run/main_scene="res://Interface/Scenes/Main.tscn"
-config/icon="res://Interface/resources/Positions/logo.png"
+config/icon="res://Interface/resources/logo.png"
 config/windows_native_icon="res://Interface/resources/logo.ico"
 
 [autoload]
