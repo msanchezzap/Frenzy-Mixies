@@ -17,13 +17,13 @@ func Colorize(position: Position):
 	#		colorCalculated = ColorsService.getOriginColor(position.square.getColor())
 	#position.modulate = colorCalculated
 	if position.square._type == "explosive":
-		position.get_node("AnimatedSprite").set_frame(15)
+		position.get_node("AnimatedSprite").set_frame(28)
 	elif position.square.getHasOriginPotential():
-		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + 18)
+		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + 21)
 	elif position.isActive || position.square.getHasPotential():
-		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + 12)
+		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + 14)
 	elif position.isHover && !position.isBoardAnimationInProgress:
-		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + 6)
+		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + 7)
 	#	colorCalculated = position.modulate
 	#	colorCalculated -= ColorsService.getOriginColor(position.square.getColor()) * 0.01
 	#	if colorCalculated.r < (ColorsService.getOriginColor(position.square.getColor()) * 0.66).r:
