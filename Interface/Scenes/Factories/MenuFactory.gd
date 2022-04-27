@@ -47,7 +47,7 @@ func generateSettingsMenu(menu):
 	
 func _generateScoreMenu(score: int):
 	var menu = _baseMenu()
-	_setExitButton(menu, false)
+	menu.setElementVisibility(menu._returnButtonLevels, true)
 	_setScore(menu, score)
 	return menu
 

@@ -185,7 +185,6 @@ config/windows_native_icon="res://Interface/resources/logo.ico"
 
 Colors="*res://Domain/Model/Enums/Colors.gd"
 Directions="*res://Domain/Model/Enums/Directions.gd"
-ColorsService="*res://Domain/Services/ColorsService.gd"
 DirectionsService="*res://Domain/Services/DirectionsService.gd"
 SquareService="*res://Domain/Services/SquareService.gd"
 CombinationService="*res://Domain/Services/CombinationService.gd"
