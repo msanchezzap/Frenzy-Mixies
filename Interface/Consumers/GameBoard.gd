@@ -50,7 +50,18 @@ func _input(event):
 			else:
 				menu.queue_free()
 				gameDisabled = false
-		
+	elif event is InputEventMouseButton:
+		if selectedPosition != null:
+			var isHover = false
+			for pos in allpositions:
+				if pos.isHover:
+					isHover = true
+			if !isHover:
+					selectedPosition.Unselect()
+					selectedPosition = null
+				
+
+
 func isAnimationInProcess():
 	var isanimating = false
 	var i = 0

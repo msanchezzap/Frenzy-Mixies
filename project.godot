@@ -59,7 +59,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Application/factories/Squares/Explosive/ExplosiveTrigger.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "GameBoard",
 "language": "GDScript",
 "path": "res://Interface/Consumers/GameBoard.gd"
@@ -109,7 +109,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Application/Services/PointService.gd"
 }, {
-"base": "Reference",
+"base": "Area2D",
 "class": "Position",
 "language": "GDScript",
 "path": "res://Interface/Consumers/Position.gd"
