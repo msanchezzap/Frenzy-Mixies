@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Interface/Consumer/GameBoard.gd" type="Script" id=1]
+[ext_resource path="res://Interface/Consumers/GameBoard.gd" type="Script" id=1]
 [ext_resource path="res://Interface/resources/Backgrounds/Sin nombre.png" type="Texture" id=2]
 
 [sub_resource type="SpriteFrames" id=1]

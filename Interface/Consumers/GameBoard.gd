@@ -23,7 +23,7 @@ func start():
 	while squares != null:
 		var squaresLine = squares
 		while squaresLine != null:
-			var pos = load("res://Interface/Scenes/Position.tscn")
+			var pos = load("res://Interface/Scenes/Components/Position.tscn")
 			var newPosition = pos.instance().init(self, squaresLine, Vector2(initialSpace + j * size, initialSpace + i * size))
 			add_child(newPosition)
 			allpositions.append(newPosition)
@@ -34,7 +34,7 @@ func start():
 		i += 1
 	_boardAnimation = GameBoardAnimation.new(self)
 	
-	var newScore = load("res://Interface/Scenes/ScoreBoard.tscn")
+	var newScore = load("res://Interface/Scenes/Components/ScoreBoard.tscn")
 	score = newScore.instance()
 	add_child(score)
 	score.changeTurn(board.getTurnsLeft())

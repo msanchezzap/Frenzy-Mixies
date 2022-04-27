@@ -70,6 +70,6 @@ func _setSettingsButton(menu):
 	menu.setElementVisibility(menu._settingsButton, true)
 
 func _baseMenu():
-	var men = load("res://Interface/Scenes/Menu.tscn")
+	var men = load("res://Interface/Scenes/Components/Menu.tscn")
 	var mainMenu = men.instance()
 	return mainMenu
