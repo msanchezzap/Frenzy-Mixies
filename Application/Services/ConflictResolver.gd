@@ -16,9 +16,13 @@ func _checkConflicts(returnConflicts: bool):
 	var resolvelist = _getAllActiveOriginSquares()
 	for current in resolvelist:
 		var combos = current.getCombinations()
+		var validCombos = []
 		for c in combos:
 			if _combinationHasConflicts(c) == returnConflicts:
-				combinationsDone.append(c)
+				validCombos.append(c)
+				#combinationsDone.append(c)
+		if validCombos.size() > 0:
+			combinationsDone.append(validCombos)
 	return combinationsDone
 
 func _combinationHasConflicts(combination: Combination):

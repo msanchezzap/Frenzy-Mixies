@@ -51,9 +51,9 @@ func _setBoardEntrance(position, pivot: Vector2, size, initialSpace):
 	var direction = (position.position - pivot).normalized()
 	var newPosition = Vector2(0,0)
 	if(direction.x > 0):
-		newPosition.x += direction.x * size * 2
+		newPosition.x += direction.x * (size * 2)
 	elif(direction.y > 0):
-		newPosition.y += direction.y * size * 2
+		newPosition.y += direction.y * (size * 2)
 	else:
-		newPosition = direction * initialSpace
+		newPosition = direction * initialSpace * 3
 	return newPosition

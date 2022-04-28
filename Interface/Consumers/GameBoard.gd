@@ -11,12 +11,24 @@ var menu = null
 var score
 var gameDisabled = false
 
+var isTransitioning = false
+var lastStep = []
+var oldStep = []
+
 func _ready():
 	start()
 
 func start():
+	_initGame()
+	_generateBoard()
+	_initScore()
+	_boardAnimation = GameBoardAnimation.new(self)
+
+func _initGame():
 	board = BoardService.new(Config.getConfigValue(),Config.getConfigValue(), Config.getTurns())
 	board.addScoreObjective(Config.getScore())
+
+func _generateBoard():
 	var squares = board.getStartSquare()
 	var i = 0
 	var j = 0
@@ -32,8 +44,8 @@ func start():
 		j = 0
 		squares = squares.getRelation(Directions.DOWN)
 		i += 1
-	_boardAnimation = GameBoardAnimation.new(self)
-	
+
+func _initScore():
 	var newScore = load("res://Interface/Scenes/Components/ScoreBoard.tscn")
 	score = newScore.instance()
 	add_child(score)
@@ -59,8 +71,6 @@ func _input(event):
 			if !isHover:
 					selectedPosition.Unselect()
 					selectedPosition = null
-				
-
 
 func isAnimationInProcess():
 	var isanimating = false
@@ -70,10 +80,7 @@ func isAnimationInProcess():
 			isanimating = true
 		i +=1
 	return isanimating
-	
-var isTransitioning = false
-var lastStep = []
-var oldStep = []
+
 func _physics_process(delta):
 	if isAnimationInProcess():
 		for p  in allpositions:
@@ -86,7 +93,7 @@ func _physics_process(delta):
 			oldStep = []
 			lastStep = board.executeNextStep()
 			if lastStep.size() > 0:
-				_boardAnimation.Execute(lastStep)
+				_boardAnimation.Execute(lastStep[0])
 				score.changeScore(board.getScore())
 		else:
 			oldStep += tmp

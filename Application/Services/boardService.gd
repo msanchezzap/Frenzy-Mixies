@@ -58,11 +58,12 @@ func executeNextStep():
 	var doneCombinations = []
 	if !combinationsTriggered:
 		for m in _combinations:
-			_triggerCombination(m)
+			for c in m:
+				_triggerCombination(c)
 		combinationsTriggered = true
 	else:
-		_pointService.countRound(_combinations)
-		for m in _combinations:
+		_pointService.countRound(_combinations[0])
+		for m in _combinations[0]:
 			m.Destroy()
 		doneCombinations = _combinations
 		_combinations = _conflictResolver.getNonConflicts()

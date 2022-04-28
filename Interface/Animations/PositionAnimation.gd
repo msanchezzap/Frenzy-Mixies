@@ -1,5 +1,11 @@
 extends Node
 
+const POSITION_SIZE = 150
+const EXPLOSIVE_FRAME = 28
+const ORIGIN_FRAME = 21
+const POTENTIAL_FRAME = 14
+const HOVE_FRAME = 7
+
 func Colorize(position: Position):
 	#var colorCalculated = ColorsService.GetColor(position.square.getColor())
 	#if position.isHover && !position.isBoardAnimationInProgress:
@@ -17,13 +23,13 @@ func Colorize(position: Position):
 	#		colorCalculated = ColorsService.getOriginColor(position.square.getColor())
 	#position.modulate = colorCalculated
 	if position.square._type == "explosive":
-		position.get_node("AnimatedSprite").set_frame(28)
+		position.get_node("AnimatedSprite").set_frame(EXPLOSIVE_FRAME)
 	elif position.square.getHasOriginPotential():
-		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + 21)
+		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + ORIGIN_FRAME)
 	elif position.isActive || position.square.getHasPotential():
-		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + 14)
+		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + POTENTIAL_FRAME)
 	elif position.isHover && !position.isBoardAnimationInProgress:
-		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + 7)
+		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + HOVE_FRAME)
 	#	colorCalculated = position.modulate
 	#	colorCalculated -= ColorsService.getOriginColor(position.square.getColor()) * 0.01
 	#	if colorCalculated.r < (ColorsService.getOriginColor(position.square.getColor()) * 0.66).r:
@@ -32,7 +38,11 @@ func Colorize(position: Position):
 		position.get_node("AnimatedSprite").set_frame(position.square.getColor())
 
 func Move(position: Position, speed: int, delta):
-	if (position.basePosition - position.position).x < speed/100 && (position.basePosition - position.position).x > -speed/100 && (position.basePosition - position.position).y < speed/100 && (position.basePosition - position.position).y > -speed/100:
+	if ((position.basePosition - position.position).x < speed/POSITION_SIZE 
+		&& (position.basePosition - position.position).x > -speed/POSITION_SIZE 
+		&& (position.basePosition - position.position).y < speed/POSITION_SIZE 
+		&& (position.basePosition - position.position).y > -speed/POSITION_SIZE
+	):
 		position.position = position.basePosition
 	else:
 		var direction = (position.basePosition - position.position).normalized()
@@ -40,7 +50,9 @@ func Move(position: Position, speed: int, delta):
 
 func Rotate(position: Position, speed: int):
 	if position.rotation_degrees != position.currentRotation:
-		if position.rotation_degrees - position.currentRotation <= speed && position.rotation_degrees - position.currentRotation >= - speed:
+		if (position.rotation_degrees - position.currentRotation <= speed 
+			&& position.rotation_degrees - position.currentRotation >= - speed
+		):
 			position.currentRotation = 0
 			position.rotation_degrees = 0
 		else:
