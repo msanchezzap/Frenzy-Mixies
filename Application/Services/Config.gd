@@ -33,11 +33,15 @@ func setScore(score: int):
 
 func getLevel():
 	return _level
+	
 func setLevel(level: int):
 	_level = level
+	
 func advanceLevel():
 	_level += 1
+	
 func getMaxLevel():
 	return _maxLevel
+	
 func setMaxLevel(maxLevel):
 	_maxLevel = maxLevel

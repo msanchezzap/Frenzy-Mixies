@@ -22,7 +22,7 @@ func _init(horizontal, vertical, turnsLeft):
 	_conditionService = ConditionsService.new()
 
 func addScoreObjective(score):
-	_conditionService.addCondition(PointCondition.new(_pointService,score + Config.getLevel() * 150))
+	_conditionService.addCondition(PointCondition.new(_pointService,score + Config.getLevel() * (Config.getLevel() /2)))
 
 func _initBoard():
 	return BoardFactory.new(_sizeHorizontal, _sizeVertical, Config.getLevel()).construct()
@@ -32,7 +32,7 @@ func getStartSquare():
 	return _startSquare
 
 func setNextStep(squareSource: SquareComponent, squareDestiny: SquareComponent):
-	if squareSource.existsInRelation(squareDestiny) && !_conflictsPending && _turnsLeft > 0:
+	if squareSource.existsInRelation(squareDestiny) && !_conflictsPending && _turnsLeft > 0 && squareSource.getColor() != Colors.JOKER:
 		var newColor = squareSource.getColor()
 		var oldColor = squareDestiny.getColor()
 		squareDestiny.setColor(newColor)

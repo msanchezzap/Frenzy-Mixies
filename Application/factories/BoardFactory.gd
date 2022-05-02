@@ -9,14 +9,7 @@ func _init(width:int, height:int, level: int):
 	_level = level
 
 func construct():
-	var colors
-	match _level:
-		1, 2, 3:
-			colors = 4
-		4, 5, 6:
-			colors = 5
-		7, 8, 9:
-			colors = 6
+	var colors = getColorQuantity()
 	var lastRow: SquareComponent = null
 	var lastSquare: SquareComponent = null
 	for n in _x:
@@ -34,6 +27,15 @@ func construct():
 				square.setColor(randi() % colors)
 			lastSquare = square
 	return lastSquare
+
+func getColorQuantity():
+	match _level:
+		1, 2, 3:
+			return 4
+		4, 5, 6:
+			return 5
+		7, 8, 9:
+			return 6
 
 func _getLeftSquare(lastSquare: SquareComponent):
 	while(lastSquare.getRelation(Directions.LEFT) != null):

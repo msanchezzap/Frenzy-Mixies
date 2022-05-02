@@ -14,7 +14,6 @@ func reset(initColor):
 	_triggerFunction = null
 	_points = 10
 	setColor(initColor)
-	_type = null
 
 func setColor(newColor: int):
 	_color = newColor
