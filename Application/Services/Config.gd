@@ -5,6 +5,7 @@ var _size = 1
 var _turns = 3
 var _score = 300
 var _level = 1
+var _maxLevel = 1
 
 func getConfigIndex():
 	return _size
@@ -36,3 +37,7 @@ func setLevel(level: int):
 	_level = level
 func advanceLevel():
 	_level += 1
+func getMaxLevel():
+	return _maxLevel
+func setMaxLevel(maxLevel):
+	_maxLevel = maxLevel

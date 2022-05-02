@@ -8,16 +8,18 @@ var icon2 = preload("res://Interface/resources/UI/lvl1.png")
 
 
 func _init():
-	for i in [1,2,3]:
+	for i in [1,2,3,4,5,6,7,8,9]:
 		createbutton(i)
 
 func createbutton(level: int):
 	var b = TextureButton.new()
-	b.texture_normal = load("res://Interface/resources/UI/lvl"+str(level)+".png")
-	b.texture_pressed = load("res://Interface/resources/UI/lvl"+str(level)+"p.png")
+	if Config.getMaxLevel() >= level:
+		b.texture_normal = load("res://Interface/resources/UI/lvl"+str(level)+".png")
+		b.texture_pressed = load("res://Interface/resources/UI/lvl"+str(level)+"p.png")
+	else:
+		b.texture_normal = load("res://Interface/resources/UI/lvl0.png")
 	b.set_name(str(level))
-	#b.text = str(level)
-	b.set_position(Vector2((_BUTTON_GAP + _BUTTON_SIZE) * level , 100))
+	b.set_position(Vector2(_BUTTON_SIZE + (_BUTTON_GAP + _BUTTON_SIZE) * ((level - 1) % 3) , _BUTTON_SIZE + (_BUTTON_SIZE + _BUTTON_GAP) *((level -1) / 3)))
 	b.rect_size = Vector2(_BUTTON_SIZE,_BUTTON_SIZE)
 	b.connect("pressed", self, "_button_pressed", [b])
 

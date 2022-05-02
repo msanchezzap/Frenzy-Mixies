@@ -9,11 +9,13 @@ func _init(width:int, height:int, level: int):
 	_level = level
 
 func construct():
-	var colors = 5
+	var colors
 	match _level:
-		1:
+		1, 2, 3:
 			colors = 4
-		3:
+		4, 5, 6:
+			colors = 5
+		7, 8, 9:
 			colors = 6
 	var lastRow: SquareComponent = null
 	var lastSquare: SquareComponent = null

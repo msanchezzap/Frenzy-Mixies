@@ -15,14 +15,14 @@ var _conflictsPending = false
 func _init(horizontal, vertical, turnsLeft):
 	_sizeHorizontal = horizontal
 	_sizeVertical = vertical
-	_turnsLeft = turnsLeft
+	_turnsLeft = turnsLeft + Config.getLevel()
 	_startSquare = SquareService.goToStart(_initBoard())
 	_conflictResolver = ConflictResolver.new(self)
 	_pointService = PointService.new()
 	_conditionService = ConditionsService.new()
 
 func addScoreObjective(score):
-	_conditionService.addCondition(PointCondition.new(_pointService,score))
+	_conditionService.addCondition(PointCondition.new(_pointService,score + Config.getLevel() * 150))
 
 func _initBoard():
 	return BoardFactory.new(_sizeHorizontal, _sizeVertical, Config.getLevel()).construct()
