@@ -22,7 +22,7 @@ func _init(horizontal, vertical, turnsLeft):
 	_conditionService = ConditionsService.new()
 
 func addScoreObjective(score):
-	_conditionService.addCondition(PointCondition.new(_pointService,score + Config.getLevel() * (Config.getLevel() /2)))
+	_conditionService.addCondition(PointCondition.new(_pointService,score + (Config.getLevel() -1) * (Config.getScore() /2)))
 
 func _initBoard():
 	return BoardFactory.new(_sizeHorizontal, _sizeVertical, Config.getLevel()).construct()
@@ -61,7 +61,7 @@ func executeNextStep():
 			for c in m:
 				_triggerCombination(c)
 		combinationsTriggered = true
-	else:
+	elif _combinations.size() > 0:
 		_pointService.countRound(_combinations[0])
 		for m in _combinations[0]:
 			m.Destroy()

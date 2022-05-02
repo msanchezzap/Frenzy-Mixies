@@ -13,6 +13,7 @@ func reset(initColor):
 	_searchAlgorithm = BasicSearchAlgorithm
 	_triggerFunction = null
 	_points = 10
+	_type = null
 	setColor(initColor)
 
 func setColor(newColor: int):

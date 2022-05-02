@@ -89,7 +89,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Application/Components/Combinations/LinealCombinationComponent.gd"
 }, {
-"base": "Reference",
+"base": "Area2D",
 "class": "Menu",
 "language": "GDScript",
 "path": "res://Interface/Consumers/Menu.gd"
@@ -119,7 +119,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Domain/Model/Square.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "SquareAux",
 "language": "GDScript",
 "path": "res://Interface/Consumers/SquareAux.gd"

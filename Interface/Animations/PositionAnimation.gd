@@ -6,37 +6,33 @@ const ORIGIN_FRAME = 21
 const POTENTIAL_FRAME = 14
 const HOVE_FRAME = 7
 
-func Colorize(position: Position):
-	#var colorCalculated = ColorsService.GetColor(position.square.getColor())
-	#if position.isHover && !position.isBoardAnimationInProgress:
-	#	colorCalculated += ColorsService.LIGHT
-	#if position.isActive || position.square.getHasPotential():
-	#	colorCalculated = ColorsService.GetSaturatedColor(position.square.getColor())
-	#if position.square.getHasOriginPotential():
-	#	colorCalculated = ColorsService.getOriginColor(position.square.getColor())
-	#if position.isBoardAnimationInProgress && !position.square.getHasPotential() && !position.square.getHasOriginPotential():
-	#	colorCalculated -= colorCalculated * 0.3
-	#if position.isConflictPending && position.square.getHasOriginPotential():
-	#	colorCalculated = position.modulate
-	#	colorCalculated -= ColorsService.getOriginColor(position.square.getColor()) * 0.01
-	#	if colorCalculated.r < (ColorsService.getOriginColor(position.square.getColor()) * 0.66).r:
-	#		colorCalculated = ColorsService.getOriginColor(position.square.getColor())
-	#position.modulate = colorCalculated
-	if position.square._type == "explosive":
-		position.get_node("AnimatedSprite").set_frame(EXPLOSIVE_FRAME)
-	elif position.square.getHasOriginPotential():
-		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + ORIGIN_FRAME)
-	elif position.isActive || position.square.getHasPotential():
-		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + POTENTIAL_FRAME)
-	elif position.isHover && !position.isBoardAnimationInProgress:
-		position.get_node("AnimatedSprite").set_frame(position.square.getColor() + HOVE_FRAME)
-	#	colorCalculated = position.modulate
-	#	colorCalculated -= ColorsService.getOriginColor(position.square.getColor()) * 0.01
-	#	if colorCalculated.r < (ColorsService.getOriginColor(position.square.getColor()) * 0.66).r:
-	#		colorCalculated = ColorsService.getOriginColor(position.square.getColor())
-	else: 
-		position.get_node("AnimatedSprite").set_frame(position.square.getColor())
+const ANIMATED_SPRITE = "AnimatedSprite"
+const EXPLOSIVE_ANIMATION = "Explosion"
+const BASIC_ANIMATION = "Basic"
+const HOVER_ANIMATION = "Hover"
+const ORIGIN_ANIMATION = "Origin"
+const SELECTED_ANIMATION = "Selected"
 
+func Colorize(position: Position):
+	var sprite = position.get_node(ANIMATED_SPRITE)
+	if position.square._type == "explosive":
+		if sprite.get_animation() != EXPLOSIVE_ANIMATION:
+			sprite.play(EXPLOSIVE_ANIMATION)
+	elif position.square.getHasOriginPotential():
+		_setAnimation(sprite, ORIGIN_ANIMATION, position.square.getColor())
+	elif (position.isActive || position.square.getHasPotential()):
+		_setAnimation(sprite, SELECTED_ANIMATION, position.square.getColor())
+	elif position.isHover && !position.isBoardAnimationInProgress:
+		_setAnimation(sprite,HOVER_ANIMATION, position.square.getColor())
+	else:
+		_setAnimation(sprite,BASIC_ANIMATION, position.square.getColor()) 
+		
+func _setAnimation(sprite: AnimatedSprite, animation, color):
+	if !(sprite.get_animation() == animation && sprite.get_frame() == color):
+		sprite.stop()
+		sprite.set_animation(animation)
+		sprite.set_frame(color)
+	
 func Move(position: Position, speed: int, delta):
 	if ((position.basePosition - position.position).x < speed/POSITION_SIZE 
 		&& (position.basePosition - position.position).x > -speed/POSITION_SIZE 
