@@ -193,7 +193,7 @@ DestructionAnimation="*res://Interface/Animations/DestructionAnimation.gd"
 SortAlgorithm="*res://Application/Services/Algorithms/SortAlgorithm.gd"
 CombinationDestruction="*res://Application/Services/Algorithms/CombinationDestroyer.gd"
 JokerSearch="*res://Application/factories/Squares/Joker/JokerSearch.gd"
-Config="*res://Interface/Service/Config.gd"
+Config="*res://Application/Services/Config.gd"
 BasicSearchAlgorithm="*res://Application/factories/Squares/Basic/BasicSearchAlgorithm.gd"
 
 [physics]
