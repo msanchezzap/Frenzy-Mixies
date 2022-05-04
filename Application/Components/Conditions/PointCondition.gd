@@ -6,7 +6,7 @@ func _init(pointService: PointService, condition: int).(condition):
 	_service = pointService
 
 func check():
-	return _service.getTotal() > condition
+	return _service.getTotal() >= condition
 	
 func getTable():
 	return ["score", _service.getTotal() ,condition]

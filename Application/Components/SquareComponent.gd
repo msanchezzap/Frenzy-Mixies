@@ -6,6 +6,10 @@ var _searchAlgorithm = BasicSearchAlgorithm
 var _triggerFunction = null
 var _type = null
 
+const TYPE_JOKER = "joker"
+const TYPE_EXPLOSIVE = "explosive"
+const TYPES = [TYPE_JOKER, TYPE_EXPLOSIVE]
+
 func _init(initColor).(initColor):
 	pass
 
@@ -51,3 +55,9 @@ func trigger(squareDestiny: Combination):
 		_triggerFunction.trigger(squareDestiny)
 		return true
 	return false
+	
+func getType():
+	return _type
+func setType(type: String):
+	if TYPES.has(type):
+		_type = type

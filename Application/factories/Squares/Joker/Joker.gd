@@ -8,3 +8,4 @@ func modify(square):
 	square._searchAlgorithm = JokerSearch
 	square.setColor(Colors.JOKER)
 	square._triggerFunction = JokerTrigger.new(square)
+	square.setType(SquareComponent.TYPE_JOKER)

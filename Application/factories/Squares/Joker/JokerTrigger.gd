@@ -6,4 +6,4 @@ func _init(squareToApply):
 	square = squareToApply
 	
 func trigger(destiny: Combination):
-	square.reset(randi() % 4)
+	pass#square.reset(randi() % 4)

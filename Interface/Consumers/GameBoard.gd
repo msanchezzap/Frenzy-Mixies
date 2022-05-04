@@ -95,6 +95,7 @@ func _physics_process(delta):
 			if lastStep.size() > 0:
 				_boardAnimation.Execute(lastStep[0])
 				score.changeScore(board.getScore())
+				score.changeObjectives(board.getConditions())
 		else:
 			oldStep += tmp
 	elif !gameDisabled && !board.hasNextStep() && !isAnimationInProcess():
@@ -103,7 +104,6 @@ func _physics_process(delta):
 				p.isBoardAnimationInProgress = false
 				p.isConflictPending = false
 			isTransitioning = false
-			score.changeObjectives(board.getConditions())
 		if board.isPendingConflicts() && isTransitioning:
 			for p  in allpositions:
 				p.isConflictPending = true

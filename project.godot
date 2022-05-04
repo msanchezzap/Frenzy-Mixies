@@ -112,7 +112,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "PointService",
 "language": "GDScript",
-"path": "res://Application/Services/PointService.gd"
+"path": "res://Application/Services/StatsService.gd"
 }, {
 "base": "Area2D",
 "class": "Position",
@@ -183,7 +183,7 @@ _global_script_class_icons={
 [application]
 
 config/name="SquareFrenzy"
-run/main_scene="res://Interface/Scenes/Main.tscn"
+run/main_scene="res://Interface/Scenes/Start.tscn"
 config/icon="res://Interface/resources/logo.png"
 config/windows_native_icon="res://Interface/resources/logo.ico"
 

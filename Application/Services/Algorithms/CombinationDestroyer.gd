@@ -11,3 +11,4 @@ func BasicDestruction(combination: Combination):
 			var pos = m.find(nextSquare)
 			m.pop_at(pos)
 			_linealCreation.execute(nextSquare,d)
+	combination.origin.reset(combination.origin.getColor())
