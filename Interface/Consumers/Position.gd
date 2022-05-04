@@ -2,6 +2,7 @@ class_name Position extends Area2D
 
 var gameBoard: GameBoard
 var square: SquareComponent
+var specialAnimation: String
 var isActive = false
 var isHover = false
 var isBoardAnimationInProgress = false
@@ -49,7 +50,7 @@ func setRotation(newRotation):
 
 func setScale(newScale):
 	currentScale = newScale
-	
+
 func applyMovement(delta):
 	PositionAnimation.Move(self,speed, delta)
 

@@ -9,7 +9,6 @@ var _combinations = []
 var _conflictResolver: ConflictResolver
 var _pointService: PointService
 var _conditionService: ConditionsService
-var _winConfitions= []
 var _conflictsPending = false
 
 func _init(horizontal, vertical, turnsLeft):

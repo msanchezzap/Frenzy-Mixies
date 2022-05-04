@@ -10,7 +10,7 @@ func trigger(destiny: Combination):
 		var tmp = _getNextNoCombinationSquare(destiny, destiny.origin, d)
 		if tmp != null:
 			destiny.members.append(tmp)
-	square.reset(square.getColor())
+	#square.reset(square.getColor())
 
 func _getNextNoCombinationSquare(combination: Combination, currentSquare: Square, direction: int):
 	if currentSquare == null:

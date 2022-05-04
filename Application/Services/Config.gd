@@ -6,6 +6,7 @@ var _turns = 3
 var _score = 300
 var _level = 1
 var _maxLevel = 1
+var _stars = [0,0,0,0,0,0,0,0,0]
 
 func getConfigIndex():
 	return _size

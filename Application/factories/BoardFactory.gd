@@ -30,9 +30,7 @@ func construct():
 
 func getColorQuantity():
 	match _level:
-		1, 2, 3:
-			return 4
-		4, 5, 6:
+		1, 2, 3, 4, 5, 6:
 			return 5
 		7, 8, 9:
 			return 6

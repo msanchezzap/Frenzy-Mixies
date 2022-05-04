@@ -7,17 +7,26 @@ const POTENTIAL_FRAME = 14
 const HOVE_FRAME = 7
 
 const ANIMATED_SPRITE = "AnimatedSprite"
-const EXPLOSIVE_ANIMATION = "Explosion"
+const EXPLOSION_ANIMATION = "Explosion"
+const EXPLOSIVE_ANIMATION = "Explosive"
 const BASIC_ANIMATION = "Basic"
 const HOVER_ANIMATION = "Hover"
 const ORIGIN_ANIMATION = "Origin"
 const SELECTED_ANIMATION = "Selected"
+const JOKER_ANIMATION = "Joker"
 
 func Colorize(position: Position):
 	var sprite = position.get_node(ANIMATED_SPRITE)
-	if position.square._type == "explosive":
-		if sprite.get_animation() != EXPLOSIVE_ANIMATION:
-			sprite.play(EXPLOSIVE_ANIMATION)
+	if position.specialAnimation == "explosion":
+		if sprite.get_animation() != EXPLOSION_ANIMATION:
+			sprite.play(EXPLOSION_ANIMATION)
+		if sprite.get_frame() == sprite.frames.get_frame_count(EXPLOSION_ANIMATION) -1:
+			position.specialAnimation = ""
+	elif position.square._type == "explosive":
+		_setAnimation(sprite, EXPLOSIVE_ANIMATION, position.square.getColor())
+	elif position.square.getColor() == Colors.JOKER:
+		if sprite.get_animation() != JOKER_ANIMATION:
+			sprite.play(JOKER_ANIMATION)
 	elif position.square.getHasOriginPotential():
 		_setAnimation(sprite, ORIGIN_ANIMATION, position.square.getColor())
 	elif (position.isActive || position.square.getHasPotential()):

@@ -20,7 +20,6 @@ func _checkConflicts(returnConflicts: bool):
 		for c in combos:
 			if _combinationHasConflicts(c) == returnConflicts:
 				validCombos.append(c)
-				#combinationsDone.append(c)
 		if validCombos.size() > 0:
 			combinationsDone.append(validCombos)
 	return combinationsDone
