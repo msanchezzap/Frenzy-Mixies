@@ -208,6 +208,10 @@ JokerSearch="*res://Application/factories/Squares/Joker/JokerSearch.gd"
 Config="*res://Application/Services/Config.gd"
 BasicSearchAlgorithm="*res://Application/factories/Squares/Basic/BasicSearchAlgorithm.gd"
 
+[display]
+
+window/size/resizable=false
+
 [physics]
 
 common/enable_pause_aware_picking=true

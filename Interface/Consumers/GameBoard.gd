@@ -16,7 +16,15 @@ var lastStep = []
 var oldStep = []
 
 func _ready():
+	setBackgroundSize()
 	start()
+
+func setBackgroundSize():
+	var viewportWidth = get_viewport().size.x
+	var viewportHeight = get_viewport().size.y
+	var scale = viewportWidth / $Background.texture.get_size().x
+	$Background.set_position(Vector2(viewportWidth/2, viewportHeight/2))
+	$Background.set_scale(Vector2(scale, scale))
 
 func start():
 	_initGame()
