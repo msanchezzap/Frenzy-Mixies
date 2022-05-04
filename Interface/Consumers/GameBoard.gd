@@ -95,7 +95,10 @@ func _physics_process(delta):
 			p.isBoardAnimationInProgress = true
 		isTransitioning = true
 	if !isAnimationInProcess() && board.hasNextStep():
-		var tmp = DestructionAnimation.Execute(board.getNextStep(), allpositions)
+		var next = board.getNextStep()
+		var tmp = []
+		if next.size() > 0:
+			tmp = DestructionAnimation.Execute([board.getNextStep()[0]], allpositions)
 		if tmp.size() == 0:
 			DestructionAnimation.RestorePositions(oldStep)
 			oldStep = []
