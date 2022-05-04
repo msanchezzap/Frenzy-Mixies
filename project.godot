@@ -210,6 +210,8 @@ BasicSearchAlgorithm="*res://Application/factories/Squares/Basic/BasicSearchAlgo
 
 [display]
 
+window/size/width=1600
+window/size/height=900
 window/size/resizable=false
 
 [physics]

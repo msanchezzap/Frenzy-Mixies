@@ -18,13 +18,13 @@ func generatePauseMenu():
 
 func generateGameOverMenu(score: int):
 	var menu: Menu = _generateScoreMenu(score)
-	menu.setBackground(Menu.LOSE)
+	menu.setBackground(Menu.DEFEAT_BACKGROUND)
 	return menu 
 
 func generateWinMenu(score: int):
 	var menu = _generateScoreMenu(score)
 	menu.setTitle(WIN)
-	menu.setBackground(Menu.VICTORY)
+	menu.setBackground(Menu.VICTORY_BACKGROUND)
 	return menu
 func generateSettingsMenu(menu):
 	menu.setElementVisibility(Menu._startButton, false)
@@ -42,7 +42,7 @@ func generateSettingsMenu(menu):
 	menu.get_node(Menu._optionButton).selected = Config.getConfigIndex()
 	menu.get_node(Menu._lineEdit).text = str(Config.getTurns())
 	menu.get_node(Menu._lineEdit2).text = str(Config.getScore())
-	menu.setBackground(Menu.SETTINGS)
+	menu.setBackground(Menu.SETTINGS_BACKGROUND)
 	menu.setExitButton(false)
 	
 func _generateScoreMenu(score: int):

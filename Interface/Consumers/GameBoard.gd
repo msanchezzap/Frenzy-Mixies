@@ -1,7 +1,7 @@
 class_name GameBoard extends Node
 
 const size: int = 75
-const initialSpace: int = 50
+const initialSpace: int = 100
 
 var board
 var selectedPosition
@@ -44,7 +44,7 @@ func _generateBoard():
 		var squaresLine = squares
 		while squaresLine != null:
 			var pos = load("res://Interface/Scenes/Components/Position.tscn")
-			var newPosition = pos.instance().init(self, squaresLine, Vector2(initialSpace + j * size, initialSpace + i * size))
+			var newPosition = pos.instance().init(self, squaresLine, Vector2(get_viewport().size.x/5 + j * size, initialSpace + i * size))
 			add_child(newPosition)
 			allpositions.append(newPosition)
 			squaresLine = squaresLine.getRelation(Directions.RIGHT)
@@ -116,8 +116,10 @@ func _physics_process(delta):
 			for p  in allpositions:
 				p.isConflictPending = true
 		if board.getWinState():
-			Config.advanceLevel()
-			Config.setMaxLevel(Config.getMaxLevel() + 1)
+			Config._stars[Config.getLevel()-1] = 3
+			if Config.getLevel() == Config.getMaxLevel():
+				Config.setMaxLevel(Config.getMaxLevel() + 1)
+				Config.advanceLevel()
 			gameDisabled = true
 			add_child(MenuFactory.new().generateWinMenu(board.getScore()))
 		elif board.getTurnsLeft() == 0:

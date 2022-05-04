@@ -29,6 +29,40 @@ var _size = 1
 func _ready():
 	var root = get_tree().get_root()
 	_current_scene = root.get_child(root.get_child_count() - 1)
+	
+	var viewportWidth = get_viewport().size.x
+	var viewportHeight = get_viewport().size.y
+	var scale = viewportWidth / $BackgroundBlack.texture.get_size().x
+	$BackgroundBlack.set_position(Vector2(viewportWidth/2, viewportHeight/2))
+	$BackgroundBlack.set_scale(Vector2(scale, scale))
+	
+	scale = viewportWidth / $White.texture.get_size().x
+	$White.set_position(Vector2(viewportWidth/2, viewportHeight/2))
+	$White.set_scale(Vector2(scale / 2, scale / 3))
+	
+	scale = viewportWidth / $BackgroundDefeat.texture.get_size().x
+	$BackgroundDefeat.set_position(Vector2(viewportWidth/2, viewportHeight/2))
+	$BackgroundDefeat.set_scale(Vector2(scale , scale ))
+	scale = viewportWidth / $BackgroundSettings.texture.get_size().x
+	$BackgroundSettings.set_position(Vector2(viewportWidth/2, viewportHeight/2))
+	$BackgroundSettings.set_scale(Vector2(scale , scale ))
+	scale = viewportWidth / $BackgroundVictory.texture.get_size().x
+	$BackgroundVictory.set_position(Vector2(viewportWidth/2, viewportHeight/2))
+	$BackgroundVictory.set_scale(Vector2(scale , scale ))
+	
+	get_node(_startButton).set_size(Vector2(viewportWidth/3, viewportHeight/6))
+	get_node(_startButton).set_position(Vector2(viewportWidth/3, viewportHeight/4))
+	get_node(_continueButton).set_size(Vector2(viewportWidth/3, viewportHeight/6))
+	get_node(_continueButton).set_position(Vector2(viewportWidth/3, viewportHeight/4))
+	get_node(_settingsButton).set_size(Vector2(viewportWidth/3, 40))
+	get_node(_settingsButton).set_position(Vector2(viewportWidth/3, viewportHeight/2.3))
+	get_node(_returnButtonLevels).set_size(Vector2(viewportWidth/3, 40))
+	get_node(_returnButtonLevels).set_position(Vector2(viewportWidth/3, viewportHeight/1.6))
+	get_node(_exitButton).set_size(Vector2(viewportWidth/3, 40))
+	get_node(_exitButton).set_position(Vector2(viewportWidth/3, viewportHeight/1.4))
+	get_node(_returnButton).set_size(Vector2(viewportWidth/3, 40))
+	get_node(_returnButton).set_position(Vector2(viewportWidth/3, viewportHeight/1.4))
+	
 
 func setStartButton(showStart: bool):
 	get_node(_startButton).visible = showStart
@@ -48,26 +82,21 @@ func setScore(score: int):
 func setTitle(text: String):
 	get_node(_gameOverLabel).text = text
 	
-const SIZE_1W = 1600
-const SIZE_1H = 900
-const SIZE_2H = 848
-const SIZE_3W = 1920
-const SIZE_3H = 1018
+const SETTINGS_BACKGROUND = 0
+const VICTORY_BACKGROUND = 1
+const DEFEAT_BACKGROUND = 2
 func setBackground(menuStatus: int):
-	var imgwidth = SIZE_1W
-	var imgHeight = SIZE_1H
+	var background
 	match menuStatus:
-		LOSE:
-			imgHeight = SIZE_2H
-		SETTINGS:
-			imgwidth = SIZE_3W
-			imgHeight = SIZE_3H
-	get_node("AnimatedSprite").hide()
-	var image = get_node(_backgroundImage)
-	image.set_frame(menuStatus)
-	var viewportWidth = OS.get_window_safe_area().size[0] / imgwidth
-	var viewportHeight = OS.get_window_safe_area().size[1] / imgHeight
-	image.set_scale(Vector2(viewportWidth, viewportHeight))
+		SETTINGS_BACKGROUND:
+			background = $BackgroundSettings
+		VICTORY_BACKGROUND:
+			background = $BackgroundVictory
+		DEFEAT_BACKGROUND:
+			background = $BackgroundDefeat
+	background.visible = true
+
+
 
 func _changeScene(path: String):
 	_current_scene.queue_free()
@@ -104,7 +133,7 @@ func _on_SettingsButton_pressed():
 	get_node(_optionButton).selected = Config.getConfigIndex()
 	get_node(_lineEdit).text = str(Config.getTurns())
 	get_node(_lineEdit2).text = str(Config.getScore())
-	setBackground(SETTINGS)
+	setBackground(SETTINGS_BACKGROUND)
 	setExitButton(false)
 
 func _on_OptionButton_item_selected(index):
