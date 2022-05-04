@@ -23,6 +23,7 @@ func _init(horizontal, vertical, turnsLeft):
 func addScoreObjective(score):
 	_conditionService.addCondition(PointCondition.new(_pointService,score + (Config.getLevel() -1) * (Config.getScore() /2)))
 	_conditionService.addCondition(JokerCondition.new(_pointService,1))
+	_conditionService.addCondition(ColorCondition.new(_pointService,1,2))
 
 func _initBoard():
 	return BoardFactory.new(_sizeHorizontal, _sizeVertical, Config.getLevel()).construct()
