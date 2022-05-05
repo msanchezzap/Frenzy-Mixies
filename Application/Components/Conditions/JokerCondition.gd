@@ -6,7 +6,7 @@ func _init(pointService: PointService, condition: int).(condition):
 	_service = pointService
 
 func check():
-	return _service.getCount(SquareComponent.TYPE_JOKER) >= condition
+	return _service.getCount(SquareComponent.TYPE_JOKER) >= _condition
 	
 func getTable():
-	return ["joker", _service.getCount(SquareComponent.TYPE_JOKER), condition]
+	return ["joker", _service.getCount(SquareComponent.TYPE_JOKER), _condition]

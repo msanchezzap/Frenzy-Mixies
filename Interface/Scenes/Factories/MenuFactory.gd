@@ -3,10 +3,12 @@ class_name MenuFactory extends Node
 const WIN = "Win"
 
 func generateMainMenu():
-	var menu = _baseMenu()
+	var menu: Menu
+	menu = _baseMenu()
 	_setStartButton(menu, true)
 	_setExitButton(menu, true)
 	_setSettingsButton(menu)
+	menu.setBackground(Menu.MAIN_BACKGROUND)
 	return menu
 
 func generatePauseMenu():

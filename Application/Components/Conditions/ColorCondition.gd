@@ -8,7 +8,7 @@ func _init(pointService: PointService,color: int, condition: int).(condition):
 	_color = color
 	
 func check():
-	return _service.getCount(str(_color)) >= condition
+	return _service.getCount(str(_color)) >= _condition
 	
 func getTable():
-	return ["color "+ str(_color), _service.getCount(str(_color)), condition]
+	return ["color "+ str(_color), _service.getCount(str(_color)), _condition]

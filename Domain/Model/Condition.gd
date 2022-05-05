@@ -1,9 +1,9 @@
 class_name Condition extends Node
 
-var condition
+var _condition
 
 func _init(conditionToArchieve):
-	condition = conditionToArchieve
+	_condition = conditionToArchieve
 
 func check():
 	pass

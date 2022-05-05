@@ -10,9 +10,19 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "BasicDestructionAlgorithm",
+"language": "GDScript",
+"path": "res://Application/factories/Squares/Basic/BasicDestructionAlgorithm.gd"
+}, {
+"base": "Node",
 "class": "BasicLinealCreation",
 "language": "GDScript",
 "path": "res://Application/Services/Algorithms/BasicLinealCreation.gd"
+}, {
+"base": "Node",
+"class": "BasicResetAlgorithm",
+"language": "GDScript",
+"path": "res://Application/factories/Squares/Basic/BasicResetAlgorithm.gd"
 }, {
 "base": "Node",
 "class": "BasicSearch",
@@ -99,6 +109,26 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Application/Components/Combinations/LinealCombinationComponent.gd"
 }, {
+"base": "Reference",
+"class": "Locker",
+"language": "GDScript",
+"path": "res://Application/factories/Squares/Locker/Locker.gd"
+}, {
+"base": "Node",
+"class": "LockerDestructionAlgorithm",
+"language": "GDScript",
+"path": "res://Application/factories/Squares/Locker/LockerDestructionAlgorithm.gd"
+}, {
+"base": "Node",
+"class": "LockerResetAlgorithm",
+"language": "GDScript",
+"path": "res://Application/factories/Squares/Locker/LockerResetAlgorithm.gd"
+}, {
+"base": "Node",
+"class": "LockerTrigger",
+"language": "GDScript",
+"path": "res://Application/factories/Squares/Locker/LockerTrigger.gd"
+}, {
 "base": "Area2D",
 "class": "Menu",
 "language": "GDScript",
@@ -155,7 +185,9 @@ _global_script_classes=[ {
 "path": "res://Application/Components/SquareComponent.gd"
 } ]
 _global_script_class_icons={
+"BasicDestructionAlgorithm": "",
 "BasicLinealCreation": "",
+"BasicResetAlgorithm": "",
 "BasicSearch": "",
 "BoardFactory": "",
 "BoardService": "",
@@ -173,6 +205,10 @@ _global_script_class_icons={
 "JokerTrigger": "",
 "LinealCombinationAlgorithm": "",
 "LinealCombinationComponent": "",
+"Locker": "",
+"LockerDestructionAlgorithm": "",
+"LockerResetAlgorithm": "",
+"LockerTrigger": "",
 "Menu": "",
 "MenuFactory": "",
 "PointCondition": "",
@@ -189,7 +225,9 @@ _global_script_class_icons={
 [application]
 
 config/name="SquareFrenzy"
-run/main_scene="res://Interface/Scenes/Start.tscn"
+run/main_scene="res://Interface/Scenes/Main.tscn"
+boot_splash/image="res://Interface/resources/Backgrounds/1.png"
+boot_splash/use_filter=false
 config/icon="res://Interface/resources/logo.png"
 config/windows_native_icon="res://Interface/resources/logo.ico"
 

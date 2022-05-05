@@ -14,6 +14,7 @@ const HOVER_ANIMATION = "Hover"
 const ORIGIN_ANIMATION = "Origin"
 const SELECTED_ANIMATION = "Selected"
 const JOKER_ANIMATION = "Joker"
+const LOCKER_ANIMATION = "Locker"
 
 func Colorize(position: Position):
 	var sprite = position.get_node(ANIMATED_SPRITE)
@@ -22,7 +23,9 @@ func Colorize(position: Position):
 			sprite.play(EXPLOSION_ANIMATION)
 		if sprite.get_frame() == sprite.frames.get_frame_count(EXPLOSION_ANIMATION) -1:
 			position.specialAnimation = ""
-	elif position.square._type == "explosive":
+	elif position.square._type == SquareComponent.TYPE_LOCKER:
+		_setAnimation(sprite, LOCKER_ANIMATION, position.square.getColor())
+	elif position.square._type == SquareComponent.TYPE_LOCKER:
 		_setAnimation(sprite, EXPLOSIVE_ANIMATION, position.square.getColor())
 	elif position.square.getColor() == Colors.JOKER:
 		if sprite.get_animation() != JOKER_ANIMATION:

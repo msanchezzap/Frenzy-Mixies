@@ -1,6 +1,6 @@
 class_name BasicLinealCreation extends Node
 
-func execute(position: SquareComponent, direction: int , retryPolicy: bool = true):
+func execute(position, direction: int , retryPolicy: bool = true):
 	position.reset(randi() % 4)
 	if position.getHasPotential() && retryPolicy:
 		var combinations = BasicSearchAlgorithm.Execute(position)

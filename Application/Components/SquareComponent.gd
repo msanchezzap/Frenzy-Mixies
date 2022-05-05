@@ -3,22 +3,21 @@ class_name SquareComponent extends Square
 var _haspotential: bool
 var _hasOriginPotential: bool
 var _searchAlgorithm = BasicSearchAlgorithm
+var _resetAlgorithm  = BasicResetAlgorithm.new(self)
+var _destructionAlgorithm = BasicDestructionAlgorithm.new(self)
 var _triggerFunction = null
 var _type = null
 
 const TYPE_JOKER = "joker"
 const TYPE_EXPLOSIVE = "explosive"
-const TYPES = [TYPE_JOKER, TYPE_EXPLOSIVE]
+const TYPE_LOCKER = "locker"
+const TYPES = [TYPE_JOKER, TYPE_EXPLOSIVE, TYPE_LOCKER]
 
 func _init(initColor).(initColor):
 	pass
 
 func reset(initColor):
-	_searchAlgorithm = BasicSearchAlgorithm
-	_triggerFunction = null
-	_points = 10
-	_type = null
-	setColor(initColor)
+	_resetAlgorithm.Execute(initColor)
 
 func setColor(newColor: int):
 	_color = newColor
@@ -58,6 +57,7 @@ func trigger(squareDestiny: Combination):
 	
 func getType():
 	return _type
+	
 func setType(type: String):
 	if TYPES.has(type):
 		_type = type

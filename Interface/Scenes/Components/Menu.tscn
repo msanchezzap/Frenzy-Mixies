@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Interface/Consumers/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Interface/resources/Backgrounds/kristy-glas-0-gremlins.jpg" type="Texture" id=2]
+[ext_resource path="res://Interface/resources/Backgrounds/2.1.png" type="Texture" id=3]
 [ext_resource path="res://Interface/resources/Backgrounds/kristy-glas-monitors.jpg" type="Texture" id=4]
 [ext_resource path="res://Interface/resources/Backgrounds/kristy-glas-soul.jpg" type="Texture" id=5]
 [ext_resource path="res://Interface/resources/blue.png" type="Texture" id=6]
@@ -210,6 +211,12 @@ position = Vector2( 3076, -458 )
 scale = Vector2( 4.91, 3.74 )
 z_index = -1
 texture = ExtResource( 5 )
+
+[node name="BackgroundMain" type="Sprite" parent="."]
+visible = false
+position = Vector2( 829, 405 )
+z_index = -1
+texture = ExtResource( 3 )
 
 [connection signal="pressed" from="StartButton" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="ContinueButton" to="." method="_on_ContinueButton_pressed"]

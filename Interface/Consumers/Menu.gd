@@ -25,13 +25,14 @@ const _lineEdit: String = "LineEdit"
 const _lineEdit2: String = "LineEdit2"
 
 var _size = 1
-
+var viewportWidth
+var viewportHeight
 func _ready():
 	var root = get_tree().get_root()
 	_current_scene = root.get_child(root.get_child_count() - 1)
 	
-	var viewportWidth = get_viewport().size.x
-	var viewportHeight = get_viewport().size.y
+	viewportWidth = get_viewport().size.x
+	viewportHeight = get_viewport().size.y
 	var scale = viewportWidth / $BackgroundBlack.texture.get_size().x
 	$BackgroundBlack.set_position(Vector2(viewportWidth/2, viewportHeight/2))
 	$BackgroundBlack.set_scale(Vector2(scale, scale))
@@ -40,29 +41,24 @@ func _ready():
 	$White.set_position(Vector2(viewportWidth/2, viewportHeight/2))
 	$White.set_scale(Vector2(scale / 2, scale / 3))
 	
-	scale = viewportWidth / $BackgroundDefeat.texture.get_size().x
-	$BackgroundDefeat.set_position(Vector2(viewportWidth/2, viewportHeight/2))
-	$BackgroundDefeat.set_scale(Vector2(scale , scale ))
-	scale = viewportWidth / $BackgroundSettings.texture.get_size().x
-	$BackgroundSettings.set_position(Vector2(viewportWidth/2, viewportHeight/2))
-	$BackgroundSettings.set_scale(Vector2(scale , scale ))
-	scale = viewportWidth / $BackgroundVictory.texture.get_size().x
-	$BackgroundVictory.set_position(Vector2(viewportWidth/2, viewportHeight/2))
-	$BackgroundVictory.set_scale(Vector2(scale , scale ))
-	
+	for b in [$BackgroundDefeat, $BackgroundSettings, $BackgroundVictory, $BackgroundMain]:
+		scale = viewportWidth / b.texture.get_size().x
+		b.set_position(Vector2(viewportWidth/2, viewportHeight/2))
+		b.set_scale(Vector2(scale , scale ))
+		
 	get_node(_startButton).set_size(Vector2(viewportWidth/3, viewportHeight/6))
 	get_node(_startButton).set_position(Vector2(viewportWidth/3, viewportHeight/4))
 	get_node(_continueButton).set_size(Vector2(viewportWidth/3, viewportHeight/6))
 	get_node(_continueButton).set_position(Vector2(viewportWidth/3, viewportHeight/4))
-	get_node(_settingsButton).set_size(Vector2(viewportWidth/3, 40))
-	get_node(_settingsButton).set_position(Vector2(viewportWidth/3, viewportHeight/2.3))
-	get_node(_returnButtonLevels).set_size(Vector2(viewportWidth/3, 40))
-	get_node(_returnButtonLevels).set_position(Vector2(viewportWidth/3, viewportHeight/1.6))
-	get_node(_exitButton).set_size(Vector2(viewportWidth/3, 40))
-	get_node(_exitButton).set_position(Vector2(viewportWidth/3, viewportHeight/1.4))
-	get_node(_returnButton).set_size(Vector2(viewportWidth/3, 40))
-	get_node(_returnButton).set_position(Vector2(viewportWidth/3, viewportHeight/1.4))
 	
+	configureLittleButton(_settingsButton, viewportWidth/3, viewportHeight/2.3)
+	configureLittleButton(_returnButtonLevels, viewportWidth/3, viewportHeight/1.6)
+	configureLittleButton(_exitButton, viewportWidth/3, viewportHeight/1.4)
+	configureLittleButton(_returnButton, viewportWidth/3, viewportHeight/1.4)
+	
+func configureLittleButton(nodeName, width, height):
+	get_node(nodeName).set_size(Vector2(viewportWidth/3, 40))
+	get_node(nodeName).set_position(Vector2(width, height))
 
 func setStartButton(showStart: bool):
 	get_node(_startButton).visible = showStart
@@ -85,19 +81,23 @@ func setTitle(text: String):
 const SETTINGS_BACKGROUND = 0
 const VICTORY_BACKGROUND = 1
 const DEFEAT_BACKGROUND = 2
+const MAIN_BACKGROUND = 3
+var currentBackground = null
+
 func setBackground(menuStatus: int):
-	var background
+	if currentBackground != null:
+		currentBackground.visible = false
 	match menuStatus:
 		SETTINGS_BACKGROUND:
-			background = $BackgroundSettings
+			currentBackground = $BackgroundSettings
 		VICTORY_BACKGROUND:
-			background = $BackgroundVictory
+			currentBackground = $BackgroundVictory
 		DEFEAT_BACKGROUND:
-			background = $BackgroundDefeat
-	background.visible = true
-
-
-
+			currentBackground = $BackgroundDefeat
+		MAIN_BACKGROUND:
+			currentBackground = $BackgroundMain
+	currentBackground.visible = true
+	
 func _changeScene(path: String):
 	_current_scene.queue_free()
 	var s = ResourceLoader.load(path)

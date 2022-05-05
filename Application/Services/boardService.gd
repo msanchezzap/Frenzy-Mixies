@@ -33,7 +33,13 @@ func getStartSquare():
 	return _startSquare
 
 func setNextStep(squareSource: SquareComponent, squareDestiny: SquareComponent):
-	if squareSource.existsInRelation(squareDestiny) && !_conflictsPending && _turnsLeft > 0 && squareSource.getColor() != Colors.JOKER:
+	if (squareSource.existsInRelation(squareDestiny) 
+		&& !_conflictsPending 
+		&& _turnsLeft > 0 
+		&& squareSource.getType() != SquareComponent.TYPE_JOKER
+		&& squareSource.getType() != SquareComponent.TYPE_LOCKER
+		&& squareDestiny.getType() != SquareComponent.TYPE_LOCKER
+	):
 		var newColor = squareSource.getColor()
 		var oldColor = squareDestiny.getColor()
 		squareDestiny.setColor(newColor)

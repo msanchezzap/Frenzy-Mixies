@@ -4,5 +4,5 @@ func _init(source: Square, memberlist, oposite: Square).(source, memberlist, opo
 	pass
 
 func Destroy():
-	Joker.new().modify(opposite)
+	Locker.new().modify(opposite)
 	CombinationDestruction.BasicDestruction(self)
