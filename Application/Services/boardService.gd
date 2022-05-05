@@ -99,6 +99,8 @@ func setOriginIfPossible(square: SquareComponent):
 
 func getScore():
 	return _pointService.getTotal()
+func getChain():
+	return _pointService.getMultiplier()
 func getTurnsLeft():
 	return _turnsLeft
 func getWinState():

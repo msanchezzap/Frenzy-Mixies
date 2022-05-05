@@ -10,6 +10,7 @@ var isConflictPending = false
 var basePosition: Vector2
 var baseScale: Vector2 = Vector2(0.5,0.5)
 var speed = 300
+var baseSpeed = 300
 var currentRotation = 0
 var currentScale = Vector2(0.5,0.5)
 
@@ -52,7 +53,8 @@ func setScale(newScale):
 	currentScale = newScale
 
 func applyMovement(delta):
-	PositionAnimation.Move(self,speed, delta)
+	if basePosition != position:
+		PositionAnimation.Move(self,speed, delta)
 
 func isAnimationOnProgress():
 	return position != basePosition || scale != currentScale

@@ -1,7 +1,8 @@
 class_name GameBoard extends Node
 
 const size: int = 75
-const initialSpace: int = 100
+const initialSpaceY: int = 100
+var initialSpaceX: int = 0
 
 var board
 var selectedPosition
@@ -16,6 +17,7 @@ var lastStep = []
 var oldStep = []
 
 func _ready():
+	initialSpaceX = get_viewport().size.x/5
 	setBackgroundSize()
 	start()
 
@@ -44,7 +46,7 @@ func _generateBoard():
 		var squaresLine = squares
 		while squaresLine != null:
 			var pos = load("res://Interface/Scenes/Components/Position.tscn")
-			var newPosition = pos.instance().init(self, squaresLine, Vector2(get_viewport().size.x/5 + j * size, initialSpace + i * size))
+			var newPosition = pos.instance().init(self, squaresLine, Vector2(initialSpaceX + j * size, initialSpaceY + i * size))
 			add_child(newPosition)
 			allpositions.append(newPosition)
 			squaresLine = squaresLine.getRelation(Directions.RIGHT)
@@ -104,7 +106,7 @@ func _physics_process(delta):
 			oldStep = []
 			lastStep = board.executeNextStep()
 			if lastStep.size() > 0:
-				_boardAnimation.Execute(lastStep[0])
+				_boardAnimation.Execute(lastStep[0], board.getChain())
 				score.changeScore(board.getScore())
 				score.changeObjectives(board.getConditions())
 		else:

@@ -27,7 +27,8 @@ func setChain(isChain: bool):
 
 func getTotal():
 	return _totalPoints
-
+func getMultiplier():
+	return _multiplier
 func addToCount(squareType: String, quantity: int):
 	if squareCount.has(squareType):
 		squareCount[squareType] += quantity

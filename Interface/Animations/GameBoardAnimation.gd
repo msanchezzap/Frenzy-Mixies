@@ -4,7 +4,7 @@ var gameBoard
 func _init(gameBoard):
 	self.gameBoard = gameBoard
 
-func Execute(lastStep):
+func Execute(lastStep, extraSpeed):
 	var positionChange = []
 	var i = 0
 	var squares = gameBoard.board.getStartSquare()
@@ -14,9 +14,11 @@ func Execute(lastStep):
 			var memberPosition = _getMemberPosition(lastStep, squaresLine, i, positionChange)
 			if memberPosition != null:
 				gameBoard.allpositions[i].position = memberPosition
+				gameBoard.allpositions[i].speed = gameBoard.allpositions[i].baseSpeed * extraSpeed
 			elif gameBoard.allpositions[i].square != squaresLine:
 				positionChange.append(SquareAux.new(gameBoard.allpositions[i].square,gameBoard.allpositions[i].position))
 				gameBoard.allpositions[i].position = _getNewLinealPosition(positionChange, squaresLine,i)
+				gameBoard.allpositions[i].speed = gameBoard.allpositions[i].baseSpeed * extraSpeed
 			gameBoard.allpositions[i].square = squaresLine
 			squaresLine = squaresLine.getRelation(Directions.RIGHT)
 			i += 1
@@ -26,7 +28,7 @@ func _getMemberPosition(lastStep,squaresLine,i,positionChange):
 	for c in lastStep:
 		if c.members.has(squaresLine):
 			positionChange.append(SquareAux.new(gameBoard.allpositions[i].square,gameBoard.allpositions[i].position))
-			return gameBoard.allpositions[i].position + _setBoardEntrance(gameBoard.allpositions[i], _search(c.origin, gameBoard.allpositions).position, gameBoard.size, gameBoard.initialSpace)
+			return gameBoard.allpositions[i].position + _setBoardEntrance(gameBoard.allpositions[i], _search(c.origin, gameBoard.allpositions).position, gameBoard.size, Vector2(gameBoard.initialSpaceY, gameBoard.initialSpaceX))
 	return null
 	
 func _getNewLinealPosition(positionChange,squaresLine,i):
@@ -49,11 +51,4 @@ func _search(squareToSearch: SquareComponent, allpositions: Array):
 
 func _setBoardEntrance(position, pivot: Vector2, size, initialSpace):
 	var direction = (position.position - pivot).normalized()
-	var newPosition = Vector2(0,0)
-	if(direction.x > 0):
-		newPosition.x += direction.x * (size * 2)
-	elif(direction.y > 0):
-		newPosition.y += direction.y * (size * 2)
-	else:
-		newPosition = direction * initialSpace * 3
-	return newPosition
+	return Vector2(direction.x * (size * 2),direction.y * (size * 2))

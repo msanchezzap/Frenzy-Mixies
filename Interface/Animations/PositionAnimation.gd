@@ -50,7 +50,11 @@ func Move(position: Position, speed: int, delta):
 	):
 		position.position = position.basePosition
 	else:
+		var gg = position.basePosition - position.position
 		var direction = (position.basePosition - position.position).normalized()
+		var a =  (direction * speed * delta)
+		if gg.x > 0 && gg.x < a.x || gg.x < 0 && gg.x > -a.x || gg.y > 0 && gg.y < a.y || gg.y < 0 && gg.y > -a.y:
+			position.position = position.basePosition
 		position.position += (direction * speed * delta)
 
 func Rotate(position: Position, speed: int):
