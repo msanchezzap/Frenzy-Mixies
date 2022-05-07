@@ -1,4 +1,4 @@
-class_name BoardService extends Node
+class_name GameService extends Node
 
 var _startSquare: SquareComponent
 
@@ -18,12 +18,7 @@ func _init(horizontal, vertical, turnsLeft):
 	_startSquare = SquareService.goToStart(_initBoard())
 	_conflictResolver = ConflictResolver.new(self)
 	_pointService = PointService.new()
-	_conditionService = ConditionsService.new()
-
-func addScoreObjective(score):
-	_conditionService.addCondition(PointCondition.new(_pointService,score + (Config.getLevel() -1) * (Config.getScore() /2)))
-	_conditionService.addCondition(JokerCondition.new(_pointService,1))
-	_conditionService.addCondition(ColorCondition.new(_pointService,1,2))
+	_conditionService = ConditionFactory.new(_pointService).Build()
 
 func _initBoard():
 	return BoardFactory.new(_sizeHorizontal, _sizeVertical, Config.getLevel()).construct()
