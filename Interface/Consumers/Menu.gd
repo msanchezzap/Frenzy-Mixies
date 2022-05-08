@@ -37,10 +37,9 @@ func _ready():
 	$BackgroundBlack.set_position(Vector2(viewportWidth/2, viewportHeight/2))
 	$BackgroundBlack.set_scale(Vector2(scale, scale))
 	
-	scale = viewportWidth / $White.texture.get_size().x
-	$White.set_position(Vector2(viewportWidth/2, viewportHeight/2))
-	$White.set_scale(Vector2(scale / 2, scale / 3))
-	for b in [$BackgroundDefeat, $BackgroundSettings, $BackgroundVictory, $BackgroundMain]:
+	for b in [$BackgroundDefeat, $BackgroundVictory, $White]:
+		b.set_position(Vector2(viewportWidth/2, viewportHeight/2))
+	for b in [ $BackgroundSettings, $BackgroundMain]:
 		var scaleX = viewportWidth / b.texture.get_size().x
 		var scaleY = viewportHeight / b.texture.get_size().y
 		b.set_position(Vector2(viewportWidth/2, viewportHeight/2))
@@ -82,6 +81,7 @@ const SETTINGS_BACKGROUND = 0
 const VICTORY_BACKGROUND = 1
 const DEFEAT_BACKGROUND = 2
 const MAIN_BACKGROUND = 3
+const PAUSE_BACKGROUND = 4
 var currentBackground = null
 
 func setBackground(menuStatus: int):
@@ -96,6 +96,8 @@ func setBackground(menuStatus: int):
 			currentBackground = $BackgroundDefeat
 		MAIN_BACKGROUND:
 			currentBackground = $BackgroundMain
+		PAUSE_BACKGROUND:
+			currentBackground = $White
 	currentBackground.visible = true
 	
 func _changeScene(path: String):
