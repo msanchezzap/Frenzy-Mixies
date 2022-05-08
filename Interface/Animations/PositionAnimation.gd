@@ -19,9 +19,10 @@ const LOCKER_ANIMATION = "Locker"
 func Colorize(position: Position):
 	var sprite = position.get_node(ANIMATED_SPRITE)
 	if position.specialAnimation == "explosion":
-		if sprite.get_animation() != EXPLOSION_ANIMATION:
-			sprite.play(EXPLOSION_ANIMATION)
-		if sprite.get_frame() == sprite.frames.get_frame_count(EXPLOSION_ANIMATION) -1:
+		var explosionAnimation = EXPLOSION_ANIMATION + "_" + str(position.square.getColor())
+		if sprite.get_animation() != explosionAnimation:
+			sprite.play(explosionAnimation)
+		if sprite.get_frame() == sprite.frames.get_frame_count(EXPLOSION_ANIMATION + "_" + str(position.square.getColor())) -1:
 			position.specialAnimation = ""
 	elif position.square._type == SquareComponent.TYPE_LOCKER:
 		_setAnimation(sprite, LOCKER_ANIMATION, position.square.getColor())

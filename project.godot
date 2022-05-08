@@ -255,6 +255,7 @@ BasicSearchAlgorithm="*res://Application/factories/Squares/Basic/BasicSearchAlgo
 [display]
 
 window/size/width=1000
+window/size/height=700
 window/size/resizable=false
 window/vsync/use_vsync=false
 

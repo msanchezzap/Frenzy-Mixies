@@ -29,7 +29,7 @@ func getStartSquare():
 
 func setNextStep(squareSource: SquareComponent, squareDestiny: SquareComponent):
 	if (squareSource.existsInRelation(squareDestiny) 
-		&& !_conflictsPending 
+		#&& !_conflictsPending 
 		&& _turnsLeft > 0 
 		&& squareSource.getType() != SquareComponent.TYPE_JOKER
 		&& squareSource.getType() != SquareComponent.TYPE_LOCKER

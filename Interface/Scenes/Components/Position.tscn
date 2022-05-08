@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=2]
+[gd_scene load_steps=90 format=2]
 
 [ext_resource path="res://Interface/resources/Positions/selected/7010.png" type="Texture" id=1]
 [ext_resource path="res://Interface/Consumers/Position.gd" type="Script" id=2]
@@ -29,57 +29,64 @@
 [ext_resource path="res://Interface/resources/Positions/Explosive/E1.png" type="Texture" id=27]
 [ext_resource path="res://Interface/resources/Positions/Explosive/E5.png" type="Texture" id=28]
 [ext_resource path="res://Interface/resources/Positions/Explosive/E2.png" type="Texture" id=29]
-[ext_resource path="res://Interface/resources/Positions/Explosion/e1.png" type="Texture" id=30]
-[ext_resource path="res://Interface/resources/Positions/Explosion/e3.png" type="Texture" id=31]
+[ext_resource path="res://Interface/resources/Positions/Explosion/default/e1.png" type="Texture" id=30]
+[ext_resource path="res://Interface/resources/Positions/Explosion/default/e3.png" type="Texture" id=31]
 [ext_resource path="res://Interface/resources/Positions/Explosive/E3.png" type="Texture" id=32]
 [ext_resource path="res://Interface/resources/Positions/Explosive/E4.png" type="Texture" id=33]
-[ext_resource path="res://Interface/resources/Positions/Explosion/e5.png" type="Texture" id=34]
+[ext_resource path="res://Interface/resources/Positions/Explosion/default/e5.png" type="Texture" id=34]
 [ext_resource path="res://Interface/resources/Positions/Locker/1.png" type="Texture" id=35]
 [ext_resource path="res://Interface/resources/Positions/Locker/2.png" type="Texture" id=36]
-[ext_resource path="res://Interface/resources/Positions/Explosion/e4.png" type="Texture" id=37]
-[ext_resource path="res://Interface/resources/Positions/Explosion/e6.png" type="Texture" id=38]
-[ext_resource path="res://Interface/resources/Positions/Explosion/e2.png" type="Texture" id=39]
-[ext_resource path="res://Interface/resources/Positions/Explosion/e7.png" type="Texture" id=40]
-[ext_resource path="res://Interface/resources/Positions/Explosion/ep2.png" type="Texture" id=41]
-[ext_resource path="res://Interface/resources/Positions/Explosion/ep1.png" type="Texture" id=42]
-[ext_resource path="res://Interface/resources/Positions/Explosion/eg3.png" type="Texture" id=43]
-[ext_resource path="res://Interface/resources/Positions/Explosion/eg4.png" type="Texture" id=44]
+[ext_resource path="res://Interface/resources/Positions/Explosion/default/e4.png" type="Texture" id=37]
+[ext_resource path="res://Interface/resources/Positions/Explosion/default/e6.png" type="Texture" id=38]
+[ext_resource path="res://Interface/resources/Positions/Explosion/default/e2.png" type="Texture" id=39]
+[ext_resource path="res://Interface/resources/Positions/Explosion/default/e7.png" type="Texture" id=40]
+[ext_resource path="res://Interface/resources/Positions/Explosion/pink/ep2.png" type="Texture" id=41]
+[ext_resource path="res://Interface/resources/Positions/Explosion/pink/ep1.png" type="Texture" id=42]
+[ext_resource path="res://Interface/resources/Positions/Explosion/green/eg3.png" type="Texture" id=43]
+[ext_resource path="res://Interface/resources/Positions/Explosion/green/eg4.png" type="Texture" id=44]
 [ext_resource path="res://Interface/resources/Positions/Locker/3.png" type="Texture" id=45]
 [ext_resource path="res://Interface/resources/Positions/Locker/4.png" type="Texture" id=46]
 [ext_resource path="res://Interface/resources/Positions/Locker/6.png" type="Texture" id=47]
 [ext_resource path="res://Interface/resources/Positions/Locker/5.png" type="Texture" id=48]
 [ext_resource path="res://Interface/resources/Positions/Explosive/E6.png" type="Texture" id=49]
-[ext_resource path="res://Interface/resources/Positions/Explosion/eb4.png" type="Texture" id=50]
-[ext_resource path="res://Interface/resources/Positions/Explosion/eg1.png" type="Texture" id=51]
-[ext_resource path="res://Interface/resources/Positions/Explosion/eg5.png" type="Texture" id=52]
-[ext_resource path="res://Interface/resources/Positions/Explosion/eg6.png" type="Texture" id=53]
-[ext_resource path="res://Interface/resources/Positions/Explosion/er2.png" type="Texture" id=54]
-[ext_resource path="res://Interface/resources/Positions/Explosion/er3.png" type="Texture" id=55]
-[ext_resource path="res://Interface/resources/Positions/Explosion/eb3.png" type="Texture" id=56]
-[ext_resource path="res://Interface/resources/Positions/Explosion/er4.png" type="Texture" id=57]
-[ext_resource path="res://Interface/resources/Positions/Explosion/er5.png" type="Texture" id=58]
-[ext_resource path="res://Interface/resources/Positions/Explosion/ep5.png" type="Texture" id=59]
-[ext_resource path="res://Interface/resources/Positions/Explosion/er1.png" type="Texture" id=60]
-[ext_resource path="res://Interface/resources/Positions/Explosion/eb1.png" type="Texture" id=61]
-[ext_resource path="res://Interface/resources/Positions/Explosion/eb6.png" type="Texture" id=62]
-[ext_resource path="res://Interface/resources/Positions/Explosion/ep6.png" type="Texture" id=63]
-[ext_resource path="res://Interface/resources/Positions/Explosion/eb5.png" type="Texture" id=64]
-[ext_resource path="res://Interface/resources/Positions/Explosion/eg2.png" type="Texture" id=65]
-[ext_resource path="res://Interface/resources/Positions/Explosion/eb2.png" type="Texture" id=66]
-[ext_resource path="res://Interface/resources/Positions/Explosion/ey6.png" type="Texture" id=67]
-[ext_resource path="res://Interface/resources/Positions/Explosion/epp1.png" type="Texture" id=68]
-[ext_resource path="res://Interface/resources/Positions/Explosion/epp2.png" type="Texture" id=69]
-[ext_resource path="res://Interface/resources/Positions/Explosion/epp5.png" type="Texture" id=70]
-[ext_resource path="res://Interface/resources/Positions/Explosion/epp6.png" type="Texture" id=71]
-[ext_resource path="res://Interface/resources/Positions/Explosion/ep4.png" type="Texture" id=72]
-[ext_resource path="res://Interface/resources/Positions/Explosion/ey2.png" type="Texture" id=73]
-[ext_resource path="res://Interface/resources/Positions/Explosion/ey3.png" type="Texture" id=74]
-[ext_resource path="res://Interface/resources/Positions/Explosion/ey5.png" type="Texture" id=75]
-[ext_resource path="res://Interface/resources/Positions/Explosion/ey1.png" type="Texture" id=76]
-[ext_resource path="res://Interface/resources/Positions/Explosion/ey4.png" type="Texture" id=77]
-[ext_resource path="res://Interface/resources/Positions/Explosion/epp3.png" type="Texture" id=78]
-[ext_resource path="res://Interface/resources/Positions/Explosion/epp4.png" type="Texture" id=79]
-[ext_resource path="res://Interface/resources/Positions/Explosion/ep3.png" type="Texture" id=80]
+[ext_resource path="res://Interface/resources/Positions/Explosion/blue/eb4.png" type="Texture" id=50]
+[ext_resource path="res://Interface/resources/Positions/Explosion/green/eg1.png" type="Texture" id=51]
+[ext_resource path="res://Interface/resources/Positions/Explosion/green/eg5.png" type="Texture" id=52]
+[ext_resource path="res://Interface/resources/Positions/Explosion/green/eg6.png" type="Texture" id=53]
+[ext_resource path="res://Interface/resources/Positions/Explosion/red/er3.png" type="Texture" id=54]
+[ext_resource path="res://Interface/resources/Positions/Explosion/red/er4.png" type="Texture" id=55]
+[ext_resource path="res://Interface/resources/Positions/Explosion/blue/eb3.png" type="Texture" id=56]
+[ext_resource path="res://Interface/resources/Positions/Explosion/red/er5.png" type="Texture" id=57]
+[ext_resource path="res://Interface/resources/Positions/Explosion/red/er6.png" type="Texture" id=58]
+[ext_resource path="res://Interface/resources/Positions/Explosion/pink/ep5.png" type="Texture" id=59]
+[ext_resource path="res://Interface/resources/Positions/Explosion/red/er1.png" type="Texture" id=60]
+[ext_resource path="res://Interface/resources/Positions/Explosion/blue/eb1.png" type="Texture" id=61]
+[ext_resource path="res://Interface/resources/Positions/Explosion/blue/eb6.png" type="Texture" id=62]
+[ext_resource path="res://Interface/resources/Positions/Explosion/pink/ep6.png" type="Texture" id=63]
+[ext_resource path="res://Interface/resources/Positions/Explosion/blue/eb5.png" type="Texture" id=64]
+[ext_resource path="res://Interface/resources/Positions/Explosion/green/eg2.png" type="Texture" id=65]
+[ext_resource path="res://Interface/resources/Positions/Explosion/blue/eb2.png" type="Texture" id=66]
+[ext_resource path="res://Interface/resources/Positions/Explosion/yellow/ey6.png" type="Texture" id=67]
+[ext_resource path="res://Interface/resources/Positions/Explosion/purple/epp1.png" type="Texture" id=68]
+[ext_resource path="res://Interface/resources/Positions/Explosion/purple/epp2.png" type="Texture" id=69]
+[ext_resource path="res://Interface/resources/Positions/Explosion/purple/epp5.png" type="Texture" id=70]
+[ext_resource path="res://Interface/resources/Positions/Explosion/purple/epp6.png" type="Texture" id=71]
+[ext_resource path="res://Interface/resources/Positions/Explosion/pink/ep4.png" type="Texture" id=72]
+[ext_resource path="res://Interface/resources/Positions/Explosion/yellow/ey2.png" type="Texture" id=73]
+[ext_resource path="res://Interface/resources/Positions/Explosion/yellow/ey3.png" type="Texture" id=74]
+[ext_resource path="res://Interface/resources/Positions/Explosion/yellow/ey5.png" type="Texture" id=75]
+[ext_resource path="res://Interface/resources/Positions/Explosion/yellow/ey1.png" type="Texture" id=76]
+[ext_resource path="res://Interface/resources/Positions/Explosion/yellow/ey4.png" type="Texture" id=77]
+[ext_resource path="res://Interface/resources/Positions/Explosion/purple/epp3.png" type="Texture" id=78]
+[ext_resource path="res://Interface/resources/Positions/Explosion/purple/epp4.png" type="Texture" id=79]
+[ext_resource path="res://Interface/resources/Positions/Explosion/pink/ep3.png" type="Texture" id=80]
+[ext_resource path="res://Interface/resources/Positions/Explosion/red/er2.png" type="Texture" id=81]
+[ext_resource path="res://Interface/resources/Positions/Explosion/purple/epp7.png" type="Texture" id=82]
+[ext_resource path="res://Interface/resources/Positions/Explosion/green/eg7.png" type="Texture" id=83]
+[ext_resource path="res://Interface/resources/Positions/Explosion/pink/ep7.png" type="Texture" id=84]
+[ext_resource path="res://Interface/resources/Positions/Explosion/yellow/ey7.png" type="Texture" id=85]
+[ext_resource path="res://Interface/resources/Positions/Explosion/blue/eb7.png" type="Texture" id=86]
+[ext_resource path="res://Interface/resources/Positions/Explosion/red/er7.png" type="Texture" id=87]
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
@@ -88,44 +95,49 @@ animations = [ {
 "name": "Joker",
 "speed": 4.0
 }, {
-"frames": [ ExtResource( 35 ), ExtResource( 36 ), ExtResource( 45 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 48 ) ],
-"loop": true,
-"name": "Locker",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 29 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 49 ) ],
 "loop": true,
 "name": "Explosive",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 60 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 57 ), ExtResource( 58 ) ],
+"frames": [ ExtResource( 35 ), ExtResource( 36 ), ExtResource( 45 ), ExtResource( 46 ), ExtResource( 47 ), ExtResource( 48 ) ],
 "loop": true,
-"name": "Explosion_6",
+"name": "Locker",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 76 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 77 ), ExtResource( 75 ), ExtResource( 67 ) ],
+"frames": [ ExtResource( 60 ), ExtResource( 81 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 87 ) ],
 "loop": true,
-"name": "Explosion_1",
-"speed": 5.0
+"name": "Explosion_5",
+"speed": 10.0
 }, {
-"frames": [ ExtResource( 68 ), ExtResource( 69 ), ExtResource( 78 ), ExtResource( 79 ), ExtResource( 70 ), ExtResource( 71 ) ],
+"frames": [ ExtResource( 76 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 77 ), ExtResource( 75 ), ExtResource( 67 ), ExtResource( 85 ) ],
+"loop": true,
+"name": "Explosion_0",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 42 ), ExtResource( 41 ), ExtResource( 80 ), ExtResource( 72 ), ExtResource( 59 ), ExtResource( 63 ), ExtResource( 84 ) ],
 "loop": true,
 "name": "Explosion_2",
-"speed": 5.0
+"speed": 10.0
 }, {
-"frames": [ ExtResource( 42 ), ExtResource( 41 ), ExtResource( 80 ), ExtResource( 72 ), ExtResource( 59 ), ExtResource( 63 ) ],
+"frames": [ ExtResource( 68 ), ExtResource( 69 ), ExtResource( 78 ), ExtResource( 79 ), ExtResource( 70 ), ExtResource( 71 ), ExtResource( 82 ) ],
 "loop": true,
-"name": "Explosion_3",
-"speed": 5.0
+"name": "Explosion_1",
+"speed": 10.0
 }, {
-"frames": [ ExtResource( 61 ), ExtResource( 66 ), ExtResource( 56 ), ExtResource( 50 ), ExtResource( 64 ), ExtResource( 62 ) ],
+"frames": [ ExtResource( 51 ), ExtResource( 65 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 52 ), ExtResource( 53 ), ExtResource( 83 ) ],
 "loop": true,
 "name": "Explosion_4",
-"speed": 5.0
+"speed": 10.0
 }, {
-"frames": [ ExtResource( 22 ), ExtResource( 25 ), ExtResource( 21 ), ExtResource( 26 ), ExtResource( 24 ), ExtResource( 23 ) ],
+"frames": [ ExtResource( 61 ), ExtResource( 66 ), ExtResource( 56 ), ExtResource( 50 ), ExtResource( 64 ), ExtResource( 62 ), ExtResource( 86 ) ],
 "loop": true,
-"name": "Hover",
+"name": "Explosion_3",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 8 ), ExtResource( 13 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Origin",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 20 ), ExtResource( 18 ) ],
@@ -133,24 +145,19 @@ animations = [ {
 "name": "Basic",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 19 ), ExtResource( 17 ), ExtResource( 11 ), ExtResource( 16 ), ExtResource( 1 ), ExtResource( 15 ) ],
-"loop": true,
-"name": "Selected",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 8 ), ExtResource( 13 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "Origin",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 30 ), ExtResource( 39 ), ExtResource( 31 ), ExtResource( 37 ), ExtResource( 34 ), ExtResource( 38 ), ExtResource( 40 ) ],
 "loop": false,
 "name": "Explosion",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 51 ), ExtResource( 65 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 52 ), ExtResource( 53 ) ],
+"frames": [ ExtResource( 19 ), ExtResource( 17 ), ExtResource( 11 ), ExtResource( 16 ), ExtResource( 1 ), ExtResource( 15 ) ],
 "loop": true,
-"name": "Explosion_5",
+"name": "Selected",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ), ExtResource( 25 ), ExtResource( 21 ), ExtResource( 26 ), ExtResource( 24 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "Hover",
 "speed": 5.0
 } ]
 
@@ -164,7 +171,7 @@ script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
-animation = "Explosion_6"
+animation = "Explosion_5"
 
 [node name="Area2D" type="Area2D" parent="."]
 

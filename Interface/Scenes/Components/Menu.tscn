@@ -199,13 +199,6 @@ scale = Vector2( 4.91, 3.74 )
 z_index = -1
 texture = ExtResource( 4 )
 
-[node name="BackgroundMain" type="Sprite" parent="."]
-visible = false
-position = Vector2( 460, 253 )
-scale = Vector2( 4.91, 3.74 )
-z_index = -1
-texture = ExtResource( 3 )
-
 [node name="BackgroundVictory" type="Sprite" parent="."]
 visible = false
 position = Vector2( 3152, -357 )
@@ -219,6 +212,12 @@ position = Vector2( 3076, -458 )
 scale = Vector2( 4.91, 3.74 )
 z_index = -1
 texture = ExtResource( 5 )
+
+[node name="BackgroundMain" type="Sprite" parent="."]
+visible = false
+position = Vector2( 362, 226 )
+z_index = -1
+texture = ExtResource( 3 )
 
 [connection signal="pressed" from="StartButton" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="ContinueButton" to="." method="_on_ContinueButton_pressed"]

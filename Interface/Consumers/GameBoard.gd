@@ -1,7 +1,7 @@
 class_name GameBoard extends Node
 
 const size: int = 75
-const initialSpaceY: int = 35
+const initialSpaceY: int = 120
 var initialSpaceX: int = 0
 
 var board
@@ -134,7 +134,8 @@ func positionClick(position):
 	if !isAnimationInProcess() && !gameDisabled:
 		if(board.isPendingConflicts() && position.square.getHasOriginPotential()):
 			board.setOriginIfPossible(position.square)
-		elif !board.isPendingConflicts():
+		#elif !board.isPendingConflicts():
+		else:
 			if selectedPosition != null:
 				selectedPosition.Unselect()
 				board.setNextStep(selectedPosition.square, position.square)
