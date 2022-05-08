@@ -11,14 +11,14 @@ var _pointService: PointService
 var _conditionService: ConditionsService
 var _conflictsPending = false
 
-func _init(horizontal, vertical, turnsLeft):
+func _init(horizontal, vertical):
 	_sizeHorizontal = horizontal
 	_sizeVertical = vertical
-	_turnsLeft = turnsLeft + Config.getLevel()
+	_turnsLeft = 10 + (11 - Config.getLevel())
 	_startSquare = SquareService.goToStart(_initBoard())
 	_conflictResolver = ConflictResolver.new(self)
 	_pointService = PointService.new()
-	_conditionService = ConditionFactory.new(_pointService, Config.getLevel(), Config.getScore()).Build()
+	_conditionService = ConditionFactory.new(_pointService, Config.getLevel(), 10).Build()
 
 func _initBoard():
 	return BoardFactory.new(_sizeHorizontal, _sizeVertical, Config.getLevel()).construct()

@@ -35,7 +35,7 @@ func start():
 	_boardAnimation = GameBoardAnimation.new(self)
 
 func _initGame():
-	board = GameService.new(Config.getConfigValue(),Config.getConfigValue(), Config.getTurns())
+	board = GameService.new(Config.getConfigValue(),Config.getConfigValue())
 
 func _generateBoard():
 	var squares = board.getStartSquare()
