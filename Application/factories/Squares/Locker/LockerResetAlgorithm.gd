@@ -9,3 +9,4 @@ func Execute(initColor):
 	_position._resetAlgorithm = BasicResetAlgorithm.new(_position) 
 	_position.reset(initColor)
 	_position.setColor(oldColor)
+	_position.setType(SquareComponent.OLD_TYPE_LOCKER)

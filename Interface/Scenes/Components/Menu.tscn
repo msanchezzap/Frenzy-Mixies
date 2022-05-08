@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Interface/Consumers/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Interface/resources/Backgrounds/kristy-glas-0-gremlins.jpg" type="Texture" id=2]
-[ext_resource path="res://Interface/resources/Backgrounds/2.1.png" type="Texture" id=3]
+[ext_resource path="res://Interface/resources/Backgrounds/1000-600-2.png" type="Texture" id=3]
 [ext_resource path="res://Interface/resources/Backgrounds/kristy-glas-monitors.jpg" type="Texture" id=4]
 [ext_resource path="res://Interface/resources/Backgrounds/kristy-glas-soul.jpg" type="Texture" id=5]
 [ext_resource path="res://Interface/resources/blue.png" type="Texture" id=6]
@@ -187,6 +187,7 @@ __meta__ = {
 }
 
 [node name="BackgroundBlack" type="Sprite" parent="."]
+visible = false
 position = Vector2( 112, 95 )
 z_index = -3
 texture = ExtResource( 7 )
@@ -197,6 +198,13 @@ position = Vector2( 2888, -280 )
 scale = Vector2( 4.91, 3.74 )
 z_index = -1
 texture = ExtResource( 4 )
+
+[node name="BackgroundMain" type="Sprite" parent="."]
+visible = false
+position = Vector2( 460, 253 )
+scale = Vector2( 4.91, 3.74 )
+z_index = -1
+texture = ExtResource( 3 )
 
 [node name="BackgroundVictory" type="Sprite" parent="."]
 visible = false
@@ -211,12 +219,6 @@ position = Vector2( 3076, -458 )
 scale = Vector2( 4.91, 3.74 )
 z_index = -1
 texture = ExtResource( 5 )
-
-[node name="BackgroundMain" type="Sprite" parent="."]
-visible = false
-position = Vector2( 829, 405 )
-z_index = -1
-texture = ExtResource( 3 )
 
 [connection signal="pressed" from="StartButton" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="ContinueButton" to="." method="_on_ContinueButton_pressed"]

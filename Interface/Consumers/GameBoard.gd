@@ -1,7 +1,7 @@
 class_name GameBoard extends Node
 
 const size: int = 75
-const initialSpaceY: int = 100
+const initialSpaceY: int = 35
 var initialSpaceX: int = 0
 
 var board

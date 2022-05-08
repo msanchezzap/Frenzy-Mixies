@@ -40,11 +40,11 @@ func _ready():
 	scale = viewportWidth / $White.texture.get_size().x
 	$White.set_position(Vector2(viewportWidth/2, viewportHeight/2))
 	$White.set_scale(Vector2(scale / 2, scale / 3))
-	
 	for b in [$BackgroundDefeat, $BackgroundSettings, $BackgroundVictory, $BackgroundMain]:
-		scale = viewportWidth / b.texture.get_size().x
+		var scaleX = viewportWidth / b.texture.get_size().x
+		var scaleY = viewportHeight / b.texture.get_size().y
 		b.set_position(Vector2(viewportWidth/2, viewportHeight/2))
-		b.set_scale(Vector2(scale , scale ))
+		b.set_scale(Vector2(scaleX , scaleY ))
 		
 	get_node(_startButton).set_size(Vector2(viewportWidth/3, viewportHeight/6))
 	get_node(_startButton).set_position(Vector2(viewportWidth/3, viewportHeight/4))

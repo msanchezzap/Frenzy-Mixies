@@ -26,6 +26,39 @@ func construct():
 			while(BasicSearchAlgorithm.Execute(square).size() > 0):
 				square.setColor(randi() % colors)
 			lastSquare = square
+	match _level:
+		3:
+			var downRight = lastSquare.getRelation(Directions.UP).getRelation(Directions.LEFT)
+			var downLeft = lastSquare
+			while (downLeft.getRelation(Directions.LEFT) != null):
+				downLeft = downLeft.getRelation(Directions.LEFT)
+			downLeft = downLeft.getRelation(Directions.UP).getRelation(Directions.RIGHT)
+			var UpRight = lastSquare
+			while (UpRight.getRelation(Directions.UP) != null):
+				UpRight = UpRight.getRelation(Directions.UP)
+			UpRight = UpRight.getRelation(Directions.LEFT).getRelation(Directions.DOWN)
+			var UpLeft = SquareService.goToStart(UpRight).getRelation(Directions.DOWN).getRelation(Directions.RIGHT)
+			var lockfactory = Locker.new()
+			lockfactory.modify(UpLeft)
+			lockfactory.modify(UpRight)
+			lockfactory.modify(downLeft)
+			lockfactory.modify(downRight)
+		1,6,9:
+			var downRight = lastSquare.getRelation(Directions.UP).getRelation(Directions.LEFT).getRelation(Directions.UP).getRelation(Directions.LEFT)
+			var downLeft = lastSquare
+			while (downLeft.getRelation(Directions.LEFT) != null):
+				downLeft = downLeft.getRelation(Directions.LEFT)
+			downLeft = downLeft.getRelation(Directions.UP).getRelation(Directions.RIGHT).getRelation(Directions.UP).getRelation(Directions.RIGHT)
+			var UpRight = lastSquare
+			while (UpRight.getRelation(Directions.UP) != null):
+				UpRight = UpRight.getRelation(Directions.UP)
+			UpRight = UpRight.getRelation(Directions.LEFT).getRelation(Directions.DOWN).getRelation(Directions.LEFT).getRelation(Directions.DOWN)
+			var UpLeft = SquareService.goToStart(UpRight).getRelation(Directions.DOWN).getRelation(Directions.RIGHT).getRelation(Directions.DOWN).getRelation(Directions.RIGHT)
+			var lockfactory = Locker.new()
+			lockfactory.modify(UpLeft)
+			lockfactory.modify(UpRight)
+			lockfactory.modify(downLeft)
+			lockfactory.modify(downRight)
 	return lastSquare
 
 func getColorQuantity():

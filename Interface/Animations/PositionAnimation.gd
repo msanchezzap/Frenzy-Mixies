@@ -25,7 +25,7 @@ func Colorize(position: Position):
 			position.specialAnimation = ""
 	elif position.square._type == SquareComponent.TYPE_LOCKER:
 		_setAnimation(sprite, LOCKER_ANIMATION, position.square.getColor())
-	elif position.square._type == SquareComponent.TYPE_LOCKER:
+	elif position.square._type == SquareComponent.TYPE_EXPLOSIVE:
 		_setAnimation(sprite, EXPLOSIVE_ANIMATION, position.square.getColor())
 	elif position.square.getColor() == Colors.JOKER:
 		if sprite.get_animation() != JOKER_ANIMATION:
@@ -46,6 +46,9 @@ func _setAnimation(sprite: AnimatedSprite, animation, color):
 		sprite.set_frame(color)
 	
 func Move(position: Position, speed: int, delta):
+	if position.square.getType() == SquareComponent.OLD_TYPE_LOCKER:
+		position.position = position.basePosition
+		position.square._type = null
 	if ((position.basePosition - position.position).x < speed/POSITION_SIZE 
 		&& (position.basePosition - position.position).x > -speed/POSITION_SIZE 
 		&& (position.basePosition - position.position).y < speed/POSITION_SIZE 

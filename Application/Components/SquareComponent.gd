@@ -11,7 +11,8 @@ var _type = null
 const TYPE_JOKER = "joker"
 const TYPE_EXPLOSIVE = "explosive"
 const TYPE_LOCKER = "locker"
-const TYPES = [TYPE_JOKER, TYPE_EXPLOSIVE, TYPE_LOCKER]
+const OLD_TYPE_LOCKER = "oldLocker"
+const TYPES = [TYPE_JOKER, TYPE_EXPLOSIVE, TYPE_LOCKER, OLD_TYPE_LOCKER]
 
 func _init(initColor).(initColor):
 	pass

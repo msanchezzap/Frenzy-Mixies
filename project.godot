@@ -94,11 +94,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Application/factories/Squares/Joker/Joker.gd"
 }, {
-"base": "Condition",
-"class": "JokerCondition",
-"language": "GDScript",
-"path": "res://Application/Components/Conditions/JokerCondition.gd"
-}, {
 "base": "Node",
 "class": "JokerTrigger",
 "language": "GDScript",
@@ -159,6 +154,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Interface/Consumers/Position.gd"
 }, {
+"base": "Condition",
+"class": "SpecialCondition",
+"language": "GDScript",
+"path": "res://Application/Components/Conditions/SpecialCondition.gd"
+}, {
 "base": "Node",
 "class": "Square",
 "language": "GDScript",
@@ -207,7 +207,6 @@ _global_script_class_icons={
 "GameBoardAnimation": "",
 "GameService": "",
 "Joker": "",
-"JokerCondition": "",
 "JokerTrigger": "",
 "LinealCombinationAlgorithm": "",
 "LinealCombinationComponent": "",
@@ -220,6 +219,7 @@ _global_script_class_icons={
 "PointCondition": "",
 "PointService": "",
 "Position": "",
+"SpecialCondition": "",
 "Square": "",
 "SquareAux": "",
 "SquareCombination": "",
@@ -231,7 +231,7 @@ _global_script_class_icons={
 [application]
 
 config/name="SquareFrenzy"
-run/main_scene="res://Interface/Scenes/Main.tscn"
+run/main_scene="res://Interface/Scenes/Start.tscn"
 boot_splash/image="res://Interface/resources/Backgrounds/1.png"
 boot_splash/use_filter=false
 config/icon="res://Interface/resources/logo.png"
@@ -254,8 +254,7 @@ BasicSearchAlgorithm="*res://Application/factories/Squares/Basic/BasicSearchAlgo
 
 [display]
 
-window/size/width=1600
-window/size/height=900
+window/size/width=1000
 window/size/resizable=false
 window/vsync/use_vsync=false
 

@@ -18,7 +18,7 @@ func _init(horizontal, vertical, turnsLeft):
 	_startSquare = SquareService.goToStart(_initBoard())
 	_conflictResolver = ConflictResolver.new(self)
 	_pointService = PointService.new()
-	_conditionService = ConditionFactory.new(_pointService).Build()
+	_conditionService = ConditionFactory.new(_pointService, Config.getLevel(), Config.getScore()).Build()
 
 func _initBoard():
 	return BoardFactory.new(_sizeHorizontal, _sizeVertical, Config.getLevel()).construct()

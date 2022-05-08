@@ -8,11 +8,13 @@ func _ready():
 	_current_scene = root.get_child(root.get_child_count() - 1)
 
 func setBackgroundSize():
+	pass
 	var viewportWidth = get_viewport().size.x
 	var viewportHeight = get_viewport().size.y
-	var scale = viewportWidth / $Area2D/Background.texture.get_size().x
+	var scaleX = viewportWidth / $Area2D/Background.texture.get_size().x
+	var scaleY = viewportHeight / $Area2D/Background.texture.get_size().y
 	$Area2D/Background.set_position(Vector2(viewportWidth/2, viewportHeight/2))
-	$Area2D/Background.set_scale(Vector2(scale, scale))
+	$Area2D/Background.set_scale(Vector2(scaleX, scaleY))
 	
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
