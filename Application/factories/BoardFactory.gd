@@ -43,7 +43,7 @@ func construct():
 			lockfactory.modify(UpRight)
 			lockfactory.modify(downLeft)
 			lockfactory.modify(downRight)
-		1,6,9:
+		6,9:
 			var downRight = lastSquare.getRelation(Directions.UP).getRelation(Directions.LEFT).getRelation(Directions.UP).getRelation(Directions.LEFT)
 			var downLeft = lastSquare
 			while (downLeft.getRelation(Directions.LEFT) != null):

@@ -98,6 +98,11 @@ animations = [ {
 "name": "Explosive",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 60 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 57 ), ExtResource( 58 ) ],
+"loop": true,
+"name": "Explosion_6",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 76 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 77 ), ExtResource( 75 ), ExtResource( 67 ) ],
 "loop": true,
 "name": "Explosion_1",
@@ -113,19 +118,9 @@ animations = [ {
 "name": "Explosion_3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 51 ), ExtResource( 65 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 52 ), ExtResource( 53 ) ],
-"loop": true,
-"name": "Explosion_5",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 61 ), ExtResource( 66 ), ExtResource( 56 ), ExtResource( 50 ), ExtResource( 64 ), ExtResource( 62 ) ],
 "loop": true,
 "name": "Explosion_4",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 60 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 57 ), ExtResource( 58 ) ],
-"loop": true,
-"name": "Explosion_6",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 22 ), ExtResource( 25 ), ExtResource( 21 ), ExtResource( 26 ), ExtResource( 24 ), ExtResource( 23 ) ],
@@ -138,11 +133,6 @@ animations = [ {
 "name": "Basic",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 30 ), ExtResource( 39 ), ExtResource( 31 ), ExtResource( 37 ), ExtResource( 34 ), ExtResource( 38 ), ExtResource( 40 ) ],
-"loop": false,
-"name": "Explosion",
-"speed": 8.0
-}, {
 "frames": [ ExtResource( 19 ), ExtResource( 17 ), ExtResource( 11 ), ExtResource( 16 ), ExtResource( 1 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "Selected",
@@ -152,12 +142,22 @@ animations = [ {
 "loop": true,
 "name": "Origin",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 30 ), ExtResource( 39 ), ExtResource( 31 ), ExtResource( 37 ), ExtResource( 34 ), ExtResource( 38 ), ExtResource( 40 ) ],
+"loop": false,
+"name": "Explosion",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 51 ), ExtResource( 65 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 52 ), ExtResource( 53 ) ],
+"loop": true,
+"name": "Explosion_5",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 75, 75 )
 
-[node name="Area2D" type="Area2D"]
+[node name="Area2D2" type="Area2D"]
 scale = Vector2( 0.5, 0.5 )
 z_index = -3
 script = ExtResource( 2 )
