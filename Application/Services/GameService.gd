@@ -72,6 +72,10 @@ func executeNextStep():
 		_checkConflicts()
 		_checkChain()
 		combinationsTriggered = false
+	else:
+		_combinations = _conflictResolver.getNonConflicts()
+		_checkConflicts()
+		_checkChain()
 	return doneCombinations
 
 func _checkConflicts():
@@ -96,7 +100,7 @@ func setOriginIfPossible(square: SquareComponent):
 	for c in combinations:
 		for m in c.members:
 			m._hasOriginPotential = false
-	_combinations = _conflictResolver.getNonConflicts()
+	_combinations = [combinations]
 
 func getScore():
 	return _pointService.getTotal()
