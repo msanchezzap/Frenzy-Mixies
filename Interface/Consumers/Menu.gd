@@ -39,7 +39,7 @@ func _ready():
 	
 	for b in [$BackgroundDefeat, $BackgroundVictory, $White]:
 		b.set_position(Vector2(viewportWidth/2, viewportHeight/2))
-	for b in [ $BackgroundSettings, $BackgroundMain]:
+	for b in [ $BackgroundMain]:
 		var scaleX = viewportWidth / b.texture.get_size().x
 		var scaleY = viewportHeight / b.texture.get_size().y
 		b.set_position(Vector2(viewportWidth/2, viewportHeight/2))
@@ -50,7 +50,7 @@ func _ready():
 	get_node(_continueButton).set_size(Vector2(viewportWidth/3, viewportHeight/6))
 	get_node(_continueButton).set_position(Vector2(viewportWidth/3, viewportHeight/4))
 	
-	configureLittleButton(_settingsButton, viewportWidth/3, viewportHeight/2.3)
+	#configureLittleButton(_settingsButton, viewportWidth/3, viewportHeight/2.3)
 	configureLittleButton(_returnButtonLevels, viewportWidth/3, viewportHeight/1.6)
 	configureLittleButton(_exitButton, viewportWidth/3, viewportHeight/1.4)
 	configureLittleButton(_returnButton, viewportWidth/3, viewportHeight/1.4)

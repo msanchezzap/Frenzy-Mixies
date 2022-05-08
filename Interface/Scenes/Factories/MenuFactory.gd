@@ -5,7 +5,7 @@ func generateMainMenu():
 	menu = _baseMenu()
 	_setStartButton(menu, true)
 	_setExitButton(menu, true)
-	_setSettingsButton(menu)
+	#_setSettingsButton(menu)
 	menu.setBackground(Menu.MAIN_BACKGROUND)
 	return menu
 
