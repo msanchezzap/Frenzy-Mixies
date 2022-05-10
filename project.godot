@@ -34,16 +34,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Application/factories/BoardFactory.gd"
 }, {
-"base": "Reference",
-"class": "Cauldron",
-"language": "GDScript",
-"path": "res://Application/factories/Squares/Cauldron/Cauldron.gd"
-}, {
-"base": "Node",
-"class": "CauldronTrigger",
-"language": "GDScript",
-"path": "res://Application/factories/Squares/Cauldron/CauldronTrigger.gd"
-}, {
 "base": "Condition",
 "class": "ColorCondition",
 "language": "GDScript",
@@ -198,6 +188,16 @@ _global_script_classes=[ {
 "class": "SquareComponent",
 "language": "GDScript",
 "path": "res://Application/Components/SquareComponent.gd"
+}, {
+"base": "Reference",
+"class": "Wand",
+"language": "GDScript",
+"path": "res://Application/factories/Squares/Wand/Wand.gd"
+}, {
+"base": "Node",
+"class": "WandTrigger",
+"language": "GDScript",
+"path": "res://Application/factories/Squares/Wand/WandTrigger.gd"
 } ]
 _global_script_class_icons={
 "BasicDestructionAlgorithm": "",
@@ -205,8 +205,6 @@ _global_script_class_icons={
 "BasicResetAlgorithm": "",
 "BasicSearch": "",
 "BoardFactory": "",
-"Cauldron": "",
-"CauldronTrigger": "",
 "ColorCondition": "",
 "Combination": "",
 "Condition": "",
@@ -237,7 +235,9 @@ _global_script_class_icons={
 "SquareCombination": "",
 "SquareCombinationAlgorithm": "",
 "SquareCombinationComponent": "",
-"SquareComponent": ""
+"SquareComponent": "",
+"Wand": "",
+"WandTrigger": ""
 }
 
 [application]
