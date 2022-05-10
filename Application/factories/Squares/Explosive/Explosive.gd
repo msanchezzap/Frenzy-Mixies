@@ -1,8 +1,5 @@
 class_name Explosive 
 
-var _linealCreation = BasicLinealCreation
-var _trigger = ExplosiveTrigger
-
 func modify(square):
 	square._points = 25
 	square._searchAlgorithm = BasicSearchAlgorithm

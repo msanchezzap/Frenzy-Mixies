@@ -34,6 +34,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Application/factories/BoardFactory.gd"
 }, {
+"base": "Reference",
+"class": "Cauldron",
+"language": "GDScript",
+"path": "res://Application/factories/Squares/Cauldron/Cauldron.gd"
+}, {
+"base": "Node",
+"class": "CauldronTrigger",
+"language": "GDScript",
+"path": "res://Application/factories/Squares/Cauldron/CauldronTrigger.gd"
+}, {
 "base": "Condition",
 "class": "ColorCondition",
 "language": "GDScript",
@@ -195,6 +205,8 @@ _global_script_class_icons={
 "BasicResetAlgorithm": "",
 "BasicSearch": "",
 "BoardFactory": "",
+"Cauldron": "",
+"CauldronTrigger": "",
 "ColorCondition": "",
 "Combination": "",
 "Condition": "",
