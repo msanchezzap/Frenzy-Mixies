@@ -4,7 +4,7 @@ const size: int = 75
 const initialSpaceY: int = 120
 var initialSpaceX: int = 0
 
-var board
+var board: GameService
 var selectedPosition
 var allpositions = []
 var _boardAnimation
@@ -119,22 +119,22 @@ func _physics_process(delta):
 		if board.isPendingConflicts() && isTransitioning:
 			for p  in allpositions:
 				p.isConflictPending = true
-		if board.getWinState():
-			Config._stars[Config.getLevel()-1] = 3
-			if Config.getLevel() == Config.getMaxLevel():
-				Config.setMaxLevel(Config.getMaxLevel() + 1)
-				Config.advanceLevel()
-			gameDisabled = true
-			add_child(MenuFactory.new().generateWinMenu(board.getScore()))
-		elif board.getTurnsLeft() == 0:
-			gameDisabled = true
-			add_child(MenuFactory.new().generateGameOverMenu(board.getScore()))
+		match board.getGameStatus():
+			board.WIN:
+				Config._stars[Config.getLevel()-1] = 3
+				if Config.getLevel() == Config.getMaxLevel():
+					Config.setMaxLevel(Config.getMaxLevel() + 1)
+					Config.advanceLevel()
+				gameDisabled = true
+				add_child(MenuFactory.new().generateWinMenu(board.getScore()))
+			board.LOSE:
+				gameDisabled = true
+				add_child(MenuFactory.new().generateGameOverMenu(board.getScore()))
 
 func positionClick(position):
 	if !isAnimationInProcess() && !gameDisabled:
 		if(board.isPendingConflicts() && position.square.getHasOriginPotential()):
 			board.setOriginIfPossible(position.square)
-		#elif !board.isPendingConflicts():
 		else:
 			if selectedPosition != null:
 				selectedPosition.Unselect()

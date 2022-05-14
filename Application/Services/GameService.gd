@@ -11,10 +11,13 @@ var _pointService: PointService
 var _conditionService: ConditionsService
 var _conflictsPending = false
 
+const TURNS_MIN = 10
+const TURNS_EXTRA_MAX = 11
+
 func _init(horizontal, vertical):
 	_sizeHorizontal = horizontal
 	_sizeVertical = vertical
-	_turnsLeft = 10 + (11 - Config.getLevel())
+	_turnsLeft = TURNS_MIN + (TURNS_EXTRA_MAX - Config.getLevel())
 	_startSquare = SquareService.goToStart(_initBoard())
 	_conflictResolver = ConflictResolver.new(self)
 	_pointService = PointService.new()
@@ -29,7 +32,6 @@ func getStartSquare():
 
 func setNextStep(squareSource: SquareComponent, squareDestiny: SquareComponent):
 	if (squareSource.existsInRelation(squareDestiny) 
-		#&& !_conflictsPending 
 		&& _turnsLeft > 0 
 		&& squareSource.getType() != SquareComponent.TYPE_JOKER
 		&& squareSource.getType() != SquareComponent.TYPE_LOCKER
@@ -112,3 +114,16 @@ func getWinState():
 	return _conditionService.check()
 func getConditions():
 	return _conditionService.getTable()
+
+const IN_PROGRESS = 0
+const WIN = 1
+const LOSE = 2
+
+func getGameStatus():
+	if _turnsLeft > 0:
+		return IN_PROGRESS
+	if _conditionService.check():
+		return WIN
+	else:
+		return LOSE
+	
