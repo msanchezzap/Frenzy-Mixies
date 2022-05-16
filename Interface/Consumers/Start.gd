@@ -8,7 +8,6 @@ func _ready():
 	_current_scene = root.get_child(root.get_child_count() - 1)
 
 func setBackgroundSize():
-	pass
 	var viewportWidth = get_viewport().size.x
 	var viewportHeight = get_viewport().size.y
 	var scaleX = viewportWidth / $Area2D/Background.texture.get_size().x

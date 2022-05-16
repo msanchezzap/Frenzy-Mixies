@@ -91,6 +91,8 @@ func isAnimationInProcess():
 	return isanimating
 
 func _physics_process(delta):
+	$FPS.text = "FPS: " + str(Engine.get_frames_per_second()) 
+	$RAM.text = "RAM: " + str(stepify(OS.get_static_memory_usage() / 1000000.0,0.01)) +"MB"
 	if isAnimationInProcess():
 		for p  in allpositions:
 			p.isBoardAnimationInProgress = true
