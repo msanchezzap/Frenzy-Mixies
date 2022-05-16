@@ -75,6 +75,11 @@ _global_script_classes=[ {
 "path": "res://Application/factories/Squares/Explosive/ExplosiveTrigger.gd"
 }, {
 "base": "Node",
+"class": "FalseMovementAnimation",
+"language": "GDScript",
+"path": "res://Interface/Animations/FalseMovementAnimation.gd"
+}, {
+"base": "Node",
 "class": "GameBoard",
 "language": "GDScript",
 "path": "res://Interface/Consumers/GameBoard.gd"
@@ -213,6 +218,7 @@ _global_script_class_icons={
 "ConflictResolver": "",
 "Explosive": "",
 "ExplosiveTrigger": "",
+"FalseMovementAnimation": "",
 "GameBoard": "",
 "GameBoardAnimation": "",
 "GameService": "",

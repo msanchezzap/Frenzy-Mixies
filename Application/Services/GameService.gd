@@ -37,11 +37,9 @@ func setNextStep(squareSource: SquareComponent, squareDestiny: SquareComponent):
 		&& squareSource.getType() != SquareComponent.TYPE_LOCKER
 		&& squareDestiny.getType() != SquareComponent.TYPE_LOCKER
 	):
-		var newColor = squareSource.getColor()
-		var oldColor = squareDestiny.getColor()
-		squareDestiny.setColor(newColor)
-		if !squareDestiny.getCombinations():
-			squareDestiny.setColor(oldColor)
+		SquareService.ExchangeAll(squareSource,squareDestiny)
+		if !squareSource.getCombinations():
+			SquareService.ExchangeAll(squareSource,squareDestiny)
 		else:
 			_combinations = _conflictResolver.getNonConflicts()
 			_turnsLeft -= 1

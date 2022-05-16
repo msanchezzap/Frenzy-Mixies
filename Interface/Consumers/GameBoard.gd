@@ -95,6 +95,9 @@ func _physics_process(delta):
 		for p  in allpositions:
 			p.isBoardAnimationInProgress = true
 		isTransitioning = true
+	if !isAnimationInProcess() && falseMovementInProcess != null && !falseMovementInProcess.isProcessing():
+		falseMovementInProcess.Execute()
+		falseMovementInProcess = null
 	if !isAnimationInProcess() && board.hasNextStep():
 		var next = board.getNextStep()
 		var tmp = []
@@ -130,7 +133,7 @@ func _physics_process(delta):
 			board.LOSE:
 				gameDisabled = true
 				add_child(MenuFactory.new().generateGameOverMenu(board.getScore()))
-
+var falseMovementInProcess
 func positionClick(position):
 	if !isAnimationInProcess() && !gameDisabled:
 		if(board.isPendingConflicts() && position.square.getHasOriginPotential()):
@@ -139,9 +142,13 @@ func positionClick(position):
 			if selectedPosition != null:
 				selectedPosition.Unselect()
 				board.setNextStep(selectedPosition.square, position.square)
-				selectedPosition = null
+				if !board.hasNextStep():
+					falseMovementInProcess = FalseMovementAnimation.new(position,selectedPosition)
+					falseMovementInProcess.Execute()
 				if board.hasNextStep():
+					_boardAnimation.Execute([], board.getChain())
 					score.changeTurn(board.getTurnsLeft())
+				selectedPosition = null
 			else:
 				selectedPosition = position
 				selectedPosition.Select()
