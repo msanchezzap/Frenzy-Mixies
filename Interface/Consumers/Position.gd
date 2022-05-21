@@ -22,7 +22,6 @@ func init(board: GameBoard, square: Square, firstPosition: Vector2):
 	return self
 
 func _physics_process(delta):
-	square._seePotential()
 	applyColor()
 	applyMovement(delta)
 	applyScale()

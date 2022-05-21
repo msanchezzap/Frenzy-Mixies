@@ -77,7 +77,17 @@ func executeNextStep():
 		_combinations = _conflictResolver.getNonConflicts()
 		_checkConflicts()
 		_checkChain()
+	refreshAllPotentials()
 	return doneCombinations
+
+func refreshAllPotentials():
+	var currentRow: SquareComponent = _startSquare
+	while currentRow != null:
+		var currentCol = currentRow
+		while currentCol != null:
+			currentCol._seePotential()
+			currentCol = currentCol.getRelation(Directions.RIGHT)
+		currentRow = currentRow.getRelation(Directions.DOWN)
 
 func _checkConflicts():
 	if _conflictResolver.getConflicts().size() > 0:
