@@ -11,6 +11,14 @@ func check():
 		if !c.check():
 			return false
 	return true
+	
+func getStars():
+	var stars = 3
+	for c in _conditions:
+		var conditionStars = c.check()
+		if stars > conditionStars:
+			stars = conditionStars  
+	return stars
 
 func getTable():
 	var array = []

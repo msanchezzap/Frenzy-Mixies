@@ -126,12 +126,12 @@ func _physics_process(delta):
 				p.isConflictPending = true
 		match board.getGameStatus():
 			board.WIN:
-				Config._stars[Config.getLevel()-1] = 3
+				Config._stars[Config.getLevel()-1] = board.getStars()
 				if Config.getLevel() == Config.getMaxLevel():
 					Config.setMaxLevel(Config.getMaxLevel() + 1)
 					Config.advanceLevel()
 				gameDisabled = true
-				add_child(MenuFactory.new().generateWinMenu(board.getScore()))
+				add_child(MenuFactory.new().generateWinMenu(board.getScore(), board.getStars()))
 			board.LOSE:
 				gameDisabled = true
 				add_child(MenuFactory.new().generateGameOverMenu(board.getScore()))

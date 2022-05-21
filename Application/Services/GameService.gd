@@ -40,6 +40,7 @@ func setNextStep(squareSource: SquareComponent, squareDestiny: SquareComponent):
 		SquareService.ExchangeAll(squareSource,squareDestiny)
 		if !squareSource.getCombinations():
 			SquareService.ExchangeAll(squareSource,squareDestiny)
+			_pointService.setChain(false)
 		else:
 			_combinations = _conflictResolver.getNonConflicts()
 			_turnsLeft -= 1
@@ -116,7 +117,9 @@ func getConditions():
 const IN_PROGRESS = 0
 const WIN = 1
 const LOSE = 2
-
+func getStars():
+	return _conditionService.getStars()
+	
 func getGameStatus():
 	if _turnsLeft > 0:
 		return IN_PROGRESS

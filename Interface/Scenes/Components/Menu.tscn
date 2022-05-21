@@ -1,7 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Interface/Consumers/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Interface/resources/UI/Stars/1s.png" type="Texture" id=2]
 [ext_resource path="res://Interface/resources/Backgrounds/1000-600-2.png" type="Texture" id=3]
+[ext_resource path="res://Interface/resources/UI/Stars/2s.png" type="Texture" id=4]
+[ext_resource path="res://Interface/resources/UI/Stars/3s.png" type="Texture" id=5]
 [ext_resource path="res://Interface/resources/Backgrounds/Defeat.png" type="Texture" id=6]
 [ext_resource path="res://Interface/resources/black66.png" type="Texture" id=7]
 [ext_resource path="res://Interface/resources/Backgrounds/pausa.png" type="Texture" id=8]
@@ -196,6 +199,21 @@ visible = false
 position = Vector2( 485, 336 )
 z_index = -1
 texture = ExtResource( 9 )
+
+[node name="1s" type="Sprite" parent="."]
+visible = false
+position = Vector2( 484, 237 )
+texture = ExtResource( 2 )
+
+[node name="2s" type="Sprite" parent="."]
+visible = false
+position = Vector2( 488, 232 )
+texture = ExtResource( 4 )
+
+[node name="3s" type="Sprite" parent="."]
+visible = false
+position = Vector2( 491, 233 )
+texture = ExtResource( 5 )
 
 [connection signal="pressed" from="StartButton" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="ContinueButton" to="." method="_on_ContinueButton_pressed"]

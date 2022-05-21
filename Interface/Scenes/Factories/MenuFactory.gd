@@ -22,9 +22,10 @@ func generateGameOverMenu(score: int):
 	menu.setBackground(Menu.DEFEAT_BACKGROUND)
 	return menu 
 
-func generateWinMenu(score: int):
+func generateWinMenu(score: int, stars: int):
 	var menu = _generateScoreMenu(score)
 	menu.setBackground(Menu.VICTORY_BACKGROUND)
+	menu.setStars(stars)
 	return menu
 func generateSettingsMenu(menu):
 	menu.setElementVisibility(Menu._startButton, false)

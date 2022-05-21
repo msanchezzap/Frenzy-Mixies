@@ -23,6 +23,10 @@ const _boardLabel2: String = "BoardLabel2"
 const _boardLabel3: String = "BoardLabel3"
 const _lineEdit: String = "LineEdit"
 const _lineEdit2: String = "LineEdit2"
+const _0star: String = "1s"
+const _1star: String = "1s"
+const _2star: String = "2s"
+const _3star: String = "3s"
 
 var _size = 1
 var viewportWidth
@@ -49,8 +53,11 @@ func _ready():
 	get_node(_startButton).set_position(Vector2(viewportWidth/3, viewportHeight/4))
 	get_node(_continueButton).set_size(Vector2(viewportWidth/3, viewportHeight/6))
 	get_node(_continueButton).set_position(Vector2(viewportWidth/3, viewportHeight/4))
+	get_node(_0star).set_position(Vector2(viewportWidth/2, viewportHeight/2.5))
+	get_node(_1star).set_position(Vector2(viewportWidth/2, viewportHeight/2.5))
+	get_node(_2star).set_position(Vector2(viewportWidth/2, viewportHeight/2.5))
+	get_node(_3star).set_position(Vector2(viewportWidth/2, viewportHeight/2.5))
 	
-	#configureLittleButton(_settingsButton, viewportWidth/3, viewportHeight/2.3)
 	configureLittleButton(_returnButtonLevels, viewportWidth/3, viewportHeight/1.6)
 	configureLittleButton(_exitButton, viewportWidth/3, viewportHeight/1.4)
 	configureLittleButton(_returnButton, viewportWidth/3, viewportHeight/1.4)
@@ -69,6 +76,17 @@ func setExitButton(showExit: bool):
 
 func setElementVisibility(element: String, visible: bool):
 	get_node(element).visible = visible
+
+func setStars(stars: int):
+	match stars:
+		0:
+			setElementVisibility(_0star, true)
+		1:
+			setElementVisibility(_1star, true)
+		2:
+			setElementVisibility(_2star, true)
+		3:
+			setElementVisibility(_3star, true)
 
 func setScore(score: int):
 	get_node(_scoreNumberLabel).visible = true

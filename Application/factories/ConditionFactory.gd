@@ -6,7 +6,7 @@ var _baseScore
 
 const _SCORE_COMBINATION_SIZE_MIN = 3
 const _SCORE_MAX_BASE_MULTIPLIER = 20
-const _SCORE_LEVEL_MULTIPLIER = 1.5
+const _SCORE_LEVEL_MULTIPLIER = 1.2
 
 func _init(pointService: PointService, level: int, baseScore: int):
 	_pointService = pointService
@@ -15,20 +15,21 @@ func _init(pointService: PointService, level: int, baseScore: int):
 
 func Build():
 	var conditionService = ConditionsService.new()
-	conditionService.addCondition(PointCondition.new(_pointService, _calculateObjectiveScore()))
+	var score = _calculateObjectiveScore()
+	conditionService.addCondition(PointCondition.new(_pointService, [score, score * 1.2, score * 1.4]))
 	match _level:
 		2:
-			conditionService.addCondition(SpecialCondition.new(_pointService,SquareComponent.TYPE_JOKER, 2))
+			conditionService.addCondition(ColorCondition.new(_pointService,Colors.GREEN, [3,6,9]))
 		3:
-			conditionService.addCondition(SpecialCondition.new(_pointService, SquareComponent.TYPE_LOCKER, 2))
+			conditionService.addCondition(SpecialCondition.new(_pointService, SquareComponent.TYPE_LOCKER, [2,3,4]))
 		5:
-			conditionService.addCondition(SpecialCondition.new(_pointService, SquareComponent.TYPE_JOKER, 3))
+			conditionService.addCondition(ColorCondition.new(_pointService, Colors.BLUE, [6,10,15]))
 		6:
-			conditionService.addCondition(SpecialCondition.new(_pointService,SquareComponent.TYPE_LOCKER, 3))
+			conditionService.addCondition(SpecialCondition.new(_pointService,SquareComponent.TYPE_LOCKER, [3,4,6]))
 		8:
-			conditionService.addCondition(SpecialCondition.new(_pointService, SquareComponent.TYPE_JOKER, 4))
+			conditionService.addCondition(SpecialCondition.new(_pointService, SquareComponent.TYPE_EXPLOSIVE, [2,4,6]))
 		9:
-			conditionService.addCondition(SpecialCondition.new(_pointService,SquareComponent.TYPE_LOCKER, 4))
+			conditionService.addCondition(SpecialCondition.new(_pointService,SquareComponent.TYPE_LOCKER, [4,6,8]))
 	return conditionService
 
 func _calculateObjectiveScore():

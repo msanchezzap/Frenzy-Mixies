@@ -46,3 +46,6 @@ func getMaxLevel():
 	
 func setMaxLevel(maxLevel):
 	_maxLevel = maxLevel
+func setStars(level: int, stars: int):
+	if stars <= 3 && stars >= 0:
+		_stars[level -1] = stars
