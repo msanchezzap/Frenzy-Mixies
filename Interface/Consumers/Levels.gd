@@ -13,7 +13,10 @@ func _ready():
 	var root = get_tree().get_root()
 	_current_scene = root.get_child(root.get_child_count() - 1)
 	setBackgroundSize()
-
+func _physics_process(delta):
+	$FPS.text = "FPS: " + str(Engine.get_frames_per_second()) 
+	$RAM.text = "RAM: " + str(stepify(OS.get_static_memory_usage() / 1000000.0,0.01)) +"MB"
+	
 func setBackgroundSize():
 	pass
 	var viewportWidth = get_viewport().size.x
