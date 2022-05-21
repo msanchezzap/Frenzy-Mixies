@@ -18,7 +18,7 @@ func _init(horizontal, vertical):
 	_sizeHorizontal = horizontal
 	_sizeVertical = vertical
 	_turnsLeft = TURNS_MIN + (TURNS_EXTRA_MAX - Config.getLevel())
-	_startSquare = SquareService.goToStart(_initBoard())
+	_startSquare = _initBoard()
 	_conflictResolver = ConflictResolver.new(self)
 	_pointService = PointService.new()
 	_conditionService = ConditionFactory.new(_pointService, Config.getLevel(), 10).Build()

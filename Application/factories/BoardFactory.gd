@@ -10,6 +10,7 @@ func _init(width:int, height:int, level: int):
 
 func construct():
 	var colors = getColorQuantity()
+	var firstSquare = null
 	var lastRow: SquareComponent = null
 	var lastSquare: SquareComponent = null
 	for n in _x:
@@ -18,6 +19,8 @@ func construct():
 			lastSquare = null
 		for m in _y:
 			var square = SquareComponent.new(randi() % colors)
+			if firstSquare == null:
+				firstSquare = square
 			if(lastSquare != null):
 				square.AddRelation(lastSquare,Directions.LEFT)
 			if(lastRow != null):
@@ -59,7 +62,7 @@ func construct():
 			lockfactory.modify(UpRight)
 			lockfactory.modify(downLeft)
 			lockfactory.modify(downRight)
-	return lastSquare
+	return firstSquare
 
 func getColorQuantity():
 	match _level:
