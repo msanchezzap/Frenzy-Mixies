@@ -4,9 +4,5 @@ func _init(source: Square, memberlist, oposite: Square).(source, memberlist, opo
 	pass
 
 func Destroy():
-	#Joker.new().modify(opposite)
-	var tmp = origin._triggerFunction
-	Wand.new().modify(origin)
-	origin.trigger(origin)
-	origin._triggerFunction = tmp
 	CombinationDestruction.BasicDestruction(self)
+	Explosive.new().modify(opposite)

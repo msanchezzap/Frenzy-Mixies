@@ -105,6 +105,16 @@ _global_script_classes=[ {
 "path": "res://Application/factories/Squares/Joker/JokerTrigger.gd"
 }, {
 "base": "Reference",
+"class": "LinealCleaner",
+"language": "GDScript",
+"path": "res://Application/factories/Squares/LinealCleaner/LinealCleaner.gd"
+}, {
+"base": "Node",
+"class": "LinealCleanerTrigger",
+"language": "GDScript",
+"path": "res://Application/factories/Squares/LinealCleaner/LinealCleanerTrigger.gd"
+}, {
+"base": "Reference",
 "class": "LinealCombinationAlgorithm",
 "language": "GDScript",
 "path": "res://Application/Services/Algorithms/Search/LinealCombinationAlgorithm.gd"
@@ -224,6 +234,8 @@ _global_script_class_icons={
 "GameService": "",
 "Joker": "",
 "JokerTrigger": "",
+"LinealCleaner": "",
+"LinealCleanerTrigger": "",
 "LinealCombinationAlgorithm": "",
 "LinealCombinationComponent": "",
 "Locker": "",

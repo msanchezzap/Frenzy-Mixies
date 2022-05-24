@@ -19,11 +19,11 @@ func Build():
 	conditionService.addCondition(PointCondition.new(_pointService, [score, score * 1.2, score * 1.4]))
 	match _level:
 		2:
-			conditionService.addCondition(ColorCondition.new(_pointService,Colors.GREEN, [3,6,9]))
+			conditionService.addCondition(ColorCondition.new(_pointService,Colors.GREEN, [10,20,30]))
 		3:
 			conditionService.addCondition(SpecialCondition.new(_pointService, SquareComponent.TYPE_LOCKER, [2,3,4]))
 		5:
-			conditionService.addCondition(ColorCondition.new(_pointService, Colors.BLUE, [6,10,15]))
+			conditionService.addCondition(ColorCondition.new(_pointService, Colors.BLUE, [30,40,60]))
 		6:
 			conditionService.addCondition(SpecialCondition.new(_pointService,SquareComponent.TYPE_LOCKER, [3,4,6]))
 		8:

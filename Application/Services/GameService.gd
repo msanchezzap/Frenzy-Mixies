@@ -38,7 +38,7 @@ func setNextStep(squareSource: SquareComponent, squareDestiny: SquareComponent):
 		&& squareDestiny.getType() != SquareComponent.TYPE_LOCKER
 	):
 		SquareService.ExchangeAll(squareSource,squareDestiny)
-		if !squareSource.getCombinations():
+		if !squareSource.getCombinations() && !squareDestiny.getCombinations():
 			SquareService.ExchangeAll(squareSource,squareDestiny)
 			_pointService.setChain(false)
 		else:
