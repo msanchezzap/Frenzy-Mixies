@@ -3,7 +3,7 @@ class_name GameBoard extends Node
 const size: int = 75
 const initialSpaceY: int = 120
 var initialSpaceX: int = 0
-
+var _saveService: SaveService
 var board: GameService
 var selectedPosition
 var allpositions = []
@@ -15,6 +15,9 @@ var gameDisabled = false
 var isTransitioning = false
 var lastStep = []
 var oldStep = []
+
+func _init():
+	_saveService = SaveService.new()
 
 func _ready():
 	initialSpaceX = get_viewport().size.x/5
@@ -132,6 +135,7 @@ func _physics_process(delta):
 					Config.advanceLevel()
 				gameDisabled = true
 				add_child(MenuFactory.new().generateWinMenu(board.getScore(), board.getStars()))
+				_saveService.save()
 			board.LOSE:
 				gameDisabled = true
 				add_child(MenuFactory.new().generateGameOverMenu(board.getScore()))

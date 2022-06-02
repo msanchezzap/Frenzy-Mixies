@@ -1,5 +1,8 @@
 extends Node2D
 
+func _init():
+	SaveService.new().load()
+	
 var _current_scene = null
 const path = "res://Interface/Scenes/Main.tscn"
 func _ready():
