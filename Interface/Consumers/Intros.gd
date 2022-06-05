@@ -209,7 +209,6 @@ func _getCurrentPhase():
 	return IntroConstants.text[introPhase] 
 
 func _enableItems():
-	$AnimatedSprite5.visible = true
 	$CalderoDemierda.visible = true
 	$item1.visible = true
 	$item2.visible = true
@@ -218,6 +217,7 @@ func _enableItems():
 	nextPhase()
 	
 func _enableItemsIndications():
+	$AnimatedSprite5.visible = true
 	$item1/click.visible = true
 	$item1/clickmessage.visible = true
 	$item2/click.visible = true

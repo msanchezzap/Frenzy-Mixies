@@ -13,10 +13,10 @@ const allCommands = [doorClick, standardClick, tutorial, pickStart, pick, showPi
 
 const text = [
 	doorClick, background2, background3
-	, showPick
 	, background4
 	, background4
 	, "1"
+	, showPick
 	, "2"
 	, pickStart, pick, pick, pick
 	, background4
