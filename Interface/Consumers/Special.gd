@@ -7,6 +7,8 @@ func setAnimation(squareCombination):
 	combination = squareCombination
 
 func _physics_process(delta):
+	MusicScrene.playWand()
+	isAnimationInProgress = false
 	$AnimatedSprite.position.x += 1
 	time += 1
 	if time == 10:

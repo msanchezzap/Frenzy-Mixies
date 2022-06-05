@@ -1,31 +1,13 @@
-[gd_scene load_steps=138 format=2]
+[gd_scene load_steps=108 format=2]
 
-[ext_resource path="res://Interface/resources/Positions/selected/7010.png" type="Texture" id=1]
 [ext_resource path="res://Interface/Consumers/Position.gd" type="Script" id=2]
 [ext_resource path="res://Interface/resources/Positions/JokerDefault/multicolor.png" type="Texture" id=3]
 [ext_resource path="res://Interface/resources/Positions/default/1.png" type="Texture" id=4]
 [ext_resource path="res://Interface/resources/Positions/default/2.png" type="Texture" id=5]
 [ext_resource path="res://Interface/resources/Positions/default/5.png" type="Texture" id=6]
 [ext_resource path="res://Interface/resources/Positions/default/4.png" type="Texture" id=7]
-[ext_resource path="res://Interface/resources/Positions/selected/5033.png" type="Texture" id=8]
-[ext_resource path="res://Interface/resources/Positions/selected/6033.png" type="Texture" id=9]
-[ext_resource path="res://Interface/resources/Positions/selected/1033.png" type="Texture" id=10]
-[ext_resource path="res://Interface/resources/Positions/selected/4010.png" type="Texture" id=11]
-[ext_resource path="res://Interface/resources/Positions/selected/2033.png" type="Texture" id=12]
-[ext_resource path="res://Interface/resources/Positions/selected/7033.png" type="Texture" id=13]
-[ext_resource path="res://Interface/resources/Positions/selected/4033.png" type="Texture" id=14]
-[ext_resource path="res://Interface/resources/Positions/selected/6010.png" type="Texture" id=15]
-[ext_resource path="res://Interface/resources/Positions/selected/5010.png" type="Texture" id=16]
-[ext_resource path="res://Interface/resources/Positions/selected/2010.png" type="Texture" id=17]
 [ext_resource path="res://Interface/resources/Positions/default/6.png" type="Texture" id=18]
-[ext_resource path="res://Interface/resources/Positions/selected/1010.png" type="Texture" id=19]
 [ext_resource path="res://Interface/resources/Positions/default/3.png" type="Texture" id=20]
-[ext_resource path="res://Interface/resources/Positions/hover/4000.png" type="Texture" id=21]
-[ext_resource path="res://Interface/resources/Positions/hover/1000.png" type="Texture" id=22]
-[ext_resource path="res://Interface/resources/Positions/hover/6000.png" type="Texture" id=23]
-[ext_resource path="res://Interface/resources/Positions/hover/7000.png" type="Texture" id=24]
-[ext_resource path="res://Interface/resources/Positions/hover/2000.png" type="Texture" id=25]
-[ext_resource path="res://Interface/resources/Positions/hover/5000.png" type="Texture" id=26]
 [ext_resource path="res://Interface/resources/Positions/Explosive/4.png" type="Texture" id=27]
 [ext_resource path="res://Interface/resources/Positions/Explosive/2.png" type="Texture" id=28]
 [ext_resource path="res://Interface/resources/Positions/Explosive/6.png" type="Texture" id=29]
@@ -87,12 +69,7 @@
 [ext_resource path="res://Interface/resources/Positions/Explosion/yellow/ey7.png" type="Texture" id=85]
 [ext_resource path="res://Interface/resources/Positions/Explosion/blue/eb7.png" type="Texture" id=86]
 [ext_resource path="res://Interface/resources/Positions/Explosion/red/er7.png" type="Texture" id=87]
-[ext_resource path="res://Interface/resources/Positions/LineHorizontal/l7.png" type="Texture" id=88]
 [ext_resource path="res://Interface/resources/Positions/LineHorizontal/1.png" type="Texture" id=89]
-[ext_resource path="res://Interface/resources/Positions/LineHorizontal/l2.png" type="Texture" id=90]
-[ext_resource path="res://Interface/resources/Positions/LineHorizontal/l6.png" type="Texture" id=91]
-[ext_resource path="res://Interface/resources/Positions/LineHorizontal/l5.png" type="Texture" id=92]
-[ext_resource path="res://Interface/resources/Positions/LineHorizontal/l4.png" type="Texture" id=93]
 [ext_resource path="res://Interface/resources/Positions/LineVertical/3.png" type="Texture" id=94]
 [ext_resource path="res://Interface/resources/Positions/LineVertical/1.png" type="Texture" id=95]
 [ext_resource path="res://Interface/resources/Positions/LineVertical/2.png" type="Texture" id=96]
@@ -116,7 +93,6 @@
 [ext_resource path="res://Interface/resources/Positions/LineHorizontal/3.png" type="Texture" id=114]
 [ext_resource path="res://Interface/resources/Positions/LineHorizontal/2.png" type="Texture" id=115]
 [ext_resource path="res://Interface/resources/Positions/LineHorizontal/5.png" type="Texture" id=116]
-[ext_resource path="res://Interface/resources/Positions/LineHorizontal/l1.png" type="Texture" id=117]
 [ext_resource path="res://Interface/resources/Positions/selected/3.png" type="Texture" id=118]
 [ext_resource path="res://Interface/resources/Positions/selected/4.png" type="Texture" id=119]
 [ext_resource path="res://Interface/resources/Positions/selected/5.png" type="Texture" id=120]
@@ -130,33 +106,9 @@
 [ext_resource path="res://Interface/resources/Positions/origin/3.png" type="Texture" id=128]
 [ext_resource path="res://Interface/resources/Positions/origin/1.png" type="Texture" id=129]
 
-[sub_resource type="StreamTexture" id=7]
-flags = 4
-load_path = "res://.import/ld1.png-ee4555715e381895877eec8a89214fdd.stex"
-
-[sub_resource type="StreamTexture" id=8]
-flags = 4
-load_path = "res://.import/ld2.png-aea7e4e0818b785a4e0798c4d1a451d2.stex"
-
-[sub_resource type="StreamTexture" id=9]
-flags = 4
-load_path = "res://.import/ld4.png-70ed164acc93ffcdce1a876f7505ef8a.stex"
-
-[sub_resource type="StreamTexture" id=10]
-flags = 4
-load_path = "res://.import/ld5.png-7f7cf73209eb9b007e4179ace74f2ab3.stex"
-
-[sub_resource type="StreamTexture" id=11]
-flags = 4
-load_path = "res://.import/ld7.png-130acb8a61403b62c478a2f5592f4cc3.stex"
-
-[sub_resource type="StreamTexture" id=12]
-flags = 4
-load_path = "res://.import/ld6.png-50a7e1ede163e90a51b913b04633cef5.stex"
-
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ ExtResource( 106 ), ExtResource( 107 ), ExtResource( 110 ), ExtResource( 111 ), ExtResource( 109 ), ExtResource( 108 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"frames": [ ExtResource( 106 ), ExtResource( 107 ), ExtResource( 110 ), ExtResource( 111 ), ExtResource( 109 ), ExtResource( 108 ) ],
 "loop": true,
 "name": "LineDouble",
 "speed": 5.0
@@ -166,12 +118,12 @@ animations = [ {
 "name": "Explosion",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 129 ), ExtResource( 127 ), ExtResource( 128 ), ExtResource( 124 ), ExtResource( 125 ), ExtResource( 126 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 14 ), ExtResource( 8 ), ExtResource( 13 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 129 ), ExtResource( 127 ), ExtResource( 128 ), ExtResource( 124 ), ExtResource( 125 ), ExtResource( 126 ) ],
 "loop": true,
 "name": "Origin",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 105 ), ExtResource( 103 ), ExtResource( 104 ), ExtResource( 100 ), ExtResource( 101 ), ExtResource( 102 ), ExtResource( 22 ), ExtResource( 25 ), ExtResource( 21 ), ExtResource( 26 ), ExtResource( 24 ), ExtResource( 23 ) ],
+"frames": [ ExtResource( 105 ), ExtResource( 103 ), ExtResource( 104 ), ExtResource( 100 ), ExtResource( 101 ), ExtResource( 102 ) ],
 "loop": true,
 "name": "Hover",
 "speed": 5.0
@@ -206,12 +158,12 @@ animations = [ {
 "name": "Basic",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 89 ), ExtResource( 115 ), ExtResource( 114 ), ExtResource( 113 ), ExtResource( 116 ), ExtResource( 112 ), ExtResource( 117 ), ExtResource( 90 ), ExtResource( 93 ), ExtResource( 92 ), ExtResource( 88 ), ExtResource( 91 ) ],
+"frames": [ ExtResource( 89 ), ExtResource( 115 ), ExtResource( 114 ), ExtResource( 113 ), ExtResource( 116 ), ExtResource( 112 ) ],
 "loop": true,
 "name": "LineHorizontal",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 122 ), ExtResource( 123 ), ExtResource( 118 ), ExtResource( 119 ), ExtResource( 120 ), ExtResource( 121 ), ExtResource( 19 ), ExtResource( 17 ), ExtResource( 11 ), ExtResource( 16 ), ExtResource( 1 ), ExtResource( 15 ) ],
+"frames": [ ExtResource( 122 ), ExtResource( 123 ), ExtResource( 118 ), ExtResource( 119 ), ExtResource( 120 ), ExtResource( 121 ) ],
 "loop": true,
 "name": "Selected",
 "speed": 5.0

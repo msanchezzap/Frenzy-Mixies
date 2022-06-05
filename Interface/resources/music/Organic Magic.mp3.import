@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Organic Magic.mp3-17cfeb7a915c157bbb4506973830fa43.mp3str"
+
+[deps]
+
+source_file="res://Interface/resources/music/Organic Magic.mp3"
+dest_files=[ "res://.import/Organic Magic.mp3-17cfeb7a915c157bbb4506973830fa43.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Magic Forest.mp3-18dcfce794054e7378b608e7507e6d43.mp3str"
+
+[deps]
+
+source_file="res://Interface/resources/music/Magic Forest.mp3"
+dest_files=[ "res://.import/Magic Forest.mp3-18dcfce794054e7378b608e7507e6d43.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Potion 3.mp3-232218bfb8a52cd0cb9e67e7c0567205.mp3str"
+
+[deps]
+
+source_file="res://Interface/resources/music/Potion 3.mp3"
+dest_files=[ "res://.import/Potion 3.mp3-232218bfb8a52cd0cb9e67e7c0567205.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

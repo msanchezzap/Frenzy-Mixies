@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Interface/resources/Backgrounds/2.png" type="Texture" id=1]
 [ext_resource path="res://Interface/Consumers/Intros.gd" type="Script" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Interface/resources/UI/sparkles/b2.png" type="Texture" id=18]
 [ext_resource path="res://Interface/resources/UI/sparkles/b3.png" type="Texture" id=19]
 [ext_resource path="res://Interface/resources/UI/sparkles/b4.png" type="Texture" id=20]
+[ext_resource path="res://Interface/resources/music/Organic Magic.mp3" type="AudioStream" id=21]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 174, 157 )
@@ -224,6 +225,54 @@ frames = SubResource( 2 )
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 2 )
+
+[node name="B1" type="Sprite" parent="."]
+visible = false
+position = Vector2( 474, 93 )
+texture = ExtResource( 17 )
+
+[node name="B2" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1256, 199 )
+texture = ExtResource( 17 )
+
+[node name="B3" type="Sprite" parent="."]
+visible = false
+position = Vector2( 114, 710 )
+texture = ExtResource( 18 )
+
+[node name="B4" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1231, 532 )
+texture = ExtResource( 18 )
+
+[node name="B5" type="Sprite" parent="."]
+visible = false
+position = Vector2( 146, 627 )
+texture = ExtResource( 19 )
+
+[node name="B6" type="Sprite" parent="."]
+visible = false
+position = Vector2( 686, 254 )
+texture = ExtResource( 19 )
+
+[node name="B8" type="Sprite" parent="."]
+visible = false
+position = Vector2( 292, 1254 )
+texture = ExtResource( 19 )
+
+[node name="B9" type="Sprite" parent="."]
+visible = false
+position = Vector2( 584, 2508 )
+texture = ExtResource( 19 )
+
+[node name="B7" type="Sprite" parent="."]
+visible = false
+position = Vector2( 438, 1881 )
+texture = ExtResource( 19 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
 
 [connection signal="input_event" from="Door" to="." method="_on_Area2D_input_event"]
 [connection signal="input_event" from="item1" to="." method="_on_item1_input_event"]

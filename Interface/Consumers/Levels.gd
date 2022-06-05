@@ -54,6 +54,7 @@ func _input(event):
 			_changeScene("res://Interface/Scenes/Main.tscn")
 
 func _button_pressed(button):
+	MusicScrene.playButton()
 	Config.setLevel(int(button.get_name()))
 	_changeScene("res://Interface/Scenes/Game.tscn")
 

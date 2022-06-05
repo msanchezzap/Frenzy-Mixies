@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Crystal Take.wav-85a01dd161e1e4d3d1540bada5d80b96.sample"
+
+[deps]
+
+source_file="res://Interface/resources/music/Crystal Take.wav"
+dest_files=[ "res://.import/Crystal Take.wav-85a01dd161e1e4d3d1540bada5d80b96.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

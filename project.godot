@@ -293,6 +293,7 @@ CombinationDestruction="*res://Application/Services/Algorithms/CombinationDestro
 JokerSearch="*res://Application/factories/Squares/Joker/JokerSearch.gd"
 Config="*res://Application/Services/Config.gd"
 BasicSearchAlgorithm="*res://Application/factories/Squares/Basic/BasicSearchAlgorithm.gd"
+MusicScrene="*res://Interface/Scenes/MusicScrene.tscn"
 
 [display]
 

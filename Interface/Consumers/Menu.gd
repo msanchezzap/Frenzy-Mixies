@@ -208,19 +208,23 @@ func _on_LineEdit2_text_changed(new_text):
 
 func _on_StartButton_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
+		MusicScrene.playButton()
 		_changeScene("res://Interface/Scenes/Levels.tscn")
 
 func _on_ExitButton_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
+		MusicScrene.playButton()
 		get_tree().quit()
 
 func _on_ContinueButton_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
+		MusicScrene.playButton()
 		self.queue_free()
 
 var pressed = false
 func _on_ReturnButton_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
+		MusicScrene.playButton()
 		if settingsEnabled:
 			settingsEnabled = false
 			_changeScene("res://Interface/Scenes/Main.tscn")
@@ -235,6 +239,7 @@ func activateResultBackground():
 var settingsEnabled = false
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
+		MusicScrene.playButton()
 		_on_SettingsButton_pressed()
 		settingsEnabled = true
 		pressed = true

@@ -50,7 +50,16 @@ func _ready():
 	$AnimatedSprite.set_position(Vector2(get_viewport().size.x / 1.25 , get_viewport().size.y / 1.25))
 	$AnimatedSprite2.set_position(Vector2(get_viewport().size.x / 3 , get_viewport().size.y /3))
 	$AnimatedSprite3.set_position(Vector2(get_viewport().size.x / 5 , get_viewport().size.y / 1.25))
-			
+	
+	$B1.set_position(Vector2(get_viewport().size.x / 1.25 , get_viewport().size.y / 3))
+	$B2.set_position(Vector2(get_viewport().size.x / 2.2 , get_viewport().size.y / 1.75))
+	$B3.set_position(Vector2(get_viewport().size.x / 1.25 , get_viewport().size.y / 1.25))
+	$B4.set_position(Vector2(get_viewport().size.x / 2.75 , get_viewport().size.y / 2))
+	$B5.set_position(Vector2(get_viewport().size.x / 5 , get_viewport().size.y / 1.5))
+	$B6.set_position(Vector2(get_viewport().size.x / 3 , get_viewport().size.y / 5))
+	$B7.set_position(Vector2(get_viewport().size.x / 2.3 , get_viewport().size.y / 1.4))
+	$B8.set_position(Vector2(get_viewport().size.x / 4 , get_viewport().size.y / 3))
+	$B9.set_position(Vector2(get_viewport().size.x / 1.5 , get_viewport().size.y / 4.7))
 	
 var lastPhase = -1
 var itemMovement: Array = []
@@ -70,10 +79,14 @@ func triggerPhase():
 				IntroConstants.showPick:
 					_enableItems()
 				IntroConstants.pickStart:
+					$AudioStreamPlayer.stop()
+					for i in ["1","2","3","4"]:
+						get_node(i).visible = false
 					_enableItemsIndications()
 				IntroConstants.tutorial:
 					_startTutorial()
 				IntroConstants.background2:
+					$AudioStreamPlayer.play()
 					_setBackground(2, 0)
 				IntroConstants.background3:
 					_setBackground(3, 1)
@@ -83,11 +96,26 @@ func triggerPhase():
 					$AnimatedSprite2.play()
 					$AnimatedSprite3.visible = true
 					$AnimatedSprite3.play()
+					$B1.visible = true
+					$B2.visible = true
+					$B3.visible = true
+					$B4.visible = true
+					$B5.visible = true
+					$B6.visible = true
 				IntroConstants.background4:
+					$AudioStreamPlayer.stop()
+					$AudioStreamPlayer.stream = load("res://Interface/resources/music/Magic Forest.mp3")
+					$AudioStreamPlayer.play()
 					_setBackground(4, 1)
 					$AnimatedSprite.visible = false
 					$AnimatedSprite2.visible = false
 					$AnimatedSprite3.visible = false
+					$B1.visible = false
+					$B2.visible = false
+					$B3.visible = false
+					$B4.visible = false
+					$B5.visible = false
+					$B6.visible = false
 	else:
 		$text.text = ""
 		
@@ -109,6 +137,14 @@ func _moveItems():
 	for item in itemMovement:
 		if !moveItem(item):
 			itemMovement.erase(item)
+			if _getCurrentPhase() == "3":
+				$AudioStreamPlayer.stop()
+				$AudioStreamPlayer.stream = load("res://Interface/resources/music/Haunted Magic.wav")
+				$AudioStreamPlayer.play()
+			else:
+				$AudioStreamPlayer.stop()
+				$AudioStreamPlayer.stream = load("res://Interface/resources/music/Potion 3.mp3")
+				$AudioStreamPlayer.play()
 
 func setBackgroundSize(background):
 	var viewportWidth = get_viewport().size.x
@@ -207,7 +243,7 @@ func _on_item4_input_event(viewport, event, shape_idx):
 	_itemClick($item4, $item4/click, $item4/clickmessage, event)
 
 func _itemClick(item, item1, item2, event):
-	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT && !itemMovement.has(item):
+	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT && !itemMovement.has(item) && (_getCurrentPhase() == IntroConstants.pick || _getCurrentPhase() == IntroConstants.pickStart):
 		nextPhase()
 		itemMovement.append(item)
 		item1.visible = false

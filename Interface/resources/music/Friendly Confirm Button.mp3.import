@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Friendly Confirm Button.mp3-cb7cddb2ea557abc2b0b846bb12e46d4.mp3str"
+
+[deps]
+
+source_file="res://Interface/resources/music/Friendly Confirm Button.mp3"
+dest_files=[ "res://.import/Friendly Confirm Button.mp3-cb7cddb2ea557abc2b0b846bb12e46d4.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
