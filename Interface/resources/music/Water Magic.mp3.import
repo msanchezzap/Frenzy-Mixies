@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Water Magic.mp3-57667940cd016e61908fe8e9df1f1c00.mp3str"
+
+[deps]
+
+source_file="res://Interface/resources/music/Water Magic.mp3"
+dest_files=[ "res://.import/Water Magic.mp3-57667940cd016e61908fe8e9df1f1c00.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

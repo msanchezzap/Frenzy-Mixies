@@ -130,7 +130,7 @@ func _physics_process(delta):
 					score.changeObjectives(board.getConditions())
 					score.changeStars(board.getStars())
 			else:
-				$AudioStreamPlayer.play()
+				MusicScrene.playCombination()
 				oldStep += tmp
 	elif !gameDisabled && !board.hasNextStep() && !isAnimationInProcess():
 		if !board.isPendingConflicts() && isTransitioning:

@@ -62,6 +62,17 @@ func _ready():
 	$ContinueButton/Bre.set_position(Vector2( 0, 0))
 	$ContinueButton/CollisionShape2D.set_position(Vector2( 0, 0))
 	
+	$Area2D3/Ba.set_position(Vector2(viewportWidth/2.5, viewportHeight/2 ))
+	$Area2D3/Bna.set_position(Vector2(viewportWidth/2.5, viewportHeight/2 ))
+	$Area2D3/CollisionShape2D.set_position(Vector2(viewportWidth/2.5, viewportHeight/2 ))
+	$Area2D3/Bna.visible = false
+	$Area2D3/Ba.visible = false
+	$Area2D2/Bs.set_position(Vector2(viewportWidth/1.8, viewportHeight/2 ))
+	$Area2D2/Bns.set_position(Vector2(viewportWidth/1.8, viewportHeight/2 ))
+	$Area2D2/CollisionShape2D.set_position(Vector2(viewportWidth/1.8, viewportHeight/2 ))
+	$Area2D2/Bs.visible = false
+	$Area2D2/Bns.visible = false
+	
 	if result:
 		$ReturnButton.set_position(Vector2(viewportWidth/2, viewportHeight/1.4 ))
 	else:
@@ -77,10 +88,10 @@ func _ready():
 		get_node(result).set_position(Vector2(viewportWidth/2, viewportHeight/2))
 
 	get_node(_scoreNumberLabel).set_position(Vector2(viewportWidth/2 - 40, viewportHeight/1.7))
-	get_node(_0star).set_position(Vector2(viewportWidth/2, viewportHeight/2.5))
-	get_node(_1star).set_position(Vector2(viewportWidth/2, viewportHeight/2.5))
-	get_node(_2star).set_position(Vector2(viewportWidth/2, viewportHeight/2.5))
-	get_node(_3star).set_position(Vector2(viewportWidth/2, viewportHeight/2.5))
+	get_node(_0star).set_position(Vector2(viewportWidth/2, viewportHeight/2.4))
+	get_node(_1star).set_position(Vector2(viewportWidth/2, viewportHeight/2.4))
+	get_node(_2star).set_position(Vector2(viewportWidth/2, viewportHeight/2.4))
+	get_node(_3star).set_position(Vector2(viewportWidth/2, viewportHeight/2.4))
 	
 func configureLittleButton(nodeName, width, height):
 	get_node(nodeName).set_size(Vector2(viewportWidth/3, 40))
@@ -182,6 +193,18 @@ func _on_SettingsButton_pressed():
 	get_node(_optionButton).selected = Config.getConfigIndex()
 	get_node(_lineEdit).text = str(Config.getTurns())
 	get_node(_lineEdit2).text = str(Config.getScore())
+	if MusicScrene.disableMusic:
+		$Area2D3/Bna.visible = true
+		$Area2D3/Ba.visible = false
+	else:
+		$Area2D3/Bna.visible = false
+		$Area2D3/Ba.visible = true
+	if MusicScrene.disableSound:
+		$Area2D2/Bns.visible = true
+		$Area2D2/Bs.visible = false
+	else:
+		$Area2D2/Bns.visible = false
+		$Area2D2/Bs.visible = true
 	setBackground(SETTINGS_BACKGROUND)
 	setExitButton(false)
 
@@ -243,3 +266,24 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 		_on_SettingsButton_pressed()
 		settingsEnabled = true
 		pressed = true
+
+
+func _on_Area2D3_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT && event.is_pressed() == tru:
+		MusicScrene.setDisableMusic()
+		if MusicScrene.disableMusic:
+			$Area2D3/Bna.visible = true
+			$Area2D3/Ba.visible = false
+		else:
+			$Area2D3/Bna.visible = false
+			$Area2D3/Ba.visible = true
+
+func _on_Area2D2_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT && event.is_pressed() == true:
+		MusicScrene.setDisableSound()
+		if MusicScrene.disableSound:
+			$Area2D2/Bns.visible = true
+			$Area2D2/Bs.visible = false
+		else:
+			$Area2D2/Bns.visible = false
+			$Area2D2/Bs.visible = true

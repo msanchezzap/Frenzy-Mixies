@@ -55,7 +55,7 @@ func getStars():
 
 func getColorQuantity():
 	match _level:
-		1, 2, 3, 4, 5, 6:
+		0, 1, 2, 3, 4, 5, 6:
 			return 5
 		7, 8, 9:
 			return 6

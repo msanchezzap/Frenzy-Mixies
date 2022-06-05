@@ -13,11 +13,6 @@ func construct():
 	var firstSquare = null
 	var lastRow: SquareComponent = null
 	var lastSquare: SquareComponent = null
-	var oldX = _x
-	var oldY = _y
-	if _level == 0:
-		_x = 5
-		_y = 5
 	for n in _x:
 		if lastSquare != null:
 			lastRow = _getLeftSquare(lastSquare)
@@ -81,9 +76,6 @@ func construct():
 			lockfactory.modify(UpRight)
 			lockfactory.modify(downLeft)
 			lockfactory.modify(downRight)
-	if _level == 0:
-		_x = oldX
-		_y = oldY
 	return firstSquare
 
 func _getLeftSquare(lastSquare: SquareComponent):

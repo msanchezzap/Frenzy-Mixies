@@ -61,14 +61,28 @@ func _ready():
 	$B8.set_position(Vector2(get_viewport().size.x / 4 , get_viewport().size.y / 3))
 	$B9.set_position(Vector2(get_viewport().size.x / 1.5 , get_viewport().size.y / 4.7))
 	
+	$CalderoDemierda.set_position(Vector2(get_viewport().size.x / 2 , get_viewport().size.y / 2))
+	$AnimatedSprite4.set_position(Vector2(get_viewport().size.x / 2 , get_viewport().size.y / 2 - 150))
+	$Area2D/Pukim.set_position(Vector2(0, 0))
+	$Area2D.set_position(Vector2(get_viewport().size.x / 2 , get_viewport().size.y / 2 - 150))
+	
+	
 var lastPhase = -1
 var itemMovement: Array = []
+var isjumping = true
+var currentJump = 0
 func _physics_process(delta):
 	if introPhase != lastPhase:
 		lastPhase = introPhase
 		triggerPhase()
 	_moveItems()
-
+	if $Area2D.visible:
+		if isjumping:
+			$Area2D.position.y += 10
+			currentJump += 10
+			if currentJump == 200:
+				isjumping = false
+var firstTime = true
 func triggerPhase():
 	var currentPhase = _getCurrentPhase()
 	if currentPhase != null:
@@ -79,17 +93,17 @@ func triggerPhase():
 				IntroConstants.showPick:
 					_enableItems()
 				IntroConstants.pickStart:
-					$AudioStreamPlayer.stop()
+					MusicScrene.stopForest()
 					for i in ["1","2","3","4"]:
 						get_node(i).visible = false
 					_enableItemsIndications()
 				IntroConstants.tutorial:
 					_startTutorial()
 				IntroConstants.background2:
-					$AudioStreamPlayer.play()
+					MusicScrene.playOrganic()
 					_setBackground(2, 0)
 				IntroConstants.background3:
-					_setBackground(3, 1)
+					_setBackground(3, 2)
 					$AnimatedSprite.visible = true
 					$AnimatedSprite.play()
 					$AnimatedSprite2.visible = true
@@ -103,9 +117,9 @@ func triggerPhase():
 					$B5.visible = true
 					$B6.visible = true
 				IntroConstants.background4:
-					$AudioStreamPlayer.stop()
-					$AudioStreamPlayer.stream = load("res://Interface/resources/music/Magic Forest.mp3")
-					$AudioStreamPlayer.play()
+					if firstTime:
+						MusicScrene.playForest()
+						firstTime= false
 					_setBackground(4, 1)
 					$AnimatedSprite.visible = false
 					$AnimatedSprite2.visible = false
@@ -138,13 +152,15 @@ func _moveItems():
 		if !moveItem(item):
 			itemMovement.erase(item)
 			if _getCurrentPhase() == "3":
-				$AudioStreamPlayer.stop()
-				$AudioStreamPlayer.stream = load("res://Interface/resources/music/Haunted Magic.wav")
-				$AudioStreamPlayer.play()
+				$AnimatedSprite4.visible = true
+				$AnimatedSprite4.play()
+				$Area2D.visible = true
+				MusicScrene.playWaterDone()
 			else:
-				$AudioStreamPlayer.stop()
-				$AudioStreamPlayer.stream = load("res://Interface/resources/music/Potion 3.mp3")
-				$AudioStreamPlayer.play()
+				$AnimatedSprite4.visible = true
+				$AnimatedSprite4.frame = 0
+				$AnimatedSprite4.play()
+				MusicScrene.playWater()
 
 func setBackgroundSize(background):
 	var viewportWidth = get_viewport().size.x
@@ -188,6 +204,7 @@ func _getCurrentPhase():
 	return IntroConstants.text[introPhase] 
 
 func _enableItems():
+	$CalderoDemierda.visible = true
 	$item1.visible = true
 	$item2.visible = true
 	$item3.visible = true

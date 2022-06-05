@@ -15,6 +15,7 @@ const text = [
 	doorClick, background2, background3
 	, showPick
 	, background4
+	, background4
 	, "1"
 	, "2"
 	, pickStart, pick, pick, pick

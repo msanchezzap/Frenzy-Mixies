@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Interface/Consumers/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Interface/resources/UI/Stars/1s.png" type="Texture" id=2]
@@ -27,6 +27,10 @@
 [ext_resource path="res://Interface/resources/Fonts/ARIAL.TTF" type="DynamicFontData" id=25]
 [ext_resource path="res://Interface/resources/Backgrounds/menu.png" type="Texture" id=26]
 [ext_resource path="res://Interface/resources/music/Friendly Confirm Button.mp3" type="AudioStream" id=27]
+[ext_resource path="res://Interface/resources/Buttons/bns.png" type="Texture" id=28]
+[ext_resource path="res://Interface/resources/Buttons/bs.png" type="Texture" id=29]
+[ext_resource path="res://Interface/resources/Buttons/ba.png" type="Texture" id=30]
+[ext_resource path="res://Interface/resources/Buttons/bna.png" type="Texture" id=31]
 
 [sub_resource type="ImageTexture" id=3]
 
@@ -39,6 +43,9 @@ extents = Vector2( 156.5, 60.25 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 156, 62.5 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 64.5, 62 )
 
 [node name="Area2D" type="Area2D"]
 script = ExtResource( 1 )
@@ -366,6 +373,37 @@ shape = SubResource( 5 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 27 )
 
+[node name="Area2D3" type="Area2D" parent="."]
+
+[node name="Ba" type="Sprite" parent="Area2D3"]
+visible = false
+position = Vector2( 1195, 459 )
+texture = ExtResource( 30 )
+
+[node name="Bna" type="Sprite" parent="Area2D3"]
+visible = false
+position = Vector2( 1195, 459 )
+texture = ExtResource( 31 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2( 1145, 832 )
+shape = SubResource( 7 )
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="Bns" type="Sprite" parent="Area2D2"]
+position = Vector2( 573, 418 )
+texture = ExtResource( 28 )
+
+[node name="Bs" type="Sprite" parent="Area2D2"]
+visible = false
+position = Vector2( 573, 418 )
+texture = ExtResource( 29 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2( 572.5, 416 )
+shape = SubResource( 7 )
+
 [connection signal="pressed" from="StartButton1" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="ContinueButton1" to="." method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="ExitButton1" to="." method="_on_Button2_pressed"]
@@ -380,3 +418,5 @@ stream = ExtResource( 27 )
 [connection signal="input_event" from="ContinueButton" to="." method="_on_ContinueButton_input_event"]
 [connection signal="input_event" from="ReturnButton" to="." method="_on_ReturnButton_input_event"]
 [connection signal="input_event" from="SettingsButton" to="." method="_on_Area2D_input_event"]
+[connection signal="input_event" from="Area2D3" to="." method="_on_Area2D3_input_event"]
+[connection signal="input_event" from="Area2D2" to="." method="_on_Area2D2_input_event"]
