@@ -269,7 +269,7 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 
 
 func _on_Area2D3_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT && event.is_pressed() == tru:
+	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT && event.is_pressed() == true:
 		MusicScrene.setDisableMusic()
 		if MusicScrene.disableMusic:
 			$Area2D3/Bna.visible = true
