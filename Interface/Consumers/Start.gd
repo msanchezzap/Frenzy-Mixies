@@ -28,7 +28,7 @@ func _physics_process(delta):
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
 		_changeScene()
-		
+
 func _changeScene():
 	var path = pathMain
 	if Config.getMaxLevel() <= 1:

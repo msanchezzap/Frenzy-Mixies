@@ -25,7 +25,7 @@ func _init():
 			add_child(tutorialInterface)
 		
 func _ready():
-	initialSpaceX = get_viewport().size.x/3
+	initialSpaceX = get_viewport().size.x/2.5
 	initialSpaceY = get_viewport().size.y/5
 	setBackgroundSize()
 	start()

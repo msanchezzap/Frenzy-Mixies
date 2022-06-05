@@ -14,7 +14,7 @@ func _ready():
 
 	$AnimatedSprite.set_frame(Config.getLevel() -1)
 	$AnimatedSprite.set_position(Vector2(get_viewport().size.x/ 8, 977 /2 + 20))
-	$ObjectivesValue.set_position(Vector2(get_viewport().size.x/ 8 - 50, 20 + 260))
+	$ObjectivesValue.set_position(Vector2(get_viewport().size.x/ 8 - 50, 20 + 240))
 	$TurnsLeftValue.set_position(Vector2(get_viewport().size.x/ 8 - 25, 20 + 460))
 	$ScoreValue.set_position(Vector2(get_viewport().size.x/ 8 - 20, 20 + 660))
 	$"0s".set_position(Vector2(get_viewport().size.x/ 8 - 8, 20 + 880))
@@ -60,7 +60,7 @@ func changeObjectives(objectives: Array):
 		iteration += 1
 	$ObjectivesValue.text = result
 
-const ICON_SIZE: int = 15
+const ICON_SIZE: int = 50
 func _createIcon(type: String, color: int, iteration: int):
 	var root = get_tree().get_root()
 	var _current_scene = root.get_child(root.get_child_count() - 1)
@@ -73,5 +73,5 @@ func _createIcon(type: String, color: int, iteration: int):
 	itex.create_from_image(image)
 	b.texture_normal = itex
 	b.set_name(str(iteration))
-	b.set_position(Vector2(get_viewport().size.x/ 8 - 50 - ICON_SIZE, 20 + 260 + (iteration + 2) * ICON_SIZE ))
+	b.set_position(Vector2(get_viewport().size.x/ 8 - 50 - ICON_SIZE, 200 + (iteration) * ICON_SIZE ))
 	
