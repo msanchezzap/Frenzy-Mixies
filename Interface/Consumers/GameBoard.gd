@@ -1,7 +1,7 @@
 class_name GameBoard extends Node
 
-const size: int = 75
-const initialSpaceY: int = 120
+const size: int = 80
+var initialSpaceY: int = 120
 var initialSpaceX: int = 0
 var _saveService: SaveService
 var board: GameService
@@ -25,7 +25,8 @@ func _init():
 			add_child(tutorialInterface)
 		
 func _ready():
-	initialSpaceX = get_viewport().size.x/5
+	initialSpaceX = get_viewport().size.x/3
+	initialSpaceY = get_viewport().size.y/5
 	setBackgroundSize()
 	start()
 
@@ -127,6 +128,7 @@ func _physics_process(delta):
 					_boardAnimation.Execute(lastStep[0], board.getChain())
 					score.changeScore(board.getScore())
 					score.changeObjectives(board.getConditions())
+					score.changeStars(board.getStars())
 			else:
 				oldStep += tmp
 	elif !gameDisabled && !board.hasNextStep() && !isAnimationInProcess():

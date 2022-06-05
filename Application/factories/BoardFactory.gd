@@ -47,10 +47,10 @@ func construct():
 			UpRight = UpRight.getRelation(Directions.LEFT).getRelation(Directions.DOWN)
 			var UpLeft = SquareService.goToStart(UpRight).getRelation(Directions.DOWN).getRelation(Directions.RIGHT)
 			var lockfactory = Locker.new()
-			lockfactory.modify(UpLeft)
-			lockfactory.modify(UpRight)
-			lockfactory.modify(downLeft)
-			lockfactory.modify(downRight)
+			#lockfactory.modify(UpLeft)
+			#lockfactory.modify(UpRight)
+			#lockfactory.modify(downLeft)
+			#lockfactory.modify(downRight)
 		4,7:
 			var downRight = lastSquare.getRelation(Directions.UP).getRelation(Directions.LEFT)
 			var downLeft = lastSquare

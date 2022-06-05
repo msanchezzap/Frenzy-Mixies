@@ -12,17 +12,30 @@ func _ready():
 		baseX = get_viewport().size.x/2 - 30
 		baseY = get_viewport().size.y/1.25
 
-	$Score.set_position(Vector2(baseX, baseY))
-	$ScoreValue.set_position(Vector2(baseX + 65, baseY))
-	$TurnsLeft.set_position(Vector2(baseX, baseY + 20))
-	$TurnsLeftValue.set_position(Vector2(baseX + 65, baseY + 20))
-	$Objectives.set_position(Vector2(baseX, baseY + 40))
-	$ObjectivesValue.set_position(Vector2(baseX + 65, baseY + 40))
+	$AnimatedSprite.set_frame(Config.getLevel() -1)
+	$AnimatedSprite.set_position(Vector2(get_viewport().size.x/ 8, 977 /2 + 20))
+	$ObjectivesValue.set_position(Vector2(get_viewport().size.x/ 8 - 50, 20 + 260))
+	$TurnsLeftValue.set_position(Vector2(get_viewport().size.x/ 8 - 25, 20 + 460))
+	$ScoreValue.set_position(Vector2(get_viewport().size.x/ 8 - 20, 20 + 660))
+	$"0s".set_position(Vector2(get_viewport().size.x/ 8 - 8, 20 + 880))
+	$"1s".set_position(Vector2(get_viewport().size.x/ 8 - 8, 20 + 880))
+	$"2s".set_position(Vector2(get_viewport().size.x/ 8 - 8, 20 + 880))
+	$"3s".set_position(Vector2(get_viewport().size.x/ 8 - 8, 20 + 880))
 	
+	$socre1.set_position(Vector2(get_viewport().size.x/ 8 - 88, 20 + 880))
+	$socre2.set_position(Vector2(get_viewport().size.x/ 8 - 8, 20 + 880))
+	$socre3.set_position(Vector2(get_viewport().size.x/ 8 + 80, 20 + 880))
+
+
 func _physics_process(delta):
 	if destinyScore != currentScore:
 		currentScore += 1
 		$ScoreValue.text = str(currentScore) 
+
+func changeStars(stars):
+	while stars > 0:
+		get_node("socre"+str(stars)).visible = true
+		stars -=1
 	
 func changeScore(newScore: int):
 	destinyScore = newScore
@@ -56,5 +69,5 @@ func _createIcon(type: String, color: int, iteration: int):
 	itex.create_from_image(image)
 	b.texture_normal = itex
 	b.set_name(str(iteration))
-	b.set_position(Vector2(baseX + 65 - ICON_SIZE, baseY + 40 + iteration * ICON_SIZE + 2))
+	b.set_position(Vector2(get_viewport().size.x/ 8 - 50 - ICON_SIZE, 20 + 260 + (iteration + 2) * ICON_SIZE ))
 	

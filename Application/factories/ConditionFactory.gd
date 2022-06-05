@@ -26,8 +26,6 @@ func Build():
 			conditionService.addCondition(SpecialCondition.new(_pointService, SquareComponent.TYPE_EXPLOSIVE, [1,1,2]))
 		5:
 			conditionService.addCondition(ColorCondition.new(_pointService, Colors.BLUE, [30,40,60]))
-		6:
-			conditionService.addCondition(SpecialCondition.new(_pointService,SquareComponent.TYPE_LOCKER, [3,4,6]))
 		7:
 			conditionService.addCondition(SpecialCondition.new(_pointService, SquareComponent.TYPE_EXPLOSIVE, [2,2,2]))
 		8:

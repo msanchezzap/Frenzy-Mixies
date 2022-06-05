@@ -8,12 +8,11 @@ const text = [
 	,"Thats all, Enjoy this new world!"
 ]
 func _ready():
+	for i in ["6","7","8"]:
+		get_node(i).set_position(Vector2(get_viewport().size.x /2, get_viewport().size.y/1.2))
 	var viewportWidth = get_viewport().size.x
 	var viewportHeight = get_viewport().size.y
 	$AnimatedSprite.set_position(Vector2(viewportWidth/ 1.2, viewportHeight/ 1.2))
-	$RichTextLabel.set_margin(MARGIN_LEFT,viewportWidth/4)
-	$RichTextLabel.set_margin(MARGIN_RIGHT,viewportWidth- viewportWidth /4)
-	$RichTextLabel.set_position(Vector2(get_viewport().size.x/2 - (get_viewport().size.x - viewportWidth/4*2)/2, get_viewport().size.y/1.2))
 	notify()
 
 func notify():
@@ -22,4 +21,7 @@ func notify():
 		$AnimatedSprite.set_animation(str(animation))
 		$AnimatedSprite.play()
 		if animation <= text.size():
-			$RichTextLabel.text = text[animation -1]
+			get_node(str(animation+ 5)).visible = true
+		else:
+			for i in ["6","7","8"]:
+				get_node(i).visible = false

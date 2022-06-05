@@ -5,7 +5,7 @@ func generateMainMenu():
 	menu = _baseMenu()
 	_setStartButton(menu, true)
 	_setExitButton(menu, true)
-	#_setSettingsButton(menu)
+	_setSettingsButton(menu)
 	menu.setBackground(Menu.MAIN_BACKGROUND)
 	return menu
 
@@ -13,23 +13,24 @@ func generatePauseMenu():
 	var menu = _baseMenu()
 	_setExitButton(menu, false)
 	_setStartButton(menu,false)
-	menu.setElementVisibility(Menu._returnButtonLevels, true)
+	
 	menu.setBackground(Menu.PAUSE_BACKGROUND)
+	menu.setBlack(true)
 	return menu
 
 func generateGameOverMenu(score: int):
 	var menu: Menu = _generateScoreMenu(score)
-	menu.setBackground(Menu.DEFEAT_BACKGROUND)
-	menu.setElementVisibility(Menu._scoreLabel, false)
-	menu.setElementVisibility(Menu._scoreNumberLabel, false)
+	menu.activateResultBackground()
+	menu.setElementVisibility(Menu._scoreNumberLabel, true)
+	menu.setExitResultButton()
 	return menu 
 
 func generateWinMenu(score: int, stars: int):
 	var menu = _generateScoreMenu(score)
-	menu.setBackground(Menu.VICTORY_BACKGROUND)
+	menu.activateResultBackground()
 	menu.setStars(stars)
-	menu.setElementVisibility(Menu._scoreLabel, false)
-	menu.setElementVisibility(Menu._scoreNumberLabel, false)
+	menu.setElementVisibility(Menu._scoreNumberLabel, true)
+	menu.setExitResultButton()
 	return menu
 	
 func generateSettingsMenu(menu):
@@ -53,12 +54,12 @@ func generateSettingsMenu(menu):
 	
 func _generateScoreMenu(score: int):
 	var menu = _baseMenu()
-	menu.setElementVisibility(menu._returnButtonLevels, true)
+	#menu.setElementVisibility(menu._returnButtonLevels, true)
 	_setScore(menu, score)
 	return menu
 
 func _setScore(menu, score: int):
-	menu.setElementVisibility(menu._scoreLabel, true)
+	#menu.setElementVisibility(menu._scoreLabel, true)
 	menu.setElementVisibility(menu._scoreNumberLabel, true)
 	menu.setScore(score)
 

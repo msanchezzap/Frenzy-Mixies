@@ -40,12 +40,8 @@ func _ready():
 	var scale = viewportWidth / $BackgroundBlack.texture.get_size().x
 	$BackgroundBlack.set_position(Vector2(viewportWidth/2, viewportHeight/2))
 	$BackgroundBlack.set_scale(Vector2(scale, scale))
-	for b in [$White]:
-		var scaleX = viewportWidth / b.texture.get_size().x
-		var scaleY = viewportHeight / b.texture.get_size().y
-		b.set_scale(Vector2(scaleX/1.5 , scaleY/1.5 ))
-
-	for b in [$BackgroundDefeat, $BackgroundVictory, $White]:
+	$White.set_position(Vector2(viewportWidth/2, viewportHeight/2.2))
+	for b in [$BackgroundDefeat, $BackgroundVictory]:
 		b.set_position(Vector2(viewportWidth/2, viewportHeight/2))
 		
 	for b in [ $BackgroundMain]:
@@ -54,20 +50,37 @@ func _ready():
 		b.set_position(Vector2(viewportWidth/2, viewportHeight/2))
 		b.set_scale(Vector2(scaleX , scaleY ))
 		
-	get_node(_startButton).set_size(Vector2(viewportWidth/3, viewportHeight/6))
-	get_node(_startButton).set_position(Vector2(viewportWidth/3, viewportHeight/4))
-	get_node(_continueButton).set_size(Vector2(viewportWidth/3, viewportHeight/6))
-	get_node(_continueButton).set_position(Vector2(viewportWidth/3, viewportHeight/4))
-	get_node(_scoreLabel).set_position(Vector2(viewportWidth/2 - 40, viewportHeight/3))
-	get_node(_scoreNumberLabel).set_position(Vector2(viewportWidth/2 + 40, viewportHeight/3))
+	$StartButton.set_position(Vector2(viewportWidth/2, viewportHeight/4 ))
+	$StartButton/Bp.set_position(Vector2( 0, 0))
+	$StartButton/CollisionShape2D.set_position(Vector2( 0, 0))
+	
+	$ExitButton.set_position(Vector2(viewportWidth/2, viewportHeight/1.4 ))
+	$ExitButton/Be.set_position(Vector2( 0, 0))
+	$ExitButton/CollisionShape2D.set_position(Vector2( 0, 0))
+	
+	$ContinueButton.set_position(Vector2(viewportWidth/2, viewportHeight/4 ))
+	$ContinueButton/Bre.set_position(Vector2( 0, 0))
+	$ContinueButton/CollisionShape2D.set_position(Vector2( 0, 0))
+	
+	if result:
+		$ReturnButton.set_position(Vector2(viewportWidth/2, viewportHeight/1.4 ))
+	else:
+		$ReturnButton.set_position(Vector2(viewportWidth/2, viewportHeight/1.6 ))
+
+	$ReturnButton/Br.set_position(Vector2( 0, 0))
+	$ReturnButton/CollisionShape2D.set_position(Vector2( 0, 0))
+	
+	$SettingsButton.set_position(Vector2(viewportWidth/2, viewportHeight/2 ))
+	$SettingsButton/Bs.set_position(Vector2( 0, 0))
+	$SettingsButton/CollisionShape2D.set_position(Vector2( 0, 0))
+	for result in ["1","2","3","4","5","6","7","8","9","10"]:
+		get_node(result).set_position(Vector2(viewportWidth/2, viewportHeight/2))
+
+	get_node(_scoreNumberLabel).set_position(Vector2(viewportWidth/2 - 40, viewportHeight/1.7))
 	get_node(_0star).set_position(Vector2(viewportWidth/2, viewportHeight/2.5))
 	get_node(_1star).set_position(Vector2(viewportWidth/2, viewportHeight/2.5))
 	get_node(_2star).set_position(Vector2(viewportWidth/2, viewportHeight/2.5))
 	get_node(_3star).set_position(Vector2(viewportWidth/2, viewportHeight/2.5))
-	
-	configureLittleButton(_returnButtonLevels, viewportWidth/3, viewportHeight/1.6)
-	configureLittleButton(_exitButton, viewportWidth/3, viewportHeight/1.4)
-	configureLittleButton(_returnButton, viewportWidth/3, viewportHeight/1.4)
 	
 func configureLittleButton(nodeName, width, height):
 	get_node(nodeName).set_size(Vector2(viewportWidth/3, 40))
@@ -80,10 +93,18 @@ func setStartButton(showStart: bool):
 func setExitButton(showExit: bool):
 	get_node(_exitButton).visible = showExit
 	get_node(_returnButton).visible = !showExit
-
+	
+var result= false
+func setExitResultButton():
+	get_node(_returnButton).visible = true
+	result = true
+	
 func setElementVisibility(element: String, visible: bool):
 	get_node(element).visible = visible
 
+func setBlack(visibility):
+	$BackgroundBlack.visible = visibility
+	
 func setStars(stars: int):
 	match stars:
 		0:
@@ -94,7 +115,7 @@ func setStars(stars: int):
 			setElementVisibility(_2star, true)
 		3:
 			setElementVisibility(_3star, true)
-
+			
 func setScore(score: int):
 	get_node(_scoreNumberLabel).visible = true
 	get_node(_scoreNumberLabel).text = str(score)
@@ -114,7 +135,7 @@ func setBackground(menuStatus: int):
 		currentBackground.visible = false
 	match menuStatus:
 		SETTINGS_BACKGROUND:
-			currentBackground = $BackgroundSettings
+			currentBackground = $BackgroundMain
 		VICTORY_BACKGROUND:
 			currentBackground = $BackgroundVictory
 		DEFEAT_BACKGROUND:
@@ -135,6 +156,7 @@ func _changeScene(path: String):
 
 func _on_Button_pressed():
 	_changeScene("res://Interface/Scenes/Levels.tscn")
+	
 func _on_Button2_pressed():
 	get_tree().quit()
 func _on_ReturnButton_pressed():
@@ -183,3 +205,36 @@ func _on_LineEdit2_text_changed(new_text):
 	else:
 		get_node(_lineEdit2).text = oldtext2
 	get_node(_lineEdit2).set_cursor_position(get_node(_lineEdit2).text.length())
+
+func _on_StartButton_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
+		_changeScene("res://Interface/Scenes/Levels.tscn")
+
+func _on_ExitButton_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
+		get_tree().quit()
+
+func _on_ContinueButton_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
+		self.queue_free()
+
+var pressed = false
+func _on_ReturnButton_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
+		if settingsEnabled:
+			settingsEnabled = false
+			_changeScene("res://Interface/Scenes/Main.tscn")
+		else:
+			_changeScene("res://Interface/Scenes/Levels.tscn")
+func activateResultBackground():
+	if Config.getLevel() == 0:
+			get_node("1").visible = true
+	else:
+		get_node(str(Config.getLevel())).visible = true
+	
+var settingsEnabled = false
+func _on_Area2D_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
+		_on_SettingsButton_pressed()
+		settingsEnabled = true
+		pressed = true

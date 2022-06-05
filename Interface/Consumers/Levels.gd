@@ -1,7 +1,7 @@
 extends Node2D
 
 var _current_scene = null
-const _BUTTON_SIZE = 150
+const _BUTTON_SIZE = 151
 const _BUTTON_GAP = 10
 var viewportWidth
 var viewportHeight 
@@ -34,17 +34,17 @@ func createbutton(level: int):
 		b.connect("pressed", self, "_button_pressed", [b])
 		createStarCounter(b, level)
 	else:
-		b.texture_normal = load("res://Interface/resources/UI/LevelsLocked/lvl"+str(level)+".png")
+		b.texture_normal = load("res://Interface/resources/UI/Levels/lvlL.png")
 	b.set_name(str(level))
 	b.set_position(Vector2(viewportWidth/2 - _BUTTON_GAP - _BUTTON_SIZE*1.5 + (_BUTTON_GAP + _BUTTON_SIZE) * ((level - 1) % 3) ,viewportWidth/10 + (_BUTTON_SIZE + _BUTTON_GAP) *((level -1) / 3)))
 	b.rect_size = Vector2(_BUTTON_SIZE,_BUTTON_SIZE)
 
 func createStarCounter(button: Button, level: int):
 	var sc = TextureButton.new()
-	sc.texture_normal = load("res://Interface/resources/UI/Stars/"+str(Config._stars[level-1])+"s.png")
+	sc.texture_normal = load("res://Interface/resources/UI/LittleStaras/"+str(Config._stars[level-1])+"s.png")
 	sc.set_name("sc" + str(level))
 	sc.connect("pressed", self, "_button_pressed", [sc])
-	sc.set_position(Vector2(viewportWidth/2 - _BUTTON_GAP - _BUTTON_SIZE*1.5 + (_BUTTON_GAP + _BUTTON_SIZE) * ((level - 1) % 3) , (viewportWidth/10) +(_BUTTON_SIZE/1.8) + (_BUTTON_SIZE + _BUTTON_GAP) *((level -1) / 3)))
+	sc.set_position(Vector2(viewportWidth/2 - _BUTTON_GAP - _BUTTON_SIZE*1.4 + (_BUTTON_GAP + _BUTTON_SIZE) * ((level - 1) % 3) + 10, (viewportWidth/10) - (_BUTTON_SIZE/8) + (_BUTTON_SIZE + _BUTTON_GAP) *((level -1) / 3)))
 	sc.rect_size = Vector2(0,0)
 	add_child(sc)
 

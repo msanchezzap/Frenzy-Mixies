@@ -1,15 +1,37 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://Interface/resources/Backgrounds/1000-600-3.png" type="Texture" id=1]
+[ext_resource path="res://Interface/resources/Backgrounds/2.png" type="Texture" id=1]
 [ext_resource path="res://Interface/Consumers/Intros.gd" type="Script" id=2]
 [ext_resource path="res://Interface/resources/Positions/Explosion/blue/eb1.png" type="Texture" id=3]
-[ext_resource path="res://Interface/resources/Backgrounds/1000-600-2.png" type="Texture" id=4]
+[ext_resource path="res://Interface/resources/Backgrounds/3.png" type="Texture" id=4]
+[ext_resource path="res://Interface/resources/Messages/1.png" type="Texture" id=5]
+[ext_resource path="res://Interface/resources/Messages/3.png" type="Texture" id=6]
+[ext_resource path="res://Interface/resources/Messages/2.png" type="Texture" id=7]
+[ext_resource path="res://Interface/resources/Messages/4.png" type="Texture" id=8]
+[ext_resource path="res://Interface/resources/Messages/6.png" type="Texture" id=9]
+[ext_resource path="res://Interface/resources/Messages/8.png" type="Texture" id=10]
+[ext_resource path="res://Interface/resources/Messages/5.png" type="Texture" id=11]
+[ext_resource path="res://Interface/resources/Messages/7.png" type="Texture" id=12]
+[ext_resource path="res://Interface/resources/UI/Sin título-8.png" type="Texture" id=13]
+[ext_resource path="res://Interface/resources/UI/transpa.png" type="Texture" id=14]
+[ext_resource path="res://Interface/resources/Backgrounds/5.png" type="Texture" id=15]
+[ext_resource path="res://Interface/resources/Backgrounds/4.png" type="Texture" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 60, 62.125 )
+extents = Vector2( 174, 157 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
+
+[node name="clickmessage" type="Sprite" parent="."]
+position = Vector2( 134, 406 )
+z_index = 1
+texture = ExtResource( 14 )
+
+[node name="click" type="Sprite" parent="."]
+position = Vector2( 185, 282 )
+z_index = 1
+texture = ExtResource( 13 )
 
 [node name="Background1" type="Sprite" parent="."]
 position = Vector2( 583, 364 )
@@ -19,6 +41,16 @@ texture = ExtResource( 1 )
 visible = false
 position = Vector2( 568, 366 )
 texture = ExtResource( 4 )
+
+[node name="Background3" type="Sprite" parent="."]
+visible = false
+position = Vector2( 9, 95 )
+texture = ExtResource( 16 )
+
+[node name="Background4" type="Sprite" parent="."]
+visible = false
+position = Vector2( 9, 95 )
+texture = ExtResource( 15 )
 
 [node name="text" type="RichTextLabel" parent="."]
 margin_left = 521.0
@@ -33,12 +65,8 @@ __meta__ = {
 
 [node name="Door" type="Area2D" parent="."]
 
-[node name="Eb1" type="Sprite" parent="Door"]
-position = Vector2( 551, 351 )
-texture = ExtResource( 3 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
-position = Vector2( 548, 350 )
+position = Vector2( 605, 564 )
 shape = SubResource( 1 )
 
 [node name="item1" type="Area2D" parent="."]
@@ -52,6 +80,16 @@ texture = ExtResource( 3 )
 position = Vector2( 260, 222 )
 shape = SubResource( 1 )
 
+[node name="clickmessage" type="Sprite" parent="item1"]
+position = Vector2( 134, 406 )
+z_index = 1
+texture = ExtResource( 14 )
+
+[node name="click" type="Sprite" parent="item1"]
+position = Vector2( 185, 282 )
+z_index = 1
+texture = ExtResource( 13 )
+
 [node name="item2" type="Area2D" parent="."]
 visible = false
 
@@ -62,6 +100,16 @@ texture = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="item2"]
 position = Vector2( 256, 475 )
 shape = SubResource( 1 )
+
+[node name="clickmessage" type="Sprite" parent="item2"]
+position = Vector2( 134, 406 )
+z_index = 1
+texture = ExtResource( 14 )
+
+[node name="click" type="Sprite" parent="item2"]
+position = Vector2( 185, 282 )
+z_index = 1
+texture = ExtResource( 13 )
 
 [node name="item3" type="Area2D" parent="."]
 visible = false
@@ -74,6 +122,16 @@ texture = ExtResource( 3 )
 position = Vector2( 893, 224 )
 shape = SubResource( 1 )
 
+[node name="clickmessage" type="Sprite" parent="item3"]
+position = Vector2( 134, 406 )
+z_index = 1
+texture = ExtResource( 14 )
+
+[node name="click" type="Sprite" parent="item3"]
+position = Vector2( 185, 282 )
+z_index = 1
+texture = ExtResource( 13 )
+
 [node name="item4" type="Area2D" parent="."]
 visible = false
 
@@ -84,6 +142,56 @@ texture = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="item4"]
 position = Vector2( 896, 472 )
 shape = SubResource( 1 )
+
+[node name="clickmessage" type="Sprite" parent="item4"]
+position = Vector2( 134, 406 )
+z_index = 1
+texture = ExtResource( 14 )
+
+[node name="click" type="Sprite" parent="item4"]
+position = Vector2( 185, 282 )
+z_index = 1
+texture = ExtResource( 13 )
+
+[node name="1" type="Sprite" parent="."]
+visible = false
+position = Vector2( 508, 347 )
+texture = ExtResource( 5 )
+
+[node name="2" type="Sprite" parent="."]
+visible = false
+position = Vector2( 508, 347 )
+texture = ExtResource( 7 )
+
+[node name="3" type="Sprite" parent="."]
+visible = false
+position = Vector2( 508, 347 )
+texture = ExtResource( 6 )
+
+[node name="4" type="Sprite" parent="."]
+visible = false
+position = Vector2( 508, 347 )
+texture = ExtResource( 8 )
+
+[node name="5" type="Sprite" parent="."]
+visible = false
+position = Vector2( 508, 347 )
+texture = ExtResource( 11 )
+
+[node name="6" type="Sprite" parent="."]
+visible = false
+position = Vector2( 508, 347 )
+texture = ExtResource( 9 )
+
+[node name="7" type="Sprite" parent="."]
+visible = false
+position = Vector2( 508, 347 )
+texture = ExtResource( 12 )
+
+[node name="8" type="Sprite" parent="."]
+visible = false
+position = Vector2( 508, 347 )
+texture = ExtResource( 10 )
 
 [connection signal="input_event" from="Door" to="." method="_on_Area2D_input_event"]
 [connection signal="input_event" from="item1" to="." method="_on_item1_input_event"]
