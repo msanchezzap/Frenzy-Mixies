@@ -293,7 +293,27 @@ visible = false
 position = Vector2( 584, 2508 )
 texture = ExtResource( 19 )
 
+[node name="B10" type="Sprite" parent="."]
+visible = false
+position = Vector2( 876, 3762 )
+texture = ExtResource( 19 )
+
+[node name="B12" type="Sprite" parent="."]
+visible = false
+position = Vector2( 876, 3762 )
+texture = ExtResource( 19 )
+
+[node name="B11" type="Sprite" parent="."]
+visible = false
+position = Vector2( 438, 1881 )
+texture = ExtResource( 19 )
+
 [node name="B7" type="Sprite" parent="."]
+visible = false
+position = Vector2( 438, 1881 )
+texture = ExtResource( 19 )
+
+[node name="B13" type="Sprite" parent="."]
 visible = false
 position = Vector2( 438, 1881 )
 texture = ExtResource( 19 )

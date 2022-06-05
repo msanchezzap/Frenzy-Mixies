@@ -60,6 +60,10 @@ func _ready():
 	$B7.set_position(Vector2(get_viewport().size.x / 2.3 , get_viewport().size.y / 1.4))
 	$B8.set_position(Vector2(get_viewport().size.x / 4 , get_viewport().size.y / 3))
 	$B9.set_position(Vector2(get_viewport().size.x / 1.5 , get_viewport().size.y / 4.7))
+	$B10.set_position(Vector2(get_viewport().size.x / 5 , get_viewport().size.y / 1.7))
+	$B11.set_position(Vector2(get_viewport().size.x / 3 , get_viewport().size.y / 2.3))
+	$B12.set_position(Vector2(get_viewport().size.x / 2 , get_viewport().size.y / 8))
+	$B13.set_position(Vector2(get_viewport().size.x / 1.27 , get_viewport().size.y / 1.2))
 	
 	$CalderoDemierda.set_position(Vector2(get_viewport().size.x / 2 , get_viewport().size.y / 2))
 	$AnimatedSprite4.set_position(Vector2(get_viewport().size.x / 2 , get_viewport().size.y / 2 - 150))
