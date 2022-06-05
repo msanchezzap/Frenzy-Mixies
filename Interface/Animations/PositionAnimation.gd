@@ -27,6 +27,7 @@ func Colorize(position: Position):
 			sprite.play(explosionAnimation)
 		if sprite.get_frame() == sprite.frames.get_frame_count(EXPLOSION_ANIMATION + "_" + str(position.square.getColor())) -1:
 			position.specialAnimation = ""
+		return
 	if  position.square._type != null:
 		match position.square._type:
 			SquareComponent.LINE_HORIZONTAL:

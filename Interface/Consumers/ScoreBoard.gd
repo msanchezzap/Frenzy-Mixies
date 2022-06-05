@@ -3,13 +3,21 @@ extends Area2D
 var currentScore = 0
 var destinyScore = 0
 var turnsLeft = 0
+var baseX
+var baseY
 func _ready():
-	$Score.set_position(Vector2(get_viewport().size.x/1.3, get_viewport().size.y/7))
-	$ScoreValue.set_position(Vector2(get_viewport().size.x/1.2, get_viewport().size.y/7))
-	$TurnsLeft.set_position(Vector2(get_viewport().size.x/1.3, get_viewport().size.y/5.5))
-	$TurnsLeftValue.set_position(Vector2(get_viewport().size.x/1.2, get_viewport().size.y/5.5))
-	$Objectives.set_position(Vector2(get_viewport().size.x/1.3, get_viewport().size.y/4.5))
-	$ObjectivesValue.set_position(Vector2(get_viewport().size.x/1.2, get_viewport().size.y/4.5))
+	baseX = get_viewport().size.x/1.3
+	baseY = get_viewport().size.y/7
+	if get_viewport().size.x < 999:
+		baseX = get_viewport().size.x/2 - 30
+		baseY = get_viewport().size.y/1.25
+
+	$Score.set_position(Vector2(baseX, baseY))
+	$ScoreValue.set_position(Vector2(baseX + 65, baseY))
+	$TurnsLeft.set_position(Vector2(baseX, baseY + 20))
+	$TurnsLeftValue.set_position(Vector2(baseX + 65, baseY + 20))
+	$Objectives.set_position(Vector2(baseX, baseY + 40))
+	$ObjectivesValue.set_position(Vector2(baseX + 65, baseY + 40))
 	
 func _physics_process(delta):
 	if destinyScore != currentScore:
@@ -48,5 +56,5 @@ func _createIcon(type: String, color: int, iteration: int):
 	itex.create_from_image(image)
 	b.texture_normal = itex
 	b.set_name(str(iteration))
-	b.set_position(Vector2(get_viewport().size.x/1.2 - ICON_SIZE, get_viewport().size.y/4.5 + iteration * ICON_SIZE + 2))
+	b.set_position(Vector2(baseX + 65 - ICON_SIZE, baseY + 40 + iteration * ICON_SIZE + 2))
 	

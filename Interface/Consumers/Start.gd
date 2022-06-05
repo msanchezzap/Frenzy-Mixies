@@ -4,7 +4,8 @@ func _init():
 	SaveService.new().load()
 	
 var _current_scene = null
-const path = "res://Interface/Scenes/Main.tscn"
+const pathMain = "res://Interface/Scenes/Main.tscn"
+const pathIntro = "res://Interface/Scenes/Intros.tscn"
 func _ready():
 	setBackgroundSize()
 	var root = get_tree().get_root()
@@ -17,12 +18,24 @@ func setBackgroundSize():
 	var scaleY = viewportHeight / $Area2D/Background.texture.get_size().y
 	$Area2D/Background.set_position(Vector2(viewportWidth/2, viewportHeight/2))
 	$Area2D/Background.set_scale(Vector2(scaleX, scaleY))
-	
+
+var count = 0
+func _physics_process(delta):
+	count += 1
+	if count >= 80:
+		_changeScene()
+		
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
-		_current_scene.queue_free()
-		var s = ResourceLoader.load(path)
-		_current_scene = s.instance()
-		get_tree().get_root().add_child(_current_scene)
-		get_tree().set_current_scene(_current_scene)
-		get_tree().change_scene(path)
+		_changeScene()
+		
+func _changeScene():
+	var path = pathIntro ##pathMain
+	if Config.getMaxLevel() <= 1:
+		path = pathIntro
+	_current_scene.queue_free()
+	var s = ResourceLoader.load(path)
+	_current_scene = s.instance()
+	get_tree().get_root().add_child(_current_scene)
+	get_tree().set_current_scene(_current_scene)
+	get_tree().change_scene(path)

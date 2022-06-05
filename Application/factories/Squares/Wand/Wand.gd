@@ -1,4 +1,6 @@
 class_name Wand 
 
-func modify(square):
-	square._triggerFunction = WandTrigger.new(square)
+func modify(square, conditionService):
+	square._points = 50
+	square._triggerFunction = WandTrigger.new(square, conditionService)
+	

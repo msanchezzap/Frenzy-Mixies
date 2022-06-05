@@ -40,9 +40,14 @@ func _ready():
 	var scale = viewportWidth / $BackgroundBlack.texture.get_size().x
 	$BackgroundBlack.set_position(Vector2(viewportWidth/2, viewportHeight/2))
 	$BackgroundBlack.set_scale(Vector2(scale, scale))
-	
+	for b in [$White]:
+		var scaleX = viewportWidth / b.texture.get_size().x
+		var scaleY = viewportHeight / b.texture.get_size().y
+		b.set_scale(Vector2(scaleX/1.5 , scaleY/1.5 ))
+
 	for b in [$BackgroundDefeat, $BackgroundVictory, $White]:
 		b.set_position(Vector2(viewportWidth/2, viewportHeight/2))
+		
 	for b in [ $BackgroundMain]:
 		var scaleX = viewportWidth / b.texture.get_size().x
 		var scaleY = viewportHeight / b.texture.get_size().y
@@ -53,6 +58,8 @@ func _ready():
 	get_node(_startButton).set_position(Vector2(viewportWidth/3, viewportHeight/4))
 	get_node(_continueButton).set_size(Vector2(viewportWidth/3, viewportHeight/6))
 	get_node(_continueButton).set_position(Vector2(viewportWidth/3, viewportHeight/4))
+	get_node(_scoreLabel).set_position(Vector2(viewportWidth/2 - 40, viewportHeight/3))
+	get_node(_scoreNumberLabel).set_position(Vector2(viewportWidth/2 + 40, viewportHeight/3))
 	get_node(_0star).set_position(Vector2(viewportWidth/2, viewportHeight/2.5))
 	get_node(_1star).set_position(Vector2(viewportWidth/2, viewportHeight/2.5))
 	get_node(_2star).set_position(Vector2(viewportWidth/2, viewportHeight/2.5))

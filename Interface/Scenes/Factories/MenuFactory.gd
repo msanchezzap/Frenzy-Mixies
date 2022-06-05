@@ -20,13 +20,18 @@ func generatePauseMenu():
 func generateGameOverMenu(score: int):
 	var menu: Menu = _generateScoreMenu(score)
 	menu.setBackground(Menu.DEFEAT_BACKGROUND)
+	menu.setElementVisibility(Menu._scoreLabel, false)
+	menu.setElementVisibility(Menu._scoreNumberLabel, false)
 	return menu 
 
 func generateWinMenu(score: int, stars: int):
 	var menu = _generateScoreMenu(score)
 	menu.setBackground(Menu.VICTORY_BACKGROUND)
 	menu.setStars(stars)
+	menu.setElementVisibility(Menu._scoreLabel, false)
+	menu.setElementVisibility(Menu._scoreNumberLabel, false)
 	return menu
+	
 func generateSettingsMenu(menu):
 	menu.setElementVisibility(Menu._startButton, false)
 	menu.setElementVisibility(Menu._continueButton, false)

@@ -11,6 +11,7 @@ var _boardAnimation
 var menu = null
 var score
 var gameDisabled = false
+var listenerInterfaces = []
 
 var isTransitioning = false
 var lastStep = []
@@ -18,7 +19,11 @@ var oldStep = []
 
 func _init():
 	_saveService = SaveService.new()
-
+	if Config.getLevel() == 0:
+			var tutorialInterface = load("res://Interface/Scenes/Components/Tutorial.tscn").instance()
+			listenerInterfaces.append(tutorialInterface)
+			add_child(tutorialInterface)
+		
 func _ready():
 	initialSpaceX = get_viewport().size.x/5
 	setBackgroundSize()
@@ -28,8 +33,9 @@ func setBackgroundSize():
 	var viewportWidth = get_viewport().size.x
 	var viewportHeight = get_viewport().size.y
 	var scale = viewportWidth / $Background.texture.get_size().x
+	var scaley = viewportHeight / $Background.texture.get_size().y
 	$Background.set_position(Vector2(viewportWidth/2, viewportHeight/2))
-	$Background.set_scale(Vector2(scale, scale))
+	$Background.set_scale(Vector2(scale, scaley))
 
 func start():
 	_initGame()
@@ -93,6 +99,8 @@ func isAnimationInProcess():
 		i +=1
 	return isanimating
 
+var currentSpecial = null
+var lastSpecial = null
 func _physics_process(delta):
 	$FPS.text = "FPS: " + str(Engine.get_frames_per_second()) 
 	$RAM.text = "RAM: " + str(stepify(OS.get_static_memory_usage() / 1000000.0,0.01)) +"MB"
@@ -106,18 +114,21 @@ func _physics_process(delta):
 	if !isAnimationInProcess() && board.hasNextStep():
 		var next = board.getNextStep()
 		var tmp = []
-		if next.size() > 0:
-			tmp = DestructionAnimation.Execute([board.getNextStep()[0]], allpositions)
-		if tmp.size() == 0:
-			DestructionAnimation.RestorePositions(oldStep)
-			oldStep = []
-			lastStep = board.executeNextStep()
-			if lastStep.size() > 0:
-				_boardAnimation.Execute(lastStep[0], board.getChain())
-				score.changeScore(board.getScore())
-				score.changeObjectives(board.getConditions())
-		else:
-			oldStep += tmp
+		if next.size() > 0 && next[0][0] is SquareCombinationComponent:
+			_executeSpecialAnimation(next)
+		if currentSpecial == null:
+			if next.size() > 0:
+				tmp = DestructionAnimation.Execute([next[0]], allpositions)
+			if tmp.size() == 0:
+				DestructionAnimation.RestorePositions(oldStep)
+				oldStep = []
+				lastStep = board.executeNextStep()
+				if lastStep.size() > 0:
+					_boardAnimation.Execute(lastStep[0], board.getChain())
+					score.changeScore(board.getScore())
+					score.changeObjectives(board.getConditions())
+			else:
+				oldStep += tmp
 	elif !gameDisabled && !board.hasNextStep() && !isAnimationInProcess():
 		if !board.isPendingConflicts() && isTransitioning:
 			for p  in allpositions:
@@ -129,16 +140,32 @@ func _physics_process(delta):
 				p.isConflictPending = true
 		match board.getGameStatus():
 			board.WIN:
-				Config._stars[Config.getLevel()-1] = board.getStars()
-				if Config.getLevel() == Config.getMaxLevel():
-					Config.setMaxLevel(Config.getMaxLevel() + 1)
-					Config.advanceLevel()
-				gameDisabled = true
-				add_child(MenuFactory.new().generateWinMenu(board.getScore(), board.getStars()))
-				_saveService.save()
+				_winGame()
 			board.LOSE:
-				gameDisabled = true
-				add_child(MenuFactory.new().generateGameOverMenu(board.getScore()))
+				_loseGame()
+
+func _executeSpecialAnimation(next):
+	if currentSpecial == null && next[0][0] != lastSpecial:
+		currentSpecial = preload("res://Interface/Scenes/Components/Special.tscn").instance()
+		currentSpecial.setAnimation(next[0][0])
+		add_child(currentSpecial)
+	if  currentSpecial != null && currentSpecial.isAnimationInProgress == false:
+		lastSpecial = next[0][0] 
+		currentSpecial.queue_free()
+		currentSpecial = null
+
+func _winGame():
+	Config._stars[Config.getLevel()-1] = board.getStars()
+	if Config.getLevel() == Config.getMaxLevel():
+		Config.setMaxLevel(Config.getMaxLevel() + 1)
+		Config.advanceLevel()
+	gameDisabled = true
+	add_child(MenuFactory.new().generateWinMenu(board.getScore(), board.getStars()))
+	_saveService.save()
+func _loseGame():
+	gameDisabled = true
+	add_child(MenuFactory.new().generateGameOverMenu(board.getScore()))
+
 var falseMovementInProcess
 func positionClick(position):
 	if !isAnimationInProcess() && !gameDisabled:
@@ -154,6 +181,8 @@ func positionClick(position):
 				if board.hasNextStep():
 					_boardAnimation.Execute([], board.getChain())
 					score.changeTurn(board.getTurnsLeft())
+					for l in listenerInterfaces:
+						l.notify()
 				selectedPosition = null
 			else:
 				selectedPosition = position

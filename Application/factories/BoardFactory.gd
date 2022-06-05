@@ -9,10 +9,15 @@ func _init(width:int, height:int, level: int):
 	_level = level
 
 func construct():
-	var colors = getColorQuantity()
+	var colors = Config.getColorQuantity()
 	var firstSquare = null
 	var lastRow: SquareComponent = null
 	var lastSquare: SquareComponent = null
+	var oldX = _x
+	var oldY = _y
+	if _level == 0:
+		_x = 5
+		_y = 5
 	for n in _x:
 		if lastSquare != null:
 			lastRow = _getLeftSquare(lastSquare)
@@ -46,6 +51,20 @@ func construct():
 			lockfactory.modify(UpRight)
 			lockfactory.modify(downLeft)
 			lockfactory.modify(downRight)
+		4,7:
+			var downRight = lastSquare.getRelation(Directions.UP).getRelation(Directions.LEFT)
+			var downLeft = lastSquare
+			while (downLeft.getRelation(Directions.LEFT) != null):
+				downLeft = downLeft.getRelation(Directions.LEFT)
+			downLeft = downLeft.getRelation(Directions.UP).getRelation(Directions.RIGHT)
+			var UpRight = lastSquare
+			while (UpRight.getRelation(Directions.UP) != null):
+				UpRight = UpRight.getRelation(Directions.UP)
+			UpRight = UpRight.getRelation(Directions.LEFT).getRelation(Directions.DOWN)
+			var UpLeft = SquareService.goToStart(UpRight).getRelation(Directions.DOWN).getRelation(Directions.RIGHT)
+			var explosiveFactory = Explosive.new()
+			explosiveFactory.modify(UpLeft)
+			explosiveFactory.modify(downRight)
 		6,9:
 			var downRight = lastSquare.getRelation(Directions.UP).getRelation(Directions.LEFT).getRelation(Directions.UP).getRelation(Directions.LEFT)
 			var downLeft = lastSquare
@@ -62,14 +81,10 @@ func construct():
 			lockfactory.modify(UpRight)
 			lockfactory.modify(downLeft)
 			lockfactory.modify(downRight)
+	if _level == 0:
+		_x = oldX
+		_y = oldY
 	return firstSquare
-
-func getColorQuantity():
-	match _level:
-		1, 2, 3, 4, 5, 6:
-			return 5
-		7, 8, 9:
-			return 6
 
 func _getLeftSquare(lastSquare: SquareComponent):
 	while(lastSquare.getRelation(Directions.LEFT) != null):

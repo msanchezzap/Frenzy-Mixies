@@ -12,12 +12,14 @@ var _conditionService: ConditionsService
 var _conflictsPending = false
 
 const TURNS_MIN = 10
-const TURNS_EXTRA_MAX = 11
+const TURNS_EXTRA_MAX = 12
 
 func _init(horizontal, vertical):
 	_sizeHorizontal = horizontal
 	_sizeVertical = vertical
-	_turnsLeft = TURNS_MIN + (TURNS_EXTRA_MAX - Config.getLevel())
+	_turnsLeft = TURNS_MIN + (TURNS_EXTRA_MAX - Config.getLevel() / 2)
+	if Config.getLevel() == 0:
+		_turnsLeft = 3
 	_startSquare = _initBoard()
 	_conflictResolver = ConflictResolver.new(self)
 	_pointService = PointService.new()
@@ -67,6 +69,8 @@ func executeNextStep():
 	elif _combinations.size() > 0:
 		_pointService.countRound(_combinations[0])
 		for m in _combinations[0]:
+			if m is SquareCombinationComponent:
+				m.setStatService(_conditionService)
 			m.Destroy()
 		doneCombinations = _combinations
 		_combinations = _conflictResolver.getNonConflicts()
