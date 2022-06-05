@@ -22,10 +22,13 @@ func _ready():
 	$"2s".set_position(Vector2(get_viewport().size.x/ 8 - 8, 20 + 880))
 	$"3s".set_position(Vector2(get_viewport().size.x/ 8 - 8, 20 + 880))
 	
+	$Black66.set_position(Vector2(get_viewport().size.x/ 8 - 65, 20 + 790))
+	$Black67.set_position(Vector2(get_viewport().size.x/ 8 + 34, 20 + 790))
+	$Black68.set_position(Vector2(get_viewport().size.x/ 8 + 34 + 97, 20 + 790))
+
 	$socre1.set_position(Vector2(get_viewport().size.x/ 8 - 88, 20 + 880))
 	$socre2.set_position(Vector2(get_viewport().size.x/ 8 - 8, 20 + 880))
 	$socre3.set_position(Vector2(get_viewport().size.x/ 8 + 80, 20 + 880))
-
 
 func _physics_process(delta):
 	if destinyScore != currentScore:
@@ -35,6 +38,7 @@ func _physics_process(delta):
 func changeStars(stars):
 	while stars > 0:
 		get_node("socre"+str(stars)).visible = true
+		get_node("Black6" + str(5 + stars)).visible = true
 		stars -=1
 	
 func changeScore(newScore: int):

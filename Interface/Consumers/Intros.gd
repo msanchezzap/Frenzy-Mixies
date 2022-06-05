@@ -66,6 +66,7 @@ func _ready():
 	$Area2D/Pukim.set_position(Vector2(0, 0))
 	$Area2D.set_position(Vector2(get_viewport().size.x / 2 , get_viewport().size.y / 2 - 150))
 	
+	$AnimatedSprite5.set_position(Vector2(get_viewport().size.x / 2 - 250 , get_viewport().size.y / 2 - 100))
 	
 var lastPhase = -1
 var itemMovement: Array = []
@@ -152,11 +153,15 @@ func _moveItems():
 		if !moveItem(item):
 			itemMovement.erase(item)
 			if _getCurrentPhase() == "3":
+				$AnimatedSprite5.visible = false
 				$AnimatedSprite4.visible = true
 				$AnimatedSprite4.play()
 				$Area2D.visible = true
 				MusicScrene.playWaterDone()
 			else:
+				$AnimatedSprite5.visible = true
+				$AnimatedSprite5.frame = 0
+				$AnimatedSprite5.play()
 				$AnimatedSprite4.visible = true
 				$AnimatedSprite4.frame = 0
 				$AnimatedSprite4.play()
@@ -204,6 +209,7 @@ func _getCurrentPhase():
 	return IntroConstants.text[introPhase] 
 
 func _enableItems():
+	$AnimatedSprite5.visible = true
 	$CalderoDemierda.visible = true
 	$item1.visible = true
 	$item2.visible = true

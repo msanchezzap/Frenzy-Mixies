@@ -2,9 +2,9 @@
 
 [ext_resource path="res://Interface/resources/tutorial/pukim.png" type="Texture" id=1]
 [ext_resource path="res://Interface/Consumers/Tutorial.gd" type="Script" id=2]
-[ext_resource path="res://Interface/resources/Messages/naps7.png" type="Texture" id=3]
-[ext_resource path="res://Interface/resources/Messages/naps8.png" type="Texture" id=4]
-[ext_resource path="res://Interface/resources/Messages/naps6.png" type="Texture" id=5]
+[ext_resource path="res://Interface/resources/Messages/pantalla1 (2).png" type="Texture" id=3]
+[ext_resource path="res://Interface/resources/Messages/pantalla1 (1).png" type="Texture" id=4]
+[ext_resource path="res://Interface/resources/Messages/pantalla1 (3).png" type="Texture" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

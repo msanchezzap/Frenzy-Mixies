@@ -4,7 +4,7 @@ var disableMusic = false
 var disableSound = false
 
 func _ready():
-	$AudioStreamPlayer.set_volume_db(-15)
+	$AudioStreamPlayer.set_volume_db(-5)
 	$AudioStreamPlayer2.set_volume_db(-10)
 	if !disableMusic:
 		$AudioStreamPlayer.play()

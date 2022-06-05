@@ -9,7 +9,7 @@ const text = [
 ]
 func _ready():
 	for i in ["6","7","8"]:
-		get_node(i).set_position(Vector2(get_viewport().size.x /2, get_viewport().size.y/1.2))
+		get_node(i).set_position(Vector2(get_viewport().size.x - 350, 250))
 	var viewportWidth = get_viewport().size.x
 	var viewportHeight = get_viewport().size.y
 	$AnimatedSprite.set_position(Vector2(viewportWidth/ 1.2, viewportHeight/ 1.2))

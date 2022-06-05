@@ -62,14 +62,14 @@ func _ready():
 	$ContinueButton/Bre.set_position(Vector2( 0, 0))
 	$ContinueButton/CollisionShape2D.set_position(Vector2( 0, 0))
 	
-	$Area2D3/Ba.set_position(Vector2(viewportWidth/2.5, viewportHeight/2 ))
-	$Area2D3/Bna.set_position(Vector2(viewportWidth/2.5, viewportHeight/2 ))
-	$Area2D3/CollisionShape2D.set_position(Vector2(viewportWidth/2.5, viewportHeight/2 ))
+	$Area2D3/Ba.set_position(Vector2(viewportWidth/2 + 80, viewportHeight/2 ))
+	$Area2D3/Bna.set_position(Vector2(viewportWidth/2 + 80, viewportHeight/2 ))
+	$Area2D3/CollisionShape2D.set_position(Vector2(viewportWidth/2 + 80, viewportHeight/2 ))
 	$Area2D3/Bna.visible = false
 	$Area2D3/Ba.visible = false
-	$Area2D2/Bs.set_position(Vector2(viewportWidth/1.8, viewportHeight/2 ))
-	$Area2D2/Bns.set_position(Vector2(viewportWidth/1.8, viewportHeight/2 ))
-	$Area2D2/CollisionShape2D.set_position(Vector2(viewportWidth/1.8, viewportHeight/2 ))
+	$Area2D2/Bs.set_position(Vector2(viewportWidth/2 -80, viewportHeight/2 ))
+	$Area2D2/Bns.set_position(Vector2(viewportWidth/2 -80, viewportHeight/2 ))
+	$Area2D2/CollisionShape2D.set_position(Vector2(viewportWidth/2 -80, viewportHeight/2 ))
 	$Area2D2/Bs.visible = false
 	$Area2D2/Bns.visible = false
 	

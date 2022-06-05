@@ -30,7 +30,7 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 		_changeScene()
 		
 func _changeScene():
-	var path = pathIntro
+	var path = pathMain
 	if Config.getMaxLevel() <= 1:
 		path = pathIntro
 	_current_scene.queue_free()

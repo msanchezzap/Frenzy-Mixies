@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Interface/Consumers/ScoreBoard.gd" type="Script" id=1]
 [ext_resource path="res://Interface/resources/UI/score/5.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Interface/resources/UI/Stars/1s.png" type="Texture" id=15]
 [ext_resource path="res://Interface/resources/UI/Stars/3s.png" type="Texture" id=16]
 [ext_resource path="res://Interface/resources/UI/dreamstime_62725226 [Convertido]2.png" type="Texture" id=17]
+[ext_resource path="res://Interface/resources/black666.png" type="Texture" id=18]
 
 [sub_resource type="DynamicFont" id=2]
 size = 50
@@ -148,3 +149,24 @@ texture = ExtResource( 17 )
 visible = false
 position = Vector2( 1076, 677 )
 texture = ExtResource( 17 )
+
+[node name="Black66" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1507, 898 )
+scale = Vector2( 0.99, 0.46 )
+texture = ExtResource( 18 )
+offset = Vector2( -32.8282, 21.7391 )
+
+[node name="Black67" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1606, 898 )
+scale = Vector2( 0.99, 0.46 )
+texture = ExtResource( 18 )
+offset = Vector2( -32.8282, 21.7391 )
+
+[node name="Black68" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1703, 898 )
+scale = Vector2( 0.971797, 0.459799 )
+texture = ExtResource( 18 )
+offset = Vector2( -32.8282, 21.7391 )

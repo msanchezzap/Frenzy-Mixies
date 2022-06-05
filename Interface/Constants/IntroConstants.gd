@@ -19,6 +19,7 @@ const text = [
 	, "1"
 	, "2"
 	, pickStart, pick, pick, pick
+	, background4
 	, "3"
 	, "4"
 	, "5"
