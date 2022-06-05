@@ -47,6 +47,10 @@ func _ready():
 	$item4/Eb1.set_position(Vector2(0,0))
 	$item4/click.set_position(Vector2(-100,0))
 	$item4/clickmessage.set_position(Vector2(-100,-100))
+	$AnimatedSprite.set_position(Vector2(get_viewport().size.x / 1.25 , get_viewport().size.y / 1.25))
+	$AnimatedSprite2.set_position(Vector2(get_viewport().size.x / 3 , get_viewport().size.y /3))
+	$AnimatedSprite3.set_position(Vector2(get_viewport().size.x / 5 , get_viewport().size.y / 1.25))
+			
 	
 var lastPhase = -1
 var itemMovement: Array = []
@@ -63,18 +67,27 @@ func triggerPhase():
 			get_node(currentPhase).visible = true
 		else:
 			match currentPhase:
-				IntroConstants.pickStart:
+				IntroConstants.showPick:
 					_enableItems()
+				IntroConstants.pickStart:
+					_enableItemsIndications()
 				IntroConstants.tutorial:
 					_startTutorial()
 				IntroConstants.background2:
 					_setBackground(2, 0)
-				IntroConstants.background2:
-					_setBackground(2, 1)
 				IntroConstants.background3:
 					_setBackground(3, 1)
+					$AnimatedSprite.visible = true
+					$AnimatedSprite.play()
+					$AnimatedSprite2.visible = true
+					$AnimatedSprite2.play()
+					$AnimatedSprite3.visible = true
+					$AnimatedSprite3.play()
 				IntroConstants.background4:
 					_setBackground(4, 1)
+					$AnimatedSprite.visible = false
+					$AnimatedSprite2.visible = false
+					$AnimatedSprite3.visible = false
 	else:
 		$text.text = ""
 		
@@ -143,6 +156,17 @@ func _enableItems():
 	$item2.visible = true
 	$item3.visible = true
 	$item4.visible = true
+	nextPhase()
+	
+func _enableItemsIndications():
+	$item1/click.visible = true
+	$item1/clickmessage.visible = true
+	$item2/click.visible = true
+	$item2/clickmessage.visible = true
+	$item3/click.visible = true
+	$item3/clickmessage.visible = true
+	$item4/click.visible = true
+	$item4/clickmessage.visible = true
 
 const pathMain = "res://Interface/Scenes/Main.tscn"
 func _goToMainScene():
