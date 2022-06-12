@@ -30,6 +30,60 @@ func _ready():
 	$socre2.set_position(Vector2(get_viewport().size.x/ 8 - 8, 20 + 880))
 	$socre3.set_position(Vector2(get_viewport().size.x/ 8 + 80, 20 + 880))
 
+	get_tree().get_root().connect("size_changed", self, "resize")
+	setElementPositionAndSize()
+	
+func setElementPositionAndSize():
+	var positionX = OS.get_window_size().x
+	var positionY = OS.get_window_size().y
+	$AnimatedSprite.get_sprite_frames()
+	var scoreBoardSize = $AnimatedSprite.get_sprite_frames().get_frame("default",0).get_size()
+	if scoreBoardSize.y > positionY:
+		var scale = OS.get_window_size().y/ scoreBoardSize.y
+		$AnimatedSprite.scale.y = scale
+		$AnimatedSprite.scale.x = scale
+		scoreBoardSize = $AnimatedSprite.get_sprite_frames().get_frame("default",0).get_size()
+	else:
+		$AnimatedSprite.scale.y = 1
+		$AnimatedSprite.scale.x = 1
+		scoreBoardSize = $AnimatedSprite.get_sprite_frames().get_frame("default",0).get_size()
+
+	var scoreBoardRealSizeX = scoreBoardSize.x * $AnimatedSprite.scale.x
+	var scoreBoardRealSizeY = scoreBoardSize.y * $AnimatedSprite.scale.y
+	$AnimatedSprite.set_position(Vector2(scoreBoardRealSizeX/2, scoreBoardRealSizeY/2))
+	$ObjectivesValue.set_position(Vector2(scoreBoardRealSizeX/4, scoreBoardRealSizeY/4.5))
+	$TurnsLeftValue.set_position(Vector2(scoreBoardRealSizeX/3, scoreBoardRealSizeY/2.25))
+	$ScoreValue.set_position(Vector2(scoreBoardRealSizeX/2.5 , scoreBoardRealSizeY/1.5))
+	
+	var starWidth = 63
+	if $Black66 != null:
+		starWidth = $Black66.get_texture().get_width()
+		print("AA")
+	$Black66.set_position(Vector2(scoreBoardRealSizeX/2 - starWidth, 20 + 790))
+	$Black67.set_position(Vector2(scoreBoardRealSizeX/2 + 34, 20 + 790))
+	$Black68.set_position(Vector2(scoreBoardRealSizeX/2 + 34 + 97, 20 + 790))
+	
+	if $socre1 != null:
+		if scoreBoardRealSizeX/3 < $socre1.get_texture().get_size().x ||  scoreBoardRealSizeY/5 < $socre1.get_texture().get_size().y:
+			var newScale = (scoreBoardRealSizeX/3)/$socre1.get_texture().get_size().x
+			$socre1.scale.x = newScale
+			$socre1.scale.y = newScale
+			$socre2.scale.x = newScale
+			$socre2.scale.y = newScale
+			$socre3.scale.x = newScale
+			$socre3.scale.y = newScale
+		else:
+			$socre1.scale.x = 1
+			$socre1.scale.y = 1
+	var starRealWidthX = $socre1.get_texture().get_size().x * (scoreBoardRealSizeX/3)/$socre1.get_texture().get_size().x
+	var starRealWidthY = $socre1.get_texture().get_size().x * (scoreBoardRealSizeX/3)/$socre1.get_texture().get_size().x
+	$socre1.set_position(Vector2(scoreBoardRealSizeX/2 - starRealWidthX, scoreBoardRealSizeY/ 1.10))
+	$socre2.set_position(Vector2(scoreBoardRealSizeX/2 , scoreBoardRealSizeY/ 1.10))
+	$socre3.set_position(Vector2(scoreBoardRealSizeX/2 + starRealWidthX, scoreBoardRealSizeY/ 1.10))
+
+func resize():
+	setElementPositionAndSize()
+
 func _physics_process(delta):
 	if destinyScore != currentScore:
 		currentScore += 1

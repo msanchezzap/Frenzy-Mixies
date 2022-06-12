@@ -34,16 +34,24 @@ var viewportHeight
 func _ready():
 	var root = get_tree().get_root()
 	_current_scene = root.get_child(root.get_child_count() - 1)
-	
-	viewportWidth = get_viewport().size.x
-	viewportHeight = get_viewport().size.y
+	$Area2D3/Bna.visible = false
+	$Area2D3/Ba.visible = false
+	$Area2D2/Bs.visible = false
+	$Area2D2/Bns.visible = false
+	get_tree().get_root().connect("size_changed", self, "resize")
+	setElementPositionAndSize()
+
+func setElementPositionAndSize():
+	var current_size = OS.get_window_size()
+	viewportWidth = current_size.x
+	viewportHeight = current_size.y
 	var scale = viewportWidth / $BackgroundBlack.texture.get_size().x
 	$BackgroundBlack.set_position(Vector2(viewportWidth/2, viewportHeight/2))
 	$BackgroundBlack.set_scale(Vector2(scale, scale))
 	$White.set_position(Vector2(viewportWidth/2, viewportHeight/2.2))
 	for b in [$BackgroundDefeat, $BackgroundVictory]:
 		b.set_position(Vector2(viewportWidth/2, viewportHeight/2))
-		
+
 	for b in [ $BackgroundMain]:
 		var scaleX = viewportWidth / b.texture.get_size().x
 		var scaleY = viewportHeight / b.texture.get_size().y
@@ -65,14 +73,9 @@ func _ready():
 	$Area2D3/Ba.set_position(Vector2(viewportWidth/2 + 80, viewportHeight/2 ))
 	$Area2D3/Bna.set_position(Vector2(viewportWidth/2 + 80, viewportHeight/2 ))
 	$Area2D3/CollisionShape2D.set_position(Vector2(viewportWidth/2 + 80, viewportHeight/2 ))
-	$Area2D3/Bna.visible = false
-	$Area2D3/Ba.visible = false
 	$Area2D2/Bs.set_position(Vector2(viewportWidth/2 -80, viewportHeight/2 ))
 	$Area2D2/Bns.set_position(Vector2(viewportWidth/2 -80, viewportHeight/2 ))
 	$Area2D2/CollisionShape2D.set_position(Vector2(viewportWidth/2 -80, viewportHeight/2 ))
-	$Area2D2/Bs.visible = false
-	$Area2D2/Bns.visible = false
-	
 	if result:
 		$ReturnButton.set_position(Vector2(viewportWidth/2, viewportHeight/1.4 ))
 	else:
@@ -92,10 +95,9 @@ func _ready():
 	get_node(_1star).set_position(Vector2(viewportWidth/2, viewportHeight/2.4))
 	get_node(_2star).set_position(Vector2(viewportWidth/2, viewportHeight/2.4))
 	get_node(_3star).set_position(Vector2(viewportWidth/2, viewportHeight/2.4))
-	
-func configureLittleButton(nodeName, width, height):
-	get_node(nodeName).set_size(Vector2(viewportWidth/3, 40))
-	get_node(nodeName).set_position(Vector2(width, height))
+
+func resize():
+	setElementPositionAndSize()
 
 func setStartButton(showStart: bool):
 	get_node(_startButton).visible = showStart
@@ -287,3 +289,4 @@ func _on_Area2D2_input_event(viewport, event, shape_idx):
 		else:
 			$Area2D2/Bns.visible = false
 			$Area2D2/Bs.visible = true
+

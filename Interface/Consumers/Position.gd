@@ -32,10 +32,10 @@ func Select():
 
 func Unselect():
 	isActive = false
-	
+
 func setColor(color):
 	square.activeColor = color
-	
+
 func applyColor():
 	PositionAnimation.Colorize(self)
 

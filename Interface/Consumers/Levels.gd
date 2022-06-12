@@ -13,14 +13,29 @@ func _ready():
 	var root = get_tree().get_root()
 	_current_scene = root.get_child(root.get_child_count() - 1)
 	setBackgroundSize()
+	get_tree().get_root().connect("size_changed", self, "resize")
+	setElementPositionAndSize()
+
+func setElementPositionAndSize():
+	setBackgroundSize()
+	for node in get_children():
+		if(node is TextureButton): 
+			if node.get_name().find("sc") != -1:
+				var level = int(node.get_name().substr(2))
+				node.set_position(Vector2(OS.get_window_size().x/2 - _BUTTON_GAP - _BUTTON_SIZE*1.4 + (_BUTTON_GAP + _BUTTON_SIZE) * ((level - 1) % 3) + 10, (OS.get_window_size().y/10) - (_BUTTON_SIZE/8) + (_BUTTON_SIZE + _BUTTON_GAP) *((level -1) / 3)))
+			else:
+				node.set_position(Vector2(OS.get_window_size().x/2 - _BUTTON_GAP - _BUTTON_SIZE*1.5 + (_BUTTON_GAP + _BUTTON_SIZE) * ((int(node.get_name()) - 1) % 3) ,OS.get_window_size().y/10 + (_BUTTON_SIZE + _BUTTON_GAP) *((int(node.get_name()) -1) / 3)))
+
+func resize():
+	setElementPositionAndSize()
+	
 func _physics_process(delta):
 	$FPS.text = "FPS: " + str(Engine.get_frames_per_second()) 
 	$RAM.text = "RAM: " + str(stepify(OS.get_static_memory_usage() / 1000000.0,0.01)) +"MB"
 	
 func setBackgroundSize():
-	pass
-	var viewportWidth = get_viewport().size.x
-	var viewportHeight = get_viewport().size.y
+	var viewportWidth = OS.get_window_size().x
+	var viewportHeight = OS.get_window_size().y
 	var scaleX = viewportWidth / $Background.texture.get_size().x
 	var scaleY = viewportHeight / $Background.texture.get_size().y
 	$Background.set_position(Vector2(viewportWidth/2, viewportHeight/2))

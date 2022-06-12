@@ -29,10 +29,28 @@ func _ready():
 	initialSpaceY = get_viewport().size.y/5
 	setBackgroundSize()
 	start()
+	get_tree().get_root().connect("size_changed", self, "resize")
+	
+
+func setElementPositionAndSize():
+	setBackgroundSize()
+	setboardPosition()
+	
+func setboardPosition():
+	for node in self.get_children():
+		if "basePosition" in node:
+			var viewportWidth = OS.get_window_size().x
+			var viewportHeight = OS.get_window_size().y
+			var newPosition = Vector2(viewportWidth/2.5 + (allpositions.find(node)%8) * size, initialSpaceY + (allpositions.find(node)/8) * size)
+			node.basePosition = newPosition
+			node.position = newPosition
+
+func resize():
+	setElementPositionAndSize()
 
 func setBackgroundSize():
-	var viewportWidth = get_viewport().size.x
-	var viewportHeight = get_viewport().size.y
+	var viewportWidth = OS.get_window_size().x
+	var viewportHeight = OS.get_window_size().y
 	var scale = viewportWidth / $Background.texture.get_size().x
 	var scaley = viewportHeight / $Background.texture.get_size().y
 	$Background.set_position(Vector2(viewportWidth/2, viewportHeight/2))
