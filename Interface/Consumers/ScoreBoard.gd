@@ -54,7 +54,20 @@ func setElementPositionAndSize():
 	$ObjectivesValue.set_position(Vector2(scoreBoardRealSizeX/4, scoreBoardRealSizeY/4.5))
 	$TurnsLeftValue.set_position(Vector2(scoreBoardRealSizeX/3, scoreBoardRealSizeY/2.25))
 	$ScoreValue.set_position(Vector2(scoreBoardRealSizeX/2.5 , scoreBoardRealSizeY/1.5))
-	
+
+	if scoreBoardRealSizeX/5 < 20:
+		$ObjectivesValue.get("custom_fonts/font").size = 10
+		$TurnsLeftValue.get("custom_fonts/font").size = 20
+		$ScoreValue.get("custom_fonts/font").size = 20
+	elif scoreBoardRealSizeX/5 < 35:
+		$ObjectivesValue.get("custom_fonts/font").size = 15
+		$TurnsLeftValue.get("custom_fonts/font").size = 35
+		$ScoreValue.get("custom_fonts/font").size = 35
+	else:
+		$ObjectivesValue.get("custom_fonts/font").size = 20
+		$TurnsLeftValue.get("custom_fonts/font").size = 50
+		$ScoreValue.get("custom_fonts/font").size = 50
+
 	var starWidth = 63
 	if $Black66 != null:
 		starWidth = $Black66.get_texture().get_width()

@@ -30,18 +30,29 @@ func _ready():
 	setBackgroundSize()
 	start()
 	get_tree().get_root().connect("size_changed", self, "resize")
-	
+	setboardPosition()
 
 func setElementPositionAndSize():
 	setBackgroundSize()
 	setboardPosition()
 	
 func setboardPosition():
+	var scaleVector = Vector2(1,1)
+	if get_viewport().size.x < 1280 || get_viewport().size.y < 1024:
+		var xx = get_viewport().size.x / 1280
+		var yy = get_viewport().size.y / 1024
+		var scale = xx
+		if yy < xx:
+			scale = yy
+		scaleVector = Vector2(scale,scale)
+
 	for node in self.get_children():
 		if "basePosition" in node:
+			node.get_node("AnimatedSprite").scale = scaleVector
+			node.get_node("Area2D").scale = scaleVector
 			var viewportWidth = OS.get_window_size().x
 			var viewportHeight = OS.get_window_size().y
-			var newPosition = Vector2(viewportWidth/2.5 + (allpositions.find(node)%8) * size, initialSpaceY + (allpositions.find(node)/8) * size)
+			var newPosition = Vector2(viewportWidth/2.5 + (allpositions.find(node)%8) * (size * scaleVector.x), initialSpaceY*scaleVector.x + (allpositions.find(node)/8) * (size * scaleVector.x))
 			node.basePosition = newPosition
 			node.position = newPosition
 

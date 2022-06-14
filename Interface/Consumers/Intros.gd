@@ -4,6 +4,10 @@ var _current_scene = null
 var introPhase = 0
 var backgrounds: Array
 func _ready():
+	get_tree().get_root().connect("size_changed", self, "resize")
+	setElementPositionAndSize()
+	
+func setElementPositionAndSize():
 	backgrounds = [$Background1, $Background2, $Background3, $Background4]
 	var root = get_tree().get_root()
 	_current_scene = root.get_child(root.get_child_count() - 1)
@@ -16,8 +20,33 @@ func _ready():
 	$text.set_position(Vector2(get_viewport().size.x/2 - (get_viewport().size.x - viewportWidth*2)/2, get_viewport().size.y/1.2))
 	
 	for i in ["1","2","3","4","5","6","7","8"]:
+		if get_viewport().size.x < 1920:
+			var xx = get_viewport().size.x/get_node(i).texture.get_size().x
+			var yy = get_viewport().size.y/get_node(i).texture.get_size().y
+			var scale = xx
+			if yy < xx:
+				scale = yy
+			var scaleVector = Vector2(scale,scale)
+			get_node(i).scale = scaleVector
 		get_node(i).set_position(Vector2(get_viewport().size.x /2, get_viewport().size.y/1.2))
+		
+		
 	
+	if get_viewport().size.x < 1000 || get_viewport().size.y < 700:
+		var xx = get_viewport().size.x / 1000
+		var yy = get_viewport().size.y / 700
+		var scale = xx
+		if yy < xx:
+			scale = yy
+		var scaleVector = Vector2(scale,scale)
+		$item1.scale = scaleVector
+		$item2.scale = scaleVector
+		$item3.scale = scaleVector
+		$item4.scale = scaleVector
+		$CalderoDemierda.scale = scaleVector
+		$AnimatedSprite5.scale = scaleVector
+		$AnimatedSprite4.scale = scaleVector
+
 	$click.set_position(Vector2(get_viewport().size.x / 2.5 , get_viewport().size.y / 1.5))
 	$clickmessage.set_position(Vector2(get_viewport().size.x / 2.5 , get_viewport().size.y / 1.8))
 	
@@ -66,12 +95,26 @@ func _ready():
 	$B13.set_position(Vector2(get_viewport().size.x / 1.27 , get_viewport().size.y / 1.2))
 	
 	$CalderoDemierda.set_position(Vector2(get_viewport().size.x / 2 , get_viewport().size.y / 2))
-	$AnimatedSprite4.set_position(Vector2(get_viewport().size.x / 2 , get_viewport().size.y / 2 - 150))
+	$AnimatedSprite4.set_position(Vector2(get_viewport().size.x / 2 , get_viewport().size.y / 2 - ($CalderoDemierda.texture.get_width() * $AnimatedSprite5.scale.y) ))
+	var scaleVector = Vector2(0.5,0.5)
+	if get_viewport().size.x < 1280 || get_viewport().size.y < 1024:
+		var xx = get_viewport().size.x / 2560
+		var yy = get_viewport().size.y / 2048
+		var scale = xx
+		if yy < xx:
+			scale = yy
+		scaleVector = Vector2(scale,scale)
+		$Area2D.scale = scaleVector
 	$Area2D/Pukim.set_position(Vector2(0, 0))
-	$Area2D.set_position(Vector2(get_viewport().size.x / 2 , get_viewport().size.y / 2 - 150))
-	
-	$AnimatedSprite5.set_position(Vector2(get_viewport().size.x / 2 - 250 , get_viewport().size.y / 2 - 100))
-	
+	$Area2D.set_position(Vector2(OS.get_window_size().x / 2 , OS.get_window_size().y / 2 - ($Area2D/Pukim.texture.get_height() * scaleVector.x)/2))
+	var jump = 0
+	if !isjumping:
+		jump = $CalderoDemierda.texture.get_width() * $AnimatedSprite5.scale.y/2
+	$AnimatedSprite5.set_position(Vector2(get_viewport().size.x / 2 - ($CalderoDemierda.texture.get_height() * $AnimatedSprite5.scale.x)/2 , get_viewport().size.y / 2 - ($CalderoDemierda.texture.get_width() * $AnimatedSprite5.scale.y)/2  + jump))
+
+func resize():
+	setElementPositionAndSize()
+
 var lastPhase = -1
 var itemMovement: Array = []
 var isjumping = true
@@ -85,8 +128,9 @@ func _physics_process(delta):
 		if isjumping:
 			$Area2D.position.y += 10
 			currentJump += 10
-			if currentJump == 200:
+			if currentJump >= $Area2D/Pukim.texture.get_height() * $Area2D.scale.x / 2:
 				isjumping = false
+
 var firstTime = true
 func triggerPhase():
 	var currentPhase = _getCurrentPhase()
@@ -102,6 +146,7 @@ func triggerPhase():
 					for i in ["1","2","3","4"]:
 						get_node(i).visible = false
 					_enableItemsIndications()
+					nextPhase()
 				IntroConstants.tutorial:
 					_startTutorial()
 				IntroConstants.background2:
@@ -137,7 +182,7 @@ func triggerPhase():
 					$B6.visible = false
 	else:
 		$text.text = ""
-		
+
 const background_name = "Background"
 func _setBackground(number, timer):
 	var t = Timer.new()
@@ -151,17 +196,18 @@ func _setBackground(number, timer):
 		background.visible = false
 	get_node(background_name + str(number)).visible = true
 	nextPhase()
-	
+
 func _moveItems():
 	for item in itemMovement:
 		if !moveItem(item):
-			itemMovement.erase(item)
-			if _getCurrentPhase() == "3":
-				$AnimatedSprite5.visible = false
+			if _getCurrentPhase() == IntroConstants.background4:
 				$AnimatedSprite4.visible = true
 				$AnimatedSprite4.play()
-				$Area2D.visible = true
 				MusicScrene.playWaterDone()
+			elif _getCurrentPhase() == "3":
+				$AnimatedSprite5.visible = false
+				$Area2D.visible = true
+				itemMovement.erase(item)
 			else:
 				$AnimatedSprite5.visible = true
 				$AnimatedSprite5.frame = 0
@@ -170,6 +216,7 @@ func _moveItems():
 				$AnimatedSprite4.frame = 0
 				$AnimatedSprite4.play()
 				MusicScrene.playWater()
+				itemMovement.erase(item)
 
 func setBackgroundSize(background):
 	var viewportWidth = get_viewport().size.x
@@ -270,7 +317,7 @@ func _on_item4_input_event(viewport, event, shape_idx):
 	_itemClick($item4, $item4/click, $item4/clickmessage, event)
 
 func _itemClick(item, item1, item2, event):
-	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT && !itemMovement.has(item) && (_getCurrentPhase() == IntroConstants.pick || _getCurrentPhase() == IntroConstants.pickStart):
+	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT && !itemMovement.has(item) && (_getCurrentPhase() == IntroConstants.pick):
 		nextPhase()
 		itemMovement.append(item)
 		item1.visible = false

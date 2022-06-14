@@ -332,10 +332,10 @@ frames = SubResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
+z_index = 1
 
 [node name="Pukim" type="Sprite" parent="Area2D"]
 position = Vector2( 601, 463 )
-scale = Vector2( 0.48895, 0.48895 )
 texture = ExtResource( 30 )
 
 [node name="AnimatedSprite5" type="AnimatedSprite" parent="."]

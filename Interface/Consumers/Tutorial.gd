@@ -8,12 +8,31 @@ const text = [
 	,"Thats all, Enjoy this new world!"
 ]
 func _ready():
-	for i in ["6","7","8"]:
-		get_node(i).set_position(Vector2(get_viewport().size.x - 350, 250))
+
+	notify()
+	get_tree().get_root().connect("size_changed", self, "resize")
+	setElementPositionAndSize()
+	
+func setElementPositionAndSize():
 	var viewportWidth = get_viewport().size.x
 	var viewportHeight = get_viewport().size.y
-	$AnimatedSprite.set_position(Vector2(viewportWidth/ 1.2, viewportHeight/ 1.2))
-	notify()
+	$AnimatedSprite.set_position(Vector2(viewportWidth/ 1.1, viewportHeight/ 1.1))
+	if get_viewport().size.x < 1920 || get_viewport().size.y < 1080:
+		var xx = get_viewport().size.x / 1920
+		var yy = get_viewport().size.y / 1080
+		var scale = xx
+		if yy < xx:
+			scale = yy
+		var scaleVector = Vector2(scale,scale)
+		for i in ["6","7","8"]:
+			get_node(i).scale = scaleVector
+		$AnimatedSprite.scale = scaleVector
+	for i in ["6","7","8"]:
+		get_node(i).set_position(Vector2(get_viewport().size.x - (get_node(i).texture.get_width() * get_node(i).scale.x)/2, (get_node(i).texture.get_height() * get_node(i).scale.y)/2 ))
+
+	
+func resize():
+	setElementPositionAndSize()
 
 func notify():
 	if animation <= maxAnimation:

@@ -18,7 +18,7 @@ const text = [
 	, "1"
 	, showPick
 	, "2"
-	, pickStart, pick, pick, pick
+	, pickStart, pick, pick, pick, pick
 	, background4
 	, "3"
 	, "4"
